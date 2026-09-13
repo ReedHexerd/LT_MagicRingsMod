@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<placeType>
+	<worldRegion>DOMINION</worldRegion>
+	<name><![CDATA[The Watering Hole]]></name>
+	<tooltipDescription><![CDATA[The club is absolutely packed with people, who are busy drinking, chatting, and making out with one another.]]></tooltipDescription>
+	<virginityLossDescription><![CDATA[in 'The Watering Hole']]></virginityLossDescription>
+	<sexBlockedFromCharacterPresent>false</sexBlockedFromCharacterPresent>
+	<colour>BASE_BLUE_LIGHT</colour>
+	<backgroundColour>MAP_BACKGROUND</backgroundColour>
+	<encounterType>null</encounterType>
+	<dialogue>xys_dominion_idol_main_area_alt</dialogue>
+	<populationPresent>
+		<population>
+			<populationType plural="false" density="DENSE">CROWD</populationType>
+			<subspeciesPresent worldType="NIGHTLIFE_CLUB"/>
+		</population>
+	</populationPresent>
+	<furniturePresent>false</furniturePresent>
+	<globalMapTile>false</globalMapTile>
+	<dangerous><![CDATA[false]]></dangerous>
+	<itemsDisappear><![CDATA[true]]></itemsDisappear>
+	<aquatic><![CDATA[LAND]]></aquatic>
+	<darkness><![CDATA[ALWAYS_LIGHT]]></darkness>
+	<teleportPermissions>NONE</teleportPermissions>
+	<weatherImmunities immuneToAll="true"/>
+	<applyInventoryInit/>
+</placeType>

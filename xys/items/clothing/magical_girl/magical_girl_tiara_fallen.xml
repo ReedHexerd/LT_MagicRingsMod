@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clothing>
+	<coreAttributes>
+		<authorTag/>
+		<value>10000</value>
+		<determiner><![CDATA[a]]></determiner>
+		<name><![CDATA[fallen magical girl's tiara]]></name>
+		<namePlural pluralByDefault="false"><![CDATA[fallen magical girl's tiaras]]></namePlural>
+		<description><![CDATA[A crown made with precious metal and solid arcane energy crystals. Each gem gleams menacingly under the light.]]></description>
+		<physicalResistance>0</physicalResistance>
+		<femininity>FEMININE</femininity>
+		<slot>HEAD</slot>
+		<rarity>LEGENDARY</rarity>
+		<clothingSet>xys_MAGICAL_GIRL_FALLEN</clothingSet>
+		<imageName>magical_girl_tiara_fallen.svg</imageName>
+		<imageEquippedName/>
+		<effects/>
+		
+		<blockedPartsList>
+			<blockedParts>
+				<displacementType>REMOVE_OR_EQUIP</displacementType>
+				<clothingAccessRequired>
+					<clothingAccess>HEAD</clothingAccess>
+				</clothingAccessRequired>
+				<blockedBodyParts/>
+				<clothingAccessBlocked/>
+				<concealedSlots/>
+			</blockedParts>
+		</blockedPartsList>
+		
+		<incompatibleSlots/>
+		
+		<primaryColours values="JUST_BLACK"/> 
+		<primaryColoursDye values="ALL"/>
+		<secondaryColours values="JUST_STEEL"/>
+		<secondaryColoursDye values="JUST_BLACK"/>
+		<tertiaryColours values="ALL"/>
+		<tertiaryColoursDye values="ALL_METAL"/>
+	
+		<itemTags>
+			<tag>NO_RANDOM_SPAWN</tag>
+			<tag>NOT_FOR_SALE</tag>
+			<tag>REMOVE_FROM_DEBUG_SPAWNER</tag>
+			<tag>DISCARDED_WHEN_UNEQUIPPED</tag>
+		</itemTags>
+	</coreAttributes>
+  
+	<displacementText type="REMOVE_OR_EQUIP">
+		<self>
+			<![CDATA[The tiara shatters into motes of light.]]>
+		</self>
+		<other>
+			<![CDATA[[npc.Name] [npc.verb(remove)] the tiara off [npc2.namePos] head, letting it shatter into motes of light.]]>
+		</other>
+		<otherRough>
+			<![CDATA[[npc.Name] roughly [npc.verb(pull)] the tiara off [npc2.namePos] head, letting it shatter into motes of light, causing [npc2.herHim] to let out a startled yell.]]>
+		</otherRough>
+	</displacementText>
+</clothing>

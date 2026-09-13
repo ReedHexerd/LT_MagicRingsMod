@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<placeType>
+	<worldRegion>DOMINION</worldRegion>
+	<name><![CDATA[Dance Floor]]></name>
+	<tooltipDescription><![CDATA[The central dance floor is the liveliest, and loudest, place in the entire club.]]></tooltipDescription>
+	<virginityLossDescription><![CDATA[in 'The Watering Hole']]></virginityLossDescription>
+	<sexBlockedFromCharacterPresent>false</sexBlockedFromCharacterPresent>
+	<colour>BASE_PINK_DEEP</colour>
+	<backgroundColour>MAP_BACKGROUND</backgroundColour>
+	<encounterType>null</encounterType>
+	<dialogue>xys_dominion_idol_danceFloor_alt</dialogue>
+	<populationPresent>
+		<population>
+			<populationType plural="false" density="DENSE">CROWD</populationType>
+			<subspeciesPresent worldType="NIGHTLIFE_CLUB"/>
+		</population>
+	</populationPresent>
+	<furniturePresent>false</furniturePresent>
+	<globalMapTile>false</globalMapTile>
+	<dangerous><![CDATA[false]]></dangerous>
+	<itemsDisappear><![CDATA[true]]></itemsDisappear>
+	<aquatic><![CDATA[LAND]]></aquatic>
+	<darkness><![CDATA[ALWAYS_LIGHT]]></darkness>
+	<teleportPermissions>NONE</teleportPermissions>
+	<weatherImmunities immuneToAll="true"/>
+	<applyInventoryInit/>
+</placeType>

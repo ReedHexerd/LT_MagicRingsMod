@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- For a version without all of the comments, see "rental_daddy.xml". -->
+<clothing>
+	<coreAttributes>
+		<authorTag/>
+		<value>10000</value> 
+		<determiner><![CDATA[a pair of]]></determiner>
+		<name><![CDATA[fallen magical girl's heels]]></name>
+		<namePlural pluralByDefault="true"><![CDATA[fallen magical girl's heels]]></namePlural> 
+		<description><![CDATA[A pair of feminine knee-length heels made of arcane energy. Kindness will be trampled under it.]]></description> 
+		<physicalResistance>0</physicalResistance> 
+		<femininity>FEMININE</femininity> 
+		<slot>FOOT</slot> 
+		<rarity>LEGENDARY</rarity> 
+		<clothingSet>xys_MAGICAL_GIRL_FALLEN</clothingSet> 
+		<imageName>magical_girl_heels_fallen.svg</imageName> 
+		<imageEquippedName/> 
+		<effects/>
+		<blockedPartsList> 
+			<blockedParts>
+				<displacementType>REMOVE_OR_EQUIP</displacementType> 
+				<clothingAccessRequired> 
+					<clothingAccess>FEET</clothingAccess>
+				</clothingAccessRequired>
+				<blockedBodyParts>
+					<bodyPart>FEET</bodyPart>
+				</blockedBodyParts>
+				<clothingAccessBlocked> 
+					<clothingAccess>FEET</clothingAccess>
+				</clothingAccessBlocked>
+				<concealedSlots/>
+			</blockedParts>
+		</blockedPartsList>
+		
+		<incompatibleSlots/> 
+		
+		<primaryColours values="JUST_BLACK"/> 
+		<primaryColoursDye values="ALL"/>
+		<secondaryColours values="JUST_STEEL"/>
+		<secondaryColoursDye values="ALL_METAL"/>
+		<tertiaryColours values="JUST_BLACK"/>
+		<tertiaryColoursDye values="ALL"/>
+		
+		<itemTags> 
+			<tag>NO_RANDOM_SPAWN</tag>
+			<tag>NOT_FOR_SALE</tag>
+			<tag>REMOVE_FROM_DEBUG_SPAWNER</tag>
+			<tag>UNENCHANTABLE</tag>
+			<tag>DISCARDED_WHEN_UNEQUIPPED</tag>
+		</itemTags>
+	</coreAttributes>
+	
+	<displacementText type="REMOVE_OR_EQUIP">
+		<self>
+			<![CDATA[The heels shatter into motes of light.]]>
+		</self>
+		<other>
+			<![CDATA[[npc.Name] [npc.verb(slip)] the heels off [npc2.name], letting it shatter into motes of light.]]>
+		</other>
+		<otherRough>
+			<![CDATA[[npc.Name] roughly [npc.verb(pull)] the heels off [npc2.name], letting it shatter into motes of light, causing [npc2.herHim] to let out a startled yell.]]>
+		</otherRough>
+	</displacementText>
+</clothing>

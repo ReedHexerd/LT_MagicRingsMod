@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<item>
+	<coreAttributes>
+		<authorTag/>
+		<value>50000</value> 
+		<determiner><![CDATA[a]]></determiner>
+		<name><![CDATA[[style.colourDmgLust(Arousing)] "Special" ring]]></name>
+		<namePlural pluralByDefault="false"><![CDATA[[style.colourDmgLust(Arousing)] "Special" rings]]></namePlural>
+		<description><![CDATA[A ring with a pink gemstone, made by a certain ringmaker from a legendary demonstone crystal. Unlike the previous rings, this one feels... sinful to use.]]></description>
+		
+		<useDescriptor>focus on</useDescriptor>
+		
+		<sexUse>false</sexUse>
+		<combatUseAllies>true</combatUseAllies>
+		<combatUseEnemies>false</combatUseEnemies>
+		<consumedOnUse>false</consumedOnUse>
+		
+		<rarity>LEGENDARY</rarity> 
+		
+		<imageName>ring_special.svg</imageName> 
+		
+		<colourPrimary>CLOTHING_PINK_LIGHT</colourPrimary>
+		<colourSecondary>CLOTHING_GOLD</colourSecondary>
+		<colourTertiary/>
+		
+		<effectTooltipLines>
+			<line><![CDATA[
+				#IF(npc.getClothingInSlot(IS_WRIST) != null && (npc.getClothingInSlot(IS_WRIST).getClothingType().equals(CLOTHING_xys_magical_girl_awakened_bracelet) || npc.getClothingInSlot(IS_WRIST).getClothingType().equals(CLOTHING_xys_magical_girl_awakened_bracelet_fb)))
+					Turn into a magical girl! 
+				#ELSE
+					Unknown effect. There seems to be some requirements for it to unlock... 
+				#ENDIF
+			]]></line>
+		</effectTooltipLines>
+		
+		<applyEffects><![CDATA[
+			[##
+				var MG_dummy = 'dummy_' + npc.getId(); 
+				if (!flags.hasSavedLong(MG_dummy)) {
+					var dummy = game.addNPC('misc.BasicDoll', MG_dummy);
+					game.setParserTarget('mg_d', game.getNPCById(dummy));
+					mg_d.unequipAllClothingIntoVoid(true, true);
+					flags.setSavedLong(MG_dummy, mg_d.getId().split(',')[0]);
+				}
+				else {
+					game.setParserTarget('mg_d', game.getNPCById(flags.getSavedLong(MG_dummy) + ',BasicDoll'));
+				};
+				var bodyConstructor = npc.getBody().getClass().getConstructors()[0];
+				mg_d.setBody(bodyConstructor.newInstance(npc.getBody()), true);
+			]
+			[##
+				var arr = npc.getClothingCurrentlyEquipped().toArray();
+				for (var i = 0; i < arr.length; i++) {
+					var chkdel = arr[i];
+					var chkdel_id = chkdel.getClothingType().getId();
+					if (chkdel_id.contains('xys_magical_girl') && !chkdel_id.contains('bracelet')) {
+						npc.unequipClothingIntoVoid(chkdel, true, npc);
+					};
+				};
+			]
+			[## 
+				function storeClothing(slot) {
+					var storeClothing = npc.getClothingInSlot(slot);
+					var oldClothing = mg_d.getClothingInSlot(slot);
+					if (storeClothing != null && !storeClothing.isSealed()) {
+						if (oldClothing != null && oldClothing.getClothingType() != storeClothing.getClothingType()) {
+							npc.addClothing(oldClothing, false);
+						};
+						npc.unequipClothingIntoVoid(storeClothing, true, npc);
+						mg_d.equipClothingOverride(storeClothing, slot, true, true);
+					};
+				};
+			]
+			#IF(!npc.hasStatusEffect(SE_xys_change) && npc.getClothingInSlot(IS_WRIST) != null && npc.getClothingInSlot(IS_WRIST).getClothingType().getId().contains('xys_magical_girl_'))
+				<p>[npc.Name] [npc.verb(place)] [npc.her] hand over [npc.her] band, and the gem starts shining brightly. It's form expands, becoming an elegant bracelet in a matter of seconds!</p>
+				[##
+					var bracelet = npc.getClothingInSlot(IS_WRIST);
+					var colour1 = bracelet.getColour(0);
+					var colour2 = bracelet.getColour(1);
+					npc.unequipClothingIntoVoid(IS_WRIST, true, npc);
+				]
+				#IF(bracelet.getClothingType().equals(CLOTHING_xys_magical_girl_unknown_bracelet))
+					[##npc.equipClothingFromNowhere(itemGen.generateClothing(CLOTHING_xys_magical_girl_awakened_bracelet, colour1, colour2, null, false), true, npc);
+						mg_d.equipClothingFromNowhere(itemGen.generateClothing(CLOTHING_xys_magical_girl_unknown_bracelet, colour1, colour2, null, false), true, npc);
+					]
+				#ELSEIF(bracelet.getClothingType().equals(CLOTHING_xys_magical_girl_unknown_bracelet_fb))
+					[##npc.equipClothingFromNowhere(itemGen.generateClothing(CLOTHING_xys_magical_girl_awakened_bracelet_fb, colour1, colour2, null, false), true, npc);
+						mg_d.equipClothingFromNowhere(itemGen.generateClothing(CLOTHING_xys_magical_girl_unknown_bracelet_fb, colour1, colour2, null, false), true, npc);
+					]
+				#ENDIF
+				[##npc.addStatusEffect(SE_xys_change, 10800)]
+			#ENDIF
+
+			#IF(npc.getClothingInSlot(IS_WRIST) != null && npc.getClothingInSlot(IS_WRIST).getClothingType().getId().contains('xys_magical_girl_'))
+				#IF(!flags.hasFlag(FLAG_xys_playerHasTransformed))[##flags.setFlag(FLAG_xys_playerHasTransformed, true)]#ENDIF
+				[##
+					var colour1 = npc.getClothingInSlot(IS_WRIST).getColour(0);
+					var colour2 = itemGen.generateItem('xys_rings_ring_special_lust').getItemType().getColour();
+					var colour_hex = colour2.toWebHexString().replaceAll('#', '');
+					var colour_value = ~~parseInt(colour_hex, 16); 
+					flags.setSavedLong('colour' + npc.getId(), colour_value);
+					var colour3 = npc.getClothingInSlot(IS_WRIST).getColour(1)
+				]
+
+				#IF(npc.hasTraitActivated(PERK_CHUUNI))
+				<p>
+					[npc.speech(
+						Heed my call, celestial ether and the cosmic flow! Unlock the gateways to ultimate mastery; Realms beyond, submit to me!
+						<br/><br/>
+						Storms of arcane chaos, winds of shifting time; Light and dark intertwines to form a miracle! Reveal the hidden power that is rightfully mine!
+					)]
+				</p>
+				#ENDIF
+
+				<p>
+				#IF(npc.hasWeaponEquipped(WEAPON_innoxia_scythe_scythe) && npc.hasStatusEffect(SE_SET_DARK_SIREN))
+					[npc.speech(Meraxis... lend me your power!)]
+					<br/><br/>
+					[npc.She] [npc.verb(swing)] [npc.her] scythe down, creating an X-shaped light that hovers in place... before it slams into [npc.herHim], enveloping [npc.her] entire body in a cocoon of radiant energy!
+					<br/><br/>
+					[npc.speech(DARK SIREN MAGIC☆CHANGE!)]
+				#ELSE
+					[npc.She] [npc.verb(thrust)] [npc.her] hand outwards. A stylish magic circle forms in front of her, pulsing with the glow of [npc.her] ring. [npc.Her] lips move on their own. [npc.speech(MAGIC☆CHANGE!)]
+					<br/><br/>
+					The circle passes through [npc.herHim], enveloping [npc.her] entire body in a cocoon of radiant energy! 
+				#ENDIF
+				</p>
+				
+				<p>
+				#IF(npc.hasWeaponEquipped(WEAPON_innoxia_scythe_scythe) && npc.hasStatusEffect(SE_SET_DARK_SIREN))
+					#IF(npc.getClothingInSlot(IS_NECK) != null && npc.getClothingInSlot(IS_NECK).getClothingType().equals(CLOTHING_innoxia_darkSiren_siren_cloak))
+						[##var colour1 = npc.getClothingInSlot(IS_NECK).getColour(0)]
+					#ELSEIF(npc.getClothingInSlot(IS_NECK) != null && npc.getClothingInSlot(IS_NECK).getClothingType().equals(CLOTHING_innoxia_darkSiren_siren_amulet))
+						[##var colour1 = npc.getClothingInSlot(IS_NECK).getColour(0)]
+					#ELSEIF(npc.getClothingInSlot(IS_TORSO_OVER) != null && npc.getClothingInSlot(IS_TORSO_OVER).getClothingType().equals(CLOTHING_innoxia_darkSiren_siren_cloak))
+						[##var colour1 = npc.getClothingInSlot(IS_TORSO_OVER).getColour(0)]
+					#ENDIF
+					[##var colour2 = npc.getClothingInSlot(IS_WRIST).getColour(0)]
+					[##var arr = npc.getInventory().getMainWeaponArray();
+						for (var i = 0; i < arr.length; i++) {
+							if (arr[i].getWeaponType().equals(WEAPON_innoxia_scythe_scythe)) {
+								var colour3 = arr[i].getDamageType().getColour();
+								break;
+							};
+						};
+					]
+					[##
+						var torso = itemGen.generateClothing(CLOTHING_xys_magical_girl_magical_girl_dress_fallen, colour1, colour2, colour3, false);
+						var feet = itemGen.generateClothing(CLOTHING_xys_magical_girl_magical_girl_heels_fallen, colour1, colour2, null, false);
+						var head = itemGen.generateClothing(CLOTHING_xys_magical_girl_magical_girl_tiara_fallen, colour1, colour2, null, false);
+					]
+
+					#IF(torso.isAbleToBeEquipped(npc, IS_TORSO_UNDER).getKey())
+						[##storeClothing(IS_TORSO_UNDER)]
+						Arcane energy solidifies around [npc.herHim], becoming an elegant dress! 
+						[##npc.equipClothingFromNowhere(torso, true, npc)]
+					#ENDIF
+
+					#IF(feet.isAbleToBeEquipped(npc, IS_FOOT).getKey())
+						[##storeClothing(IS_FOOT)]
+						Light coalesce around [npc.her] [npc.legs+], before a pair of heels materialises into existence. 
+						[##npc.equipClothingFromNowhere(feet, true, npc)]
+					#ENDIF
+
+					#IF(head.isAbleToBeEquipped(npc, IS_HEAD).getKey())
+						[##storeClothing(IS_HEAD)]
+						[npc.She] then [npc.verb(swipe)] across [npc.her] head, and the remaining light transforms into a wicked tiara. 
+						[##npc.equipClothingFromNowhere(head, true, npc)]
+					#ENDIF
+				
+				#ELSE
+					[##
+						var torso = itemGen.generateClothing(CLOTHING_xys_magical_girl_magical_girl_dress_fallen, colour1, colour2, colour3, false);
+						var feet = itemGen.generateClothing(CLOTHING_xys_magical_girl_magical_girl_heels_fallen, colour1, colour2, null, false);
+						var head = itemGen.generateClothing(CLOTHING_xys_magical_girl_magical_girl_tiara_fallen, colour1, colour2, null, false);
+					]
+
+					#IF(torso.isAbleToBeEquipped(npc, IS_TORSO_UNDER).getKey())
+						[##storeClothing(IS_TORSO_UNDER)]
+						Arcane energy solidifies around [npc.herHim], becoming an elegant dress! 
+						[##npc.equipClothingFromNowhere(torso, true, npc)]
+					#ENDIF
+
+					#IF(feet.isAbleToBeEquipped(npc, IS_FOOT).getKey())
+						[##storeClothing(IS_FOOT)]
+						Light coalesce around [npc.her] [npc.legs+], before a pair of heels materialises into existence. 
+						[##npc.equipClothingFromNowhere(feet, true, npc)]
+					#ENDIF
+
+					#IF(head.isAbleToBeEquipped(npc, IS_HEAD).getKey())
+						[##storeClothing(IS_HEAD)]
+						[npc.She] then [npc.verb(swipe)] across [npc.her] head, and the remaining light transforms into a wicked tiara. 
+						[##npc.equipClothingFromNowhere(head, true, npc)]
+					#ENDIF
+				#ENDIF
+				
+				#IF(npc.hasTraitActivated(PERK_CHUUNI))
+					[##var patch = itemGen.generateClothing(CLOTHING_xys_magical_girl_chuuni_eyepatch, colour1, colour2, null, false)]
+					#IF(patch.isAbleToBeEquipped(npc, IS_EYES).getKey() || (npc.getClothingInSlot(IS_EYES) != null && npc.getClothingInSlot(IS_EYES).equals(CLOTHING_innoxia_darkSiren_siren_seal)))
+						[##storeClothing(IS_EYES)]
+						[npc.She] [npc.verb(cover)] one of [npc.her] eyes, before magic flares underneath [npc.her] hand. When [npc.she] [npc.verb(pull)] away, a heart-shaped eyepatch is fastened over [npc.her] eye. 
+						[##npc.equipClothingFromNowhere(patch, true, npc)]
+					#ENDIF
+				#ENDIF
+				</p>
+				
+				#IF(npc.getAffectionMap().get('xys_change_count') == null || npc.getAffectionMap().get('xys_change_count') == 100)
+					[##npc.setAffection('xys_change_count', 1)]
+				#ELSE
+					[##npc.setAffection('xys_change_count', npc.getAffectionMap().get('xys_change_count')+1)]
+				#ENDIF
+				
+				#IF(npc.getAffectionMap().get('xys_change_count')%10 == 0)
+					#IF(npc.getClothingInSlot(IS_WRIST).getClothingType().equals(CLOTHING_xys_magical_girl_awakened_bracelet))
+						#IF(npc.getBreastRawSizeValue() < 14)
+						    [##var maxBreastSize = 9]
+						    #IF(npc.hasFetish(FETISH_BREASTS_SELF))
+						        [##maxBreastSize = maxBreastSize + 1]
+						    #ENDIF
+						    #IF(npc.hasFetish(FETISH_BIMBO))
+						        [##maxBreastSize = maxBreastSize + 2]
+						    #ENDIF
+						    #IF(npc.getAttributeValue(ATTRIBUTE_MAJOR_CORRUPTION) >= 70)
+						        [##maxBreastSize = maxBreastSize + 2]
+						    #ENDIF
+						    #IF(npc.getBreastRawSizeValue() < maxBreastSize)
+						        [#npc.incrementBreastSize(1)]
+						    #ENDIF
+					    #ENDIF
+						#IF(npc.getAssSize().getValue() < 4)
+							[#npc.incrementAssSize(1)]
+						#ENDIF
+						#IF(npc.getHipSize().getValue() < 4)
+							[#npc.incrementHipSize(1)]
+						#ENDIF
+						#IF(npc.hasPenisIgnoreDildo() && npc.getPenisRawSizeValue()>0 && !npc.hasFetish(FETISH_PENIS_GIVING))
+							[#npc.incrementPenisSize(-5)]
+							#IF(npc.getPenisRawSizeValue() == 0)
+								[#npc.setPenisType(PENIS_TYPE_NONE)]
+							#ENDIF
+						#ENDIF
+						#IF(npc.getLipSize().getValue() < 5)
+						    [##var maxLipSize = 3]
+						    #IF(npc.hasFetish(FETISH_BIMBO))
+						        [##maxLipSize = maxLipSize + 1]
+						    #ENDIF
+						    #IF(npc.hasFetish(FETISH_ORAL_GIVING))
+						        [##maxLipSize = maxLipSize + 1]
+						    #ENDIF
+						    #IF(npc.getLipSize().getValue() < maxLipSize)
+						        [#npc.incrementLipSize(1)]
+						    #ENDIF
+						#ENDIF
+						#IF(npc.getPubicHair().getValue() > 0)
+						    [#npc.incrementPubicHair(-1)]
+						#ENDIF
+						#IF(npc.getFacialHair().getValue() > 0)
+						    [#npc.incrementFacialHair(-1)]
+						#ENDIF
+						#IF(npc.getAssHair().getValue() > 0)
+						    [#npc.incrementAssHair(-1)]
+						#ENDIF
+						#IF(npc.getUnderarmHair().getValue() > 0)
+						    [#npc.incrementUnderarmHair(-1)]
+						#ENDIF
+						#IF(npc.hasHair() && npc.getHairRawLengthValue() < 45)
+						    [#npc.incrementHairLength(3)]
+						#ENDIF
+					#ELSEIF(npc.getClothingInSlot(IS_WRIST).getClothingType().equals(CLOTHING_xys_magical_girl_awakened_bracelet_fb))
+						#IF(npc.getBreastRawSizeValue() > 0)
+						    #IF((npc.hasFetish(FETISH_BREASTS_SELF) && npc.hasFetish(FETISH_LACTATION_SELF) && npc.getBreastRawSizeValue() > 8)
+						     || (npc.hasFetish(FETISH_BREASTS_SELF) && !npc.hasFetish(FETISH_LACTATION_SELF) && npc.getBreastRawSizeValue() > 6)
+						     || (!npc.hasFetish(FETISH_BREASTS_SELF)))
+						        [#npc.incrementBreastSize(-1)]
+					        #ENDIF
+						#ENDIF
+						#IF(npc.hasPenisIgnoreDildo())
+							#IF(npc.getPenisRawSizeValue() < 55 && pc.getFetishDesire(FETISH_PENIS_GIVING).getValue() != 0)
+							    [##var maxDickSize = 20]
+						        #IF(npc.getAttributeValue(ATTRIBUTE_MAJOR_CORRUPTION) >= 70)
+						            [##maxDickSize = maxDickSize + 5]
+						        #ENDIF
+						        #IF(npc.hasFetish(FETISH_PENIS_GIVING))
+						            [##maxDickSize = maxDickSize + 10]
+						        #ENDIF
+						        #IF(npc.hasFetish(FETISH_CUM_STUD))
+						            [##maxDickSize = maxDickSize + 10]
+						        #ENDIF
+						        #IF(npc.hasFetish(FETISH_IMPREGNATION))
+						            [##maxDickSize = maxDickSize + 10]
+						        #ENDIF
+						        #IF(npc.getPenisRawSizeValue() < maxDickSize)
+							        [#npc.incrementPenisSize(3)]
+							    #ENDIF
+							#ENDIF
+							#IF(npc.getAffectionMap().get('xys_change_count')%20 == 0 && npc.getTesticleSize().getValue() < 5 && pc.getFetishDesire(FETISH_PENIS_GIVING).getValue() != 0)
+							    [##var maxBallSize = 3]
+						        #IF(npc.hasFetish(FETISH_CUM_STUD))
+						            [##maxBallSize = maxBallSize + 1]
+						        #ENDIF
+						        #IF(npc.hasFetish(FETISH_IMPREGNATION))
+						            [##maxBallSize = maxBallSize + 1]
+						        #ENDIF
+						        #IF(npc.getTesticleSize().getValue() < maxBallSize)
+								    [#npc.incrementTesticleSize(1)]
+								#ENDIF
+							#ENDIF
+							#IF(pc.getFetishDesire(FETISH_PENIS_GIVING).getValue() == 0)
+						        #IF(npc.getPenisRawSizeValue() > 3)
+							        [#npc.incrementPenisSize(-1)]
+							    #ENDIF
+							    #IF(npc.getAffectionMap().get('xys_change_count')%20 == 0 && ((npc.getTesticleSize().getValue() > 1) || (npc.getTesticleSize().getValue() > 0 && pc.getFetishDesire(FETISH_CUM_STUD).getValue() == 0 && pc.getFetishDesire(FETISH_IMPREGNATION).getValue() == 0)))
+								    [#npc.incrementTesticleSize(-1)]
+							    #ENDIF
+							#ENDIF
+						#ELSE
+							[#npc.setPenisType(npc.getRace().getRacialBody().getPenisType())]
+						#ENDIF
+						#IF(npc.getAssSize().getValue() < 3 || (npc.getAssSize().getValue() < 4 && npc.hasFetish(FETISH_ANAL_RECEIVING)))
+							[#npc.incrementAssSize(1)]
+						#ENDIF
+						#IF(npc.hasFetish(FETISH_ANAL_RECEIVING) && npc.getAssWetness().getValue() < 7)
+						    [#npc.incrementAssWetness(1)]
+						#ENDIF
+						#IF(npc.getHipSize().getValue() < 3)
+							[#npc.incrementHipSize(1)]
+						#ENDIF
+						#IF(npc.getLipSize().getValue() < 5)
+						    [##var maxLipSize = 3]
+						    #IF(npc.hasFetish(FETISH_BIMBO))
+						        [##maxLipSize = maxLipSize + 1]
+						    #ENDIF
+						    #IF(npc.hasFetish(FETISH_ORAL_GIVING))
+						        [##maxLipSize = maxLipSize + 1]
+						    #ENDIF
+						    #IF(npc.getLipSize().getValue() < maxLipSize)
+						        [#npc.incrementLipSize(1)]
+						    #ENDIF
+						#ENDIF
+						#IF(npc.getPubicHair().getValue() > 0)
+						    [#npc.incrementPubicHair(-1)]
+						#ENDIF
+						#IF(npc.getFacialHair().getValue() > 0)
+						    [#npc.incrementFacialHair(-1)]
+						#ENDIF
+						#IF(npc.getAssHair().getValue() > 0)
+						    [#npc.incrementAssHair(-1)]
+						#ENDIF
+						#IF(npc.getUnderarmHair().getValue() > 0)
+						    [#npc.incrementUnderarmHair(-1)]
+						#ENDIF
+						#IF(npc.hasHair() && npc.getHairRawLengthValue() < 22)
+						    [#npc.incrementHairLength(2)]
+						#ENDIF
+					#ENDIF
+				#ENDIF
+				
+				<p>
+					[npc.speech(Submit to your desires...)] Sensually running a [npc.hand] down [npc.her] body, [npc.she] seductively [npc.verb(whisper)], [npc.speech(DARK MAGIKA☆[#npc.getName().toUpperCase()]...♡)]
+				</p>
+			#ELSE
+				<p>
+					[npc.Name] [npc.verb(thrust)] [npc.her] [npc.arm] forward, but nothing happened. 
+					#IF(npc.hasClothingType(CLOTHING_xys_magical_girl_unknown_bracelet, false) || npc.hasClothingType(CLOTHING_xys_magical_girl_unknown_bracelet, false))
+						Maybe [npc.she] should use it with the given bracelet?
+					#ENDIF
+				</p>
+			#ENDIF
+		]]></applyEffects>
+
+		<itemTags> 
+			<tag>NO_RANDOM_SPAWN</tag>
+			<tag>NOT_FOR_SALE</tag>
+		</itemTags>
+		
+	</coreAttributes>
+
+	<useDescriptions>
+		<selfUse><![CDATA[
+		]]></selfUse>
+	</useDescriptions>
+</item>

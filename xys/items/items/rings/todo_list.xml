@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<item>
+	<coreAttributes>
+		<authorTag/>
+		<value>0</value> 
+		<determiner><![CDATA[a]]></determiner>
+		<name><![CDATA[to-do list]]></name>
+		<namePlural pluralByDefault="false"><![CDATA[to-do lists]]></namePlural>
+		<description><![CDATA[A piece of papar written by the ringmaker. It lists the remaining number of crystals needed for her.]]></description>
+		
+		<useDescriptor>check</useDescriptor>
+		
+		<sexUse>false</sexUse>
+		<combatUseAllies>false</combatUseAllies>
+		<combatUseEnemies>false</combatUseEnemies>
+		<consumedOnUse>false</consumedOnUse>
+		
+		<rarity>QUEST</rarity> 
+		
+		<imageName>todo_list.svg</imageName> 
+		
+		<colourPrimary>BASE_WHITE</colourPrimary>
+		<colourSecondary/>
+		<colourTertiary/>
+		
+		<effectTooltipLines>
+			<line><![CDATA[Check how many crystals you still need to collect.]]></line>
+		</effectTooltipLines>
+		
+		<applyEffects><![CDATA[
+            #IF(flags.getSavedLong('xys_ringmaker_crystal') < 9)
+                <p>
+                    You still need to give her: 
+                </p>
+                <p style='text-align:center;'>
+                    [##
+                        var rare = (4 - flags.getSavedLong('xys_ringmaker_crystal_rare')).intValue(); 
+                        var epic = (4 - flags.getSavedLong('xys_ringmaker_crystal_epic')).intValue(); 
+                        var legend = (1 - flags.getSavedLong('xys_ringmaker_crystal_legendary')).intValue()
+                    ]
+                    #IF(rare > 0)
+                        <i>[#rare] rare demonstone crystal[#(rare > 1)?'s':'']</i>
+                        <br/>
+                    #ENDIF
+                    #IF(epic > 0)
+                        <i>[#epic] epic demonstone crystal[#(epic > 1)?'s':'']</i>
+                        <br/>
+                    #ENDIF
+                    #IF(legend > 0)
+                        <i>[#legend] legendary demonstone crystal</i>
+                    #ENDIF
+                </p>
+            #ELSE
+                <p>
+                    [style.colourGood(There's no more crystals to collect!)]
+                </p>
+            #ENDIF
+		]]></applyEffects>
+		
+		<itemTags> 
+            <tag>NO_RANDOM_SPAWN</tag>
+            <tag>NOT_FOR_SALE</tag>
+            <tag>REMOVE_FROM_DEBUG_SPAWNER</tag>
+		</itemTags>
+		
+	</coreAttributes>
+
+	<useDescriptions>
+		<selfUse><![CDATA[
+			You look at the checklist. 
+		]]></selfUse>
+	</useDescriptions>
+</item>

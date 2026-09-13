@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<clothing>
+	<coreAttributes>
+		<authorTag/>
+		<value>2500</value>
+		<determiner><![CDATA[a]]></determiner>
+		<name><![CDATA["Heal" ring]]></name>
+		<namePlural pluralByDefault="false"><![CDATA["Heal" rings]]></namePlural>
+		<description><![CDATA[A gemstone ring, made by a certain ringmaker from a demonstone crystal. An image of a heart with a plus sign in the middle can be faintly seen. Its slender, delicate shape makes it suitable only for feminine characters to wear.]]></description>
+		<physicalResistance>0</physicalResistance>
+		<femininity>FEMININE</femininity>
+		<slot>FINGER</slot>
+		<rarity>RARE</rarity>
+		<clothingSet/>
+		<imageName>ring_heal.svg</imageName>
+		<imageEquippedName/>
+		<effects/>
+		
+		<blockedPartsList>
+			<blockedParts>
+				<displacementType>REMOVE_OR_EQUIP</displacementType>
+				<clothingAccessRequired> 
+					<clothingAccess>FINGERS</clothingAccess>
+				</clothingAccessRequired>
+				<blockedBodyParts/>
+				<clothingAccessBlocked/>
+				<concealedSlots/>
+			</blockedParts>
+		</blockedPartsList>
+		
+		<incompatibleSlots/>
+		
+		<primaryColours>
+			<colour>CLOTHING_SILVER</colour>
+		</primaryColours>
+		<primaryColoursDye values="ALL_WITH_METALS"/>
+		<secondaryColours>
+			<colour>CLOTHING_WHITE</colour>
+		</secondaryColours>
+		<secondaryColoursDye values="ALL"/>
+		<tertiaryColours>
+			<colour>CLOTHING_BLACK</colour>
+		</tertiaryColours>
+		<tertiaryColoursDye values="ALL_WITH_METAL"/>
+	
+		<itemTags>
+			<tag>DOMINION_ALLEYWAY_SPAWN</tag>
+			<tag>NOT_FOR_SALE</tag>
+		</itemTags>
+	</coreAttributes>
+
+  <replacementText type="REMOVE_OR_EQUIP">
+    <self>
+      <![CDATA[[npc.Name] [npc.verb(slide)] the gemstone ring onto [npc.her] [npc.finger].]]>
+    </self>
+    <other>
+      <![CDATA[[npc.Name] [npc.verb(slide)] the gemstone ring onto [npc2.namePos] [npc2.finger].]]>
+    </other>
+    <otherRough>
+      <![CDATA[[npc.Name] roughly [npc.verb(push)] the gemstone ring onto [npc2.namePos] [npc2.finger].]]>
+    </otherRough>
+  </replacementText>
+
+  <displacementText type="REMOVE_OR_EQUIP">
+    <self>
+      <![CDATA[[npc.Name] [npc.verb(slide)] the gemstone ring off [npc.her] [npc.finger].]]>
+    </self>
+    <other>
+      <![CDATA[[npc.Name] [npc.verb(slide)] the gemstone ring off [npc2.namePos] [npc2.finger].]]>
+    </other>
+    <otherRough>
+      <![CDATA[[npc.Name] [npc.verb(snatch)] the gemstone ring off [npc2.namePos] [npc2.finger].]]>
+    </otherRough>
+  </displacementText>
+  
+</clothing>

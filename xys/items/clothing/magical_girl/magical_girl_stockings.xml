@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clothing>
+	<coreAttributes>
+		<authorTag/>
+		<value>10000</value>
+		<determiner><![CDATA[a pair of]]></determiner>
+		<name><![CDATA[magical girl's stocking]]></name>
+		<namePlural pluralByDefault="true"><![CDATA[magical girl's stockings]]></namePlural>
+		<description><![CDATA[A pair of stockings made of arcane energy, for the purpose of asskicking and banishing evil.]]></description>
+		<physicalResistance>0</physicalResistance>
+		<femininity>FEMININE</femininity>
+		<slot>SOCK</slot> 
+		<rarity>LEGENDARY</rarity>
+		<clothingSet>xys_MAGICAL_GIRL</clothingSet> 
+		<imageName>magical_girl_stockings.svg</imageName>
+		<imageEquippedName/>
+		<effects/>
+		
+		<blockedPartsList>
+			<blockedParts>
+				<displacementType>REMOVE_OR_EQUIP</displacementType> 
+				<clothingAccessRequired> 
+					<clothingAccess>FEET</clothingAccess>
+					<clothingAccess>CALVES</clothingAccess>
+					<clothingAccess>LEGS_UP_TO_GROIN</clothingAccess>
+				</clothingAccessRequired>
+				<blockedBodyParts>
+					<bodyPart>FEET</bodyPart>
+				</blockedBodyParts>
+				<clothingAccessBlocked>
+					<clothingAccess>LEGS_UP_TO_GROIN_LOW_LEVEL</clothingAccess>
+				</clothingAccessBlocked>
+				<concealedSlots/>
+			</blockedParts>
+			<blockedParts>
+				<displacementType>PULLS_DOWN</displacementType> 
+				<clothingAccessRequired> 
+					<clothingAccess>GROIN</clothingAccess>
+				</clothingAccessRequired>
+				<blockedBodyParts>
+					<bodyPart>ANUS</bodyPart>
+					<bodyPart>PENIS</bodyPart>
+					<bodyPart>VAGINA</bodyPart>
+				</blockedBodyParts>
+				<clothingAccessBlocked>
+					<clothingAccess>GROIN</clothingAccess>
+					<clothingAccess>ANUS</clothingAccess>
+				</clothingAccessBlocked>
+				<concealedSlots/>
+			</blockedParts>
+		</blockedPartsList>
+		
+		<incompatibleSlots/> 
+		
+		<primaryColours values="JUST_BLACK"/> 
+		<primaryColoursDye values="ALL"/>
+		<secondaryColours values="JUST_BLACK"/>
+		<secondaryColoursDye values="ALL"/>
+		<tertiaryColours/>
+		<tertiaryColoursDye/>
+		
+		<itemTags> 
+			<tag>NO_RANDOM_SPAWN</tag>
+			<tag>NOT_FOR_SALE</tag>
+			<tag>REMOVE_FROM_DEBUG_SPAWNER</tag>
+			<tag>UNENCHANTABLE</tag>
+			<tag>DISCARDED_WHEN_UNEQUIPPED</tag>
+		</itemTags>
+	</coreAttributes>
+
+	<displacementText type="REMOVE_OR_EQUIP">
+		<self>
+			<![CDATA[The socks shatter into motes of light.]]>
+		</self>
+		<other>
+			<![CDATA[[npc.Name] [npc.verb(slip)] the socks off [npc2.name], letting it shatter into motes of light.]]>
+		</other>
+		<otherRough>
+			<![CDATA[[npc.Name] roughly [npc.verb(tear)] the socks off [npc2.name], letting it shatter into motes of light, causing [npc2.herHim] to let out a startled yell.]]>
+		</otherRough>
+	</displacementText>
+</clothing>

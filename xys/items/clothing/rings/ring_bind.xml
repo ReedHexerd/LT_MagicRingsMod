@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<clothing>
+	<coreAttributes>
+		<authorTag/>
+		<value>10000</value>
+		<determiner><![CDATA[a]]></determiner>
+		<name><![CDATA["Bind" ring]]></name>
+		<namePlural pluralByDefault="false"><![CDATA["Bind" rings]]></namePlural>
+		<description><![CDATA[A gemstone ring, made by a certain ringmaker from a demonstone crystal. An image of chains in the middle can be faintly seen. Slipping it on makes the wearer want to tie someone up...]]></description>
+		<physicalResistance>0</physicalResistance>
+		<femininity>FEMININE</femininity>
+		<slot>FINGER</slot>
+		<rarity>EPIC</rarity>
+		<clothingSet/>
+		<imageName>ring_bind.svg</imageName>
+		<imageEquippedName/>
+		
+		<effects>
+            <effect itemEffectType="CLOTHING" limit="0" potency="MAJOR_BOOST" primaryModifier="TF_MOD_FETISH_BEHAVIOUR" secondaryModifier="TF_MOD_FETISH_BONDAGE_APPLIER" timer="0"/>
+		</effects>
+		
+		<blockedPartsList>
+			<blockedParts>
+				<displacementType>REMOVE_OR_EQUIP</displacementType>
+				<clothingAccessRequired> 
+					<clothingAccess>FINGERS</clothingAccess>
+				</clothingAccessRequired>
+				<blockedBodyParts/>
+				<clothingAccessBlocked/>
+				<concealedSlots/>
+			</blockedParts>
+		</blockedPartsList>
+		
+		<incompatibleSlots/>
+		
+		<primaryColours>
+			<colour>CLOTHING_SILVER</colour>
+		</primaryColours>
+		<primaryColoursDye values="ALL_WITH_METALS"/>
+		<secondaryColours>
+			<colour>CLOTHING_WHITE</colour>
+		</secondaryColours>
+		<secondaryColoursDye values="ALL"/>
+		<tertiaryColours>
+			<colour>CLOTHING_BLACK</colour>
+		</tertiaryColours>
+		<tertiaryColoursDye values="ALL_WITH_METAL"/>
+	
+		<itemTags>
+			<tag>NO_RANDOM_SPAWN</tag>
+			<tag>NOT_FOR_SALE</tag>
+		</itemTags>
+	</coreAttributes>
+
+  <replacementText type="REMOVE_OR_EQUIP">
+    <self>
+      <![CDATA[[npc.Name] [npc.verb(slide)] the gemstone ring onto [npc.her] [npc.finger].]]>
+    </self>
+    <other>
+      <![CDATA[[npc.Name] [npc.verb(slide)] the gemstone ring onto [npc2.namePos] [npc2.finger].]]>
+    </other>
+    <otherRough>
+      <![CDATA[[npc.Name] roughly [npc.verb(push)] the gemstone ring onto [npc2.namePos] [npc2.finger].]]>
+    </otherRough>
+  </replacementText>
+
+  <displacementText type="REMOVE_OR_EQUIP">
+    <self>
+      <![CDATA[[npc.Name] [npc.verb(slide)] the gemstone ring off [npc.her] [npc.finger].]]>
+    </self>
+    <other>
+      <![CDATA[[npc.Name] [npc.verb(slide)] the gemstone ring off [npc2.namePos] [npc2.finger].]]>
+    </other>
+    <otherRough>
+      <![CDATA[[npc.Name] [npc.verb(snatch)] the gemstone ring off [npc2.namePos] [npc2.finger].]]>
+    </otherRough>
+  </displacementText>
+  
+</clothing>

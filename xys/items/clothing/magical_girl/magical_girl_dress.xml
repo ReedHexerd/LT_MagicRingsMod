@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<clothing>
+	<coreAttributes>
+		<authorTag/>
+		<value>10000</value>
+		<determiner><![CDATA[a]]></determiner>
+		<name><![CDATA[magical girl's dress]]></name>
+		<namePlural pluralByDefault="false"><![CDATA[magical girl's dresses]]></namePlural>
+		<description><![CDATA[A dress purely made out of arcane energy. It fits the wearer perfectly, while providing all sorts of protection, perfect for banishing evil!]]></description>
+		<physicalResistance>50</physicalResistance>
+		<femininity>FEMININE</femininity>
+    	<slot>TORSO_UNDER</slot>
+		<rarity>LEGENDARY</rarity>
+		<clothingSet>xys_MAGICAL_GIRL</clothingSet>
+		<imageName>magical_girl_dress.svg</imageName>
+		<imageEquippedName/>
+		<effects/> 
+		
+		<blockedPartsList>
+			<blockedParts>
+				<displacementType>REMOVE_OR_EQUIP</displacementType>
+				<clothingAccessRequired> 
+					<clothingAccess>ARMS_UP_TO_SHOULDER</clothingAccess>
+				</clothingAccessRequired>
+				<blockedBodyParts>
+					<bodyPart>BREASTS</bodyPart>
+					<bodyPart>NIPPLES</bodyPart>
+					<bodyPart>STOMACH</bodyPart>
+					<bodyPart>BACK</bodyPart>
+				</blockedBodyParts>
+				<clothingAccessBlocked>
+					<clothingAccess>CHEST</clothingAccess>
+					<clothingAccess>WAIST</clothingAccess>
+				</clothingAccessBlocked>
+				<concealedSlots>
+					<slot>STOMACH</slot>
+					<slot>CHEST</slot>
+					<slot>NIPPLE</slot>
+					<slot>PIERCING_NIPPLE</slot>
+					<slot>PIERCING_STOMACH</slot>
+				</concealedSlots>
+			</blockedParts>
+			<blockedParts>
+				<displacementType>PULLS_UP</displacementType>
+				<clothingAccessRequired/>
+				<blockedBodyParts>
+					<bodyPart>ANUS</bodyPart>
+					<bodyPart>PENIS</bodyPart>
+					<bodyPart>VAGINA</bodyPart>
+				</blockedBodyParts>
+				<clothingAccessBlocked>
+					<clothingAccess>GROIN</clothingAccess>
+					<clothingAccess>ANUS</clothingAccess>
+				</clothingAccessBlocked>
+				<concealedSlots>
+					<slot>GROIN</slot>
+					<slot>VAGINA</slot>
+					<slot>ANUS</slot>
+					<slot>PENIS</slot>
+					<slot>PIERCING_PENIS</slot>
+					<slot>PIERCING_VAGINA</slot>
+				</concealedSlots>
+			</blockedParts>
+		</blockedPartsList>
+		
+		<incompatibleSlots/>
+		
+		<primaryColours values="JUST_PINK_LIGHT"/> 
+		<primaryColoursDye values="ALL"/>
+		<secondaryColours values="JUST_WHITE"/>
+		<secondaryColoursDye values="ALL_METAL"/>
+		<tertiaryColours values="JUST_RED"/>
+		<tertiaryColoursDye values="ALL"/>
+	
+		<itemTags>
+			<tag>NO_RANDOM_SPAWN</tag>
+			<tag>NOT_FOR_SALE</tag>
+			<tag>REMOVE_FROM_DEBUG_SPAWNER</tag>
+			<tag>DISCARDED_WHEN_UNEQUIPPED</tag>
+			<tag>FITS_ARM_WINGS</tag>
+			<tag>FITS_FERAL_ALL_BODY</tag>
+		</itemTags>
+	</coreAttributes>
+
+	<displacementText type="REMOVE_OR_EQUIP">
+		<self>
+			<![CDATA[The dress shatters into motes of light, returning [npc.her] clothes to normal.]]>
+		</self>
+		<other>
+			<![CDATA[[npc.Name] slips the dress off [npc2.name], letting it shatter into motes of light.]]>
+		</other>
+		<otherRough>
+			<![CDATA[[npc.Name] roughly tears the dress off [npc2.name], letting it shatter into motes of light, causing [npc2.herHim] to let out a startled yell.]]>
+		</otherRough>
+	</displacementText>
+</clothing>

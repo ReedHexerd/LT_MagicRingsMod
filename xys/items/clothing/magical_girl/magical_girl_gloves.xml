@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clothing>
+	<coreAttributes>
+		<authorTag/>
+		<value>10000</value> 
+		<determiner><![CDATA[a pair of]]></determiner>
+		<name><![CDATA[magical girl's glove]]></name>
+		<namePlural pluralByDefault="true"><![CDATA[magical girl's gloves]]></namePlural>
+		<description><![CDATA[A pair of elegant, elbow-length gloves. They're made of arcane energy, and are silky-smooth to the touch.]]></description> 
+		<physicalResistance>0</physicalResistance> 
+		<femininity>FEMININE</femininity> 
+		<slot>HAND</slot> 
+		<rarity>LEGENDARY</rarity> 
+		<clothingSet>xys_MAGICAL_GIRL</clothingSet> 
+		<imageName>magical_girl_gloves.svg</imageName> 
+		<imageEquippedName/> 
+		<effects/>
+		<blockedPartsList> 
+			<blockedParts>
+				<displacementType>REMOVE_OR_EQUIP</displacementType> 
+				<clothingAccessRequired>
+					<clothingAccess>WRISTS</clothingAccess>
+				</clothingAccessRequired>
+				<blockedBodyParts/>
+				<clothingAccessBlocked/>
+				<concealedSlots/> <!--I decided against having these conceal finger slots.-->
+			</blockedParts>
+		</blockedPartsList>
+		<incompatibleSlots/> 
+		
+		<primaryColours values="JUST_BLACK"/> 
+		<primaryColoursDye values="ALL"/>
+		<secondaryColours values="JUST_BLACK"/>
+		<secondaryColoursDye values="ALL"/>
+		<tertiaryColours/>
+		<tertiaryColoursDye/>
+		
+		<itemTags> 
+			<tag>NO_RANDOM_SPAWN</tag>
+			<tag>NOT_FOR_SALE</tag>
+			<tag>REMOVE_FROM_DEBUG_SPAWNER</tag>
+			<tag>UNENCHANTABLE</tag>
+			<tag>DISCARDED_WHEN_UNEQUIPPED</tag>
+		</itemTags>
+	</coreAttributes>
+	
+	<displacementText type="REMOVE_OR_EQUIP">
+		<self>
+			<![CDATA[The gloves shatters into motes of light.]]>
+		</self>
+		<other>
+			<![CDATA[[npc.Name] [npc.verb(slip)] the gloves off [npc2.name], letting it shatter into motes of light.]]>
+		</other>
+		<otherRough>
+			<![CDATA[[npc.Name] roughly [npc.verb(tear)] the gloves off [npc2.name], letting it shatter into motes of light, causing [npc2.herHim] to let out a startled yell.]]>
+		</otherRough>
+	</displacementText>
+</clothing>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<weapon>
+	<coreAttributes>
+		<value>2000</value>
+		<melee>false</melee>
+		<twoHanded>false</twoHanded>
+		<determiner/>
+		<name appendDamageName="false"><![CDATA['KISS']]></name>
+		<namePlural pluralByDefault="false"><![CDATA['KISSES']]></namePlural>
+		<description><![CDATA[A pepperball revolver, heavily modified by [#(flags.hasFlag('xys_ringmaker_quest_complete'))?'Ysette':'a certain ringmaker'] to shoot concentrated arcane bullets instead of pepperballs. Stamped on the body is an insignia of a heart surrounded by a chain, and the word [style.colourDmgLust("KISS")] in cursive is etched on the handle.]]></description>
+		
+		<attackDescriptor>shoot</attackDescriptor>
+		<attackTooltipDescription><![CDATA[Shoot [npc2.name] with your revolver.]]></attackTooltipDescription>
+		
+		<rarity>EPIC</rarity>
+
+		<equipText><![CDATA[[npc.Name] [npc.verb(take)] out the revolver and focus [npc.her] arcane energy into it. Pink bullets begin to form inside the chamber, before solidfying. [npc.She] [npc.verb(give)] it a once over before disengaging the safety.]]></equipText>
+		<unequipText><![CDATA[[npc.Name] [npc.verb(swing)] out the cylinder and [npc.verb(gives)] it a shake, dissipating the remaining bullets into the air, before putting the revolver away.]]></unequipText>
+		
+		<imageName>KISS.svg</imageName>
+		<imageEquippedName>KISS.svg</imageEquippedName>
+		
+		<damage>30</damage>
+		<arcaneCost>1</arcaneCost>
+		<damageVariance>LOW</damageVariance>
+
+		<availableDamageTypes>
+			<damageType>LUST</damageType>
+		</availableDamageTypes>
+		
+		<spells/>
+		
+		<combatMoves/>
+		
+		<effects> 
+			<effect itemEffectType="WEAPON" limit="0" potency="MAJOR_BOOST" primaryModifier="CLOTHING_ATTRIBUTE" secondaryModifier="DAMAGE_LUST" timer="0"/>
+			<effect itemEffectType="WEAPON" limit="0" potency="MAJOR_BOOST" primaryModifier="CLOTHING_ATTRIBUTE" secondaryModifier="DAMAGE_LUST" timer="0"/>
+			<effect itemEffectType="WEAPON" limit="0" potency="MAJOR_BOOST" primaryModifier="CLOTHING_ATTRIBUTE" secondaryModifier="DAMAGE_LUST" timer="0"/>
+			<effect itemEffectType="WEAPON" limit="0" potency="MINOR_BOOST" primaryModifier="CLOTHING_ATTRIBUTE" secondaryModifier="DAMAGE_LUST" timer="0"/>
+			<effect itemEffectType="WEAPON" limit="0" potency="MAJOR_BOOST" primaryModifier="CLOTHING_ATTRIBUTE" secondaryModifier="DAMAGE_RANGED_WEAPON" timer="0"/>
+			<effect itemEffectType="WEAPON" limit="0" potency="MAJOR_BOOST" primaryModifier="CLOTHING_ATTRIBUTE" secondaryModifier="DAMAGE_RANGED_WEAPON" timer="0"/>
+			<effect itemEffectType="WEAPON" limit="0" potency="MAJOR_BOOST" primaryModifier="CLOTHING_ATTRIBUTE" secondaryModifier="DAMAGE_RANGED_WEAPON" timer="0"/>
+			<effect itemEffectType="WEAPON" limit="0" potency="MINOR_BOOST" primaryModifier="CLOTHING_ATTRIBUTE" secondaryModifier="DAMAGE_RANGED_WEAPON" timer="0"/>
+		</effects>
+		
+		<primaryColours>
+			<colour>CLOTHING_SILVER</colour>
+		</primaryColours>
+		<primaryColoursDye values="ALL_METAL"/>
+		<secondaryColours>
+			<colour>CLOTHING_BLACK</colour>
+		</secondaryColours>
+		<secondaryColoursDye values="ALL"/>
+		<tertiaryColours/>
+		<tertiaryColoursDye/>
+		
+		<itemTags>
+			<tag>CONTRABAND_HEAVY</tag>
+			<tag>WEAPON_FIREARM</tag>
+			<tag>NOT_FOR_SALE</tag>
+		</itemTags>
+	</coreAttributes>
+
+	<hitDescriptions>
+		<hitText><![CDATA[
+		[npc.Name] [npc.verb(line)] [npc2.name] up in [npc.her] sights and [npc.verb(pull)] the trigger. The round hits [npc2.her] [npc2.arm] and dissipates on impact, making [npc2.herHim] [npc2.moan] from the sudden increased arousal.
+		]]></hitText>
+		<hitText><![CDATA[
+		[npc.Name] [npc.verb(line)] [npc2.name] up in [npc.her] sights and [npc.verb(pull)] the trigger. The round hits [npc2.her] [npc2.leg] and dissipates on impact, making [npc2.herHim] [npc2.moan] from the sudden increased arousal.
+		]]></hitText>
+		<hitText><![CDATA[
+		[npc.Name] [npc.verb(line)] [npc2.name] up in [npc.her] sights and [npc.verb(pull)] the trigger. The round hits [npc2.her] [npc2.face] and dissipates on impact, making [npc2.herHim] [npc2.moan] from the sudden increased arousal.
+		]]></hitText>
+	</hitDescriptions>
+
+	<missDescriptions>
+		<missText><![CDATA[
+		[npc.Name] [npc.verb(line)] up [npc2.name] in [npc.her] sights and [npc.verb(pull)] the trigger at [npc2.name]. The hazy bullet misses [npc2.herHim] completely and dissipates uselessly in the distance.
+		]]></missText>
+	</missDescriptions>
+	
+</weapon>

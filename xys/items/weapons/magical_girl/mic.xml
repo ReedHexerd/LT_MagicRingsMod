@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<weapon>
+	<coreAttributes>
+		<authorTag/>
+		<value>2000</value> 
+		<melee>false</melee>
+		<twoHanded>false</twoHanded>
+		<determiner><![CDATA[a]]></determiner>
+		<name><![CDATA[microphone]]></name>
+		<namePlural pluralByDefault="false"><![CDATA[microphones]]></namePlural> 
+		<description><![CDATA[A handheld microphone infused with demonstone to act as an arcane catalyst, the power of which can be used to sway emotions.]]></description> 
+		
+		<attackDescriptor>Sing</attackDescriptor>
+		<attackTooltipDescription>Sing into the microphone.</attackTooltipDescription>
+		
+		<rarity>RARE</rarity> 
+		
+		<equipText><![CDATA[[npc.Name] [npc.verb(focus)] on the energy in the demonstone infused instrument. As [npc.she] [npc.does] so, arcane power flows into [npc.her] aura, granting [npc.herHim] the ability to perform arcane-imbued attacks at range with the sound of the microphone.]]></equipText>
+		<unequipText><![CDATA[[npc.Name] [npc.verb(focus)] on extracting the absorbed arcane energy inside of [npc.her] aura. As [npc.she] [npc.does] so, it flows back into the microphone.]]></unequipText>
+		
+		<imageName>mic.svg</imageName> 
+		
+		<imageEquippedName/>
+		
+		<damage>15</damage> 
+		
+		<arcaneCost>0</arcaneCost> 
+		
+		<damageVariance>MEDIUM</damageVariance> 
+		
+		<availableDamageTypes>
+			<damageType>PHYSICAL</damageType>
+			<damageType>ICE</damageType>
+			<damageType>FIRE</damageType>
+			<damageType>POISON</damageType>
+			<damageType>LUST</damageType>
+		</availableDamageTypes>
+		
+		<spells changeOnReforge="true">
+			<spell damageType="FIRE">FLASH</spell>
+			<spell damageType="ICE">RAIN_CLOUD</spell>
+			<spell damageType="LUST">CLEANSE</spell>
+			<spell damageType="PHYSICAL">TELEKENETIC_SHOWER</spell>
+			<spell damageType="POISON">VACUUM</spell>
+		</spells>
+		
+		<effects>
+            <effect itemEffectType="CLOTHING" limit="0" potency="MAJOR_BOOST" primaryModifier="CLOTHING_ATTRIBUTE" secondaryModifier="DAMAGE_WEAPON" timer="0"/>
+		</effects>
+		
+		<primaryColours values="JUST_BLACK"/>
+		<primaryColoursDye values="ALL"/>
+		<secondaryColours values="JUST_BLACK"/> 
+		<secondaryColoursDye values="ALL"/>
+		<tertiaryColours values="JUST_WHITE"/> 
+		<tertiaryColoursDye values="ALL"/>
+		
+		<itemTags> 
+			<tag>NO_RANDOM_SPAWN</tag>
+			<tag>SOLD_BY_VICKY</tag>
+		</itemTags>
+		
+	</coreAttributes>
+
+	<hitDescriptions>
+		<hitText><![CDATA[
+			Humming into the microphone, several music notes made of arcane energy materialise around [npc.name], before shooting out to strike [npc2.name]!
+		]]></hitText>
+		<hitText><![CDATA[
+			Twirling the microphone in [npc.her] [npc.hand], [npc.name] [npc.verb(create)] several music notes made of arcane energy around [npc.her], before shooting them at [npc2.name]!
+		]]></hitText>
+		<hitText><![CDATA[
+			[npc.Name] [npc.verb(sing)] into [npc.her] microphone, turning her voice into a powerful wave of arcane energy and sending it at [npc2.name]!
+		]]></hitText>
+	</hitDescriptions>
+
+	<missDescriptions>
+		<missText><![CDATA[
+			Humming into the microphone, several music notes made of arcane energy materialises around [npc.name], before shooting out and narrowly missing [npc2.name]!
+		]]></missText>
+		<missText><![CDATA[
+			Twirling the microphone in [npc.her] [npc.hand], [npc.name] [npc.verb(create)] several music notes made of arcane energy around [npc.her], before shooting them and narrowly missing [npc2.name]!
+		]]></missText>
+		<missText><![CDATA[
+			[npc.Name] [npc.verb(sing)] into [npc.her] microphone, turning her voice into a powerful wave of arcane energy and narrowly missing [npc2.name]!
+		]]></missText>
+	</missDescriptions>
+	
+</weapon>

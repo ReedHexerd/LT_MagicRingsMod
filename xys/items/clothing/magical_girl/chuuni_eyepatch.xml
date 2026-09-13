@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<clothing>
+	<coreAttributes>
+		<authorTag/>
+		<value>500</value>
+		<determiner><![CDATA[a]]></determiner>
+		<name><![CDATA[magical girl's seal]]></name>
+		<namePlural pluralByDefault="false"><![CDATA[magical girl's seals]]></namePlural>
+		<description><![CDATA[A very ordinary-looking medicinal eyepatch, complete with elastic straps to hold in place. It is entirely made of arcane energy, its purpose to suppress immense destructive power....!]]></description>
+		<physicalResistance>0</physicalResistance>
+		<femininity>ANDROGYNOUS</femininity>
+		<slot>EYES</slot>
+		<rarity>LEGENDARY</rarity>
+		<clothingSet/>
+		<imageName>chuuni_eyepatch.svg</imageName>
+		<imageEquippedName/>
+		<effects/> 
+		
+		<blockedPartsList>
+			<blockedParts>
+				<displacementType>REMOVE_OR_EQUIP</displacementType>
+				<clothingAccessRequired>
+					<clothingAccess>EYES</clothingAccess>
+				</clothingAccessRequired>
+				<blockedBodyParts/>
+				<clothingAccessBlocked/>
+				<concealedSlots/>
+			</blockedParts>
+		</blockedPartsList>
+		
+		<incompatibleSlots/>
+		
+		<primaryColours>
+			<colour>CLOTHING_WHITE</colour>
+		</primaryColours>
+		<primaryColoursDye values="ALL"/>
+		<secondaryColours>
+			<colour>CLOTHING_WHITE</colour>
+		</secondaryColours>
+		<secondaryColoursDye values="ALL"/>
+		<tertiaryColour/>
+		<tertiaryColoursDye/>
+	
+		<itemTags> 
+			<tag>NO_RANDOM_SPAWN</tag>
+			<tag>NOT_FOR_SALE</tag>
+			<tag>REMOVE_FROM_DEBUG_SPAWNER</tag>
+			<tag>UNENCHANTABLE</tag>
+			<tag>DISCARDED_WHEN_UNEQUIPPED</tag>
+		</itemTags>
+	</coreAttributes>
+
+	<displacementText type="REMOVE_OR_EQUIP">
+		<self>
+			<![CDATA[[npc.Name] [npc.verb(unloop)] the eyepatch's straps from around [npc.her] [npc.ears], before the article shatters into motes of light.]]>
+		</self>
+	</displacementText>
+	
+</clothing>
