@@ -1,5 +1,5 @@
 # LT_MagicRingsMod
-Mod Name: **MAGIC☆RINGS**
+Mod Name: **MAGIC☆RINGS** 
 Mod Category: **Encounter/Items/Combat Moves/Status Effects**
 
 Description:
