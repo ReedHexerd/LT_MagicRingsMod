@@ -1,0 +1,308 @@
+<dialogue>
+	<!-- SEGGS -->
+	<htmlContent tag="DOM_SEX_PENIS_START"><![CDATA[
+		<p>
+			Grabbing [ringmaker.name] by the thighs, you decide that the best way to calm the horny [ringmaker.race] down is to fuck her, sliding your [pc.cock+] against her [ringmaker.pussy+]. 
+		</p>
+		<p>
+			[ringmaker.speech(Mmf, yeeees...)] she groans lewdly, her legs locking around your waist as she rolls her [ringmaker.hips] into your lap, letting her juices run down your length. The busty ringmaker growls sexily, [ringmaker.speech(Time for Round 2...♡)]
+		</p>
+	]]>
+    </htmlContent>
+	
+	<htmlContent tag="DOM_SEX_VAGINA_START"><![CDATA[
+		<p>
+			#IF(pc.isTaur())
+				You turn your taur body around, letting her [ringmaker.cock+] slide against your [pc.pussy+]. 
+			#ELSE
+				Climbing into Ysette's lap, you slide her [ringmaker.cock+] against your [pc.pussy+], figuring that the best to calm her down is through her [ringmaker.cock+]. 
+			#ENDIF
+			You can feel her throbbing incessantly, glowing pre already oozing out of her cumslit and smearing along your cuntlips. 
+		</p>
+		<p>
+			[ringmaker.speech(Oooh fuuuck, yeeees...)] she groans lewdly, rolling her [ringmaker.hips] and grinding her length against you. The busty ringmaker growls sexily, [ringmaker.speech(Time for Round 2...♡)]
+		</p>
+	]]>
+    </htmlContent>
+	
+	<htmlContent tag="DOM_SEX_DOLL_START"><![CDATA[
+		<p>
+			#IF(pc.hasLegs())
+				Grabbing [ringmaker.name] by the waist, you force her up before sliding her [ringmaker.cock+] between your [pc.legs+], 
+			#ELSE
+				Grabbing [ringmaker.name] by the base of her shaft, you start pumping her [ringmaker.cock+] in earnest, 
+			#ENDIF
+			deciding that this is the best way to calm the horny [ringmaker.race] down.
+		</p>
+		<p>
+			[ringmaker.speech(Mmf, yeeees...)] she groans lewdly, thrusting her [ringmaker.hips] into your 
+			#IF(pc.hasLegs())
+				thighs, feeling it throbbing hotly between your thighs. 
+			#ELSE
+				hand, feeling it throbbing hotly within your grasp. 
+			#ENDIF
+			The busty ringmaker growls sexily, [ringmaker.speech(Time for Round 2...♡)]
+		</p>
+	]]>
+    </htmlContent>
+	
+	<htmlContent tag="SUB_SEX_PENIS_START"><![CDATA[
+		<p>
+			Grabbing [ringmaker.name] by the thighs, you decide that the best way to calm the horny [ringmaker.race] down is to fuck her, sliding your [pc.cock+] against her [ringmaker.pussy+]. 
+		</p>
+		<p>
+			[ringmaker.speech(Mmf, yeeees...)] she groans lewdly, her legs locking around your waist as she rolls her [ringmaker.hips] into your lap. The busty ringmaker growls sexily, [ringmaker.speech(Time for Round 2...♡)]
+		</p>
+	]]>
+    </htmlContent>
+	
+	<htmlContent tag="SUB_SEX_VAGINA_START"><![CDATA[
+		<p>
+			You decide that the best way to calm the horny [ringmaker.race] down is to let her fuck your [pc.pussy]. 
+			#IF(pc.isTaur())
+				You turn your taur body around, letting her [ringmaker.cock+] slide against your [pc.pussy+]. 
+			#ELSE
+				Climbing into Ysette's lap, you slide her [ringmaker.cock+] against your [pc.pussy+]. 
+			#ENDIF
+			You can feel her throbbing incessantly, glowing pre already oozing out of her cumslit and smearing along your cuntlips. 
+		</p>
+		<p>
+			She suddenly grabs you by the waist, before pushing you towards a nearby wall! Aiming her [ringmaker.cockTip] against your folds, she slams right in, not even giving you time to react! [ringmaker.speech(Oooh fuuuck, yeeees... I've been meaning to fuck this piece of ass aaaaaaaall this time...♡)] the busty ringmaker groans lewdly into your ear, ignoring your shock at the sudden penetration while rolling her [ringmaker.hips] needily, before growling sexily, [ringmaker.speech(Time for Round 2...♡)]
+		</p>
+	]]>
+    </htmlContent>
+	
+	<htmlContent tag="SUB_SEX_DOLL_START"><![CDATA[
+		<p>
+			You decide that the best way to calm the horny [ringmaker.race] down is to let her fuck your [pc.legs]. Grabbing [ringmaker.name] by the thighs, you slide her [ringmaker.cock+] between your [pc.legs], letting her hump into the crevice. 
+		</p>
+		<p>
+			[ringmaker.speech(Mmf, yeeees...)] she groans lewdly, rolling her [ringmaker.hips] back into your thighs. The busty ringmaker growls sexily, [ringmaker.speech(Time for Round 2...♡)]
+		</p>
+	]]>
+    </htmlContent>
+
+	<htmlContent tag="DOM_SEX_CASUAL_START"><![CDATA[
+		<p>
+			You decide that you'd like to fuck the [ringmaker.race], remembering how good it feels despite almost draining you dry. 
+			#IF(pc.getAddiction(FLUID_TYPE_CUM_RABBIT_MORPH) != null && pc.getAddiction(FLUID_TYPE_CUM_RABBIT_MORPH).getProviderIDs().contains(ringmaker.getId()))
+				There's also this deep aching for her glowing, deliciously thick cum... 
+			#ENDIF
+		</p>
+		<p>
+			#IF(flags.hasFlag('xys_ringmaker_event_1'))
+				[##flags.setFlag('xys_ringmaker_event_1', false)]
+				[ringmaker.speech(Heheh, if that's what you want...♡)] she smirks, finally slipping her arms away. She walks around you, slowly unzipping her latex panties and letting it slide down her legs, letting out her flaccid, [ringmaker.cock+]. 
+			#ELSE
+				[ringmaker.speech(Heheh, if that's what you want...♡)] she smirks, standing up and sauntering towards you. She slips her hands down her body, slowly unzipping her latex panties and letting it slide down her legs, letting out her flaccid, [ringmaker.cock+]. 
+			#ENDIF
+			The busty ringmaker then stop in front of you, before wrapping her arms around your neck, licking her lips sexily... [ringmaker.speech(Let's see what you got...♡)]
+		</p>
+	]]>
+    </htmlContent>
+	
+	<htmlContent tag="SUB_SEX_CASUAL_START"><![CDATA[
+		<p>
+			You decide that you'd like to get fucked by [ringmaker.race], remembering how good it feels despite almost draining you dry. 
+			#IF(pc.getAddiction(FLUID_TYPE_CUM_RABBIT_MORPH) != null && pc.getAddiction(FLUID_TYPE_CUM_RABBIT_MORPH).getProviderIDs().contains(ringmaker.getId()))
+				There's also this deep aching for her glowing, deliciously thick cum... 
+			#ENDIF
+		</p>
+		<p>
+			#IF(flags.hasFlag('xys_ringmaker_event_1'))
+				[##flags.setFlag('xys_ringmaker_event_1', false)]
+				[ringmaker.speech(Heheh, if that's what you want...♡)] she smirks, finally slipping her arms away. She walks around you, slowly unzipping her latex panties and letting it slide down her legs, letting out her flaccid, [ringmaker.cock+]. 
+			#ELSE
+				[ringmaker.speech(Heheh, if that's what you want...♡)] she smirks, standing up and sauntering towards you. She slips her hands down her body, slowly unzipping her latex panties and letting it slide down her legs, letting out her flaccid, [ringmaker.cock+]. 
+			#ENDIF
+			#IF(pc.isTaur())
+				The busty ringmaker then stop in front of you, before wrapping her arms around your neck, licking her lips sexily... [ringmaker.speech(Let's see what you got...♡)]
+			#ELSE
+				</p>
+				<p>
+					You suddenly find yourself on the floor, with her straddling your waist and towering over you. A dangerous smile forms on her face as you feel her [ringmaker.cock] rubbing between your [pc.legs]. [ringmaker.speech(We're gonna have soooooooo much fun...♡)]
+			#ENDIF
+		</p>
+	]]>
+    </htmlContent>
+	
+	<htmlContent tag="THREESOME_SEX_SPITROAST"><![CDATA[
+		#VAR
+			var positioning = "";
+			if(getFucked.getLegConfiguration()==LEG_CONFIGURATION_BIPEDAL) {
+				positioning = "onto [getFucked.her] hands and knees ";
+			}
+			var playerPositioning = "Falling to your knees in front of [getFucked.name], you say,";
+			if(pc.isTaur()) {
+				playerPositioning = "Turning your [pc.legConfiguration] body to one side, you present your groin to [getFucked.name], before calling down to [getFucked.herHim],";
+			}
+		#ENDVAR
+		
+		<p>
+			[pc.speech(I'd like to use your mouth,)] you reply. [pc.speech(Get down on all fours now, so that we can all have some fun together.)]
+		</p>
+		<p>
+			Immediately doing as [getFucked.sheIs] asked, [getFucked.name] drops down [#positioning]before you, with [ringmaker.namePos] [ringmaker.cock+] still inside. Looking over to one side, you see [ringmaker.name] gazing greedily down at [getFucked.her] ass. Sinking down onto her knees behind [getFucked.herHim], she [ringmaker.moans], [ringmaker.speech(Oh yeah, [pc.name] and I will show you a real good time, so you just relax and enjoy this.)]
+		</p>
+		<p>
+			Reaching down to squeeze [getFucked.namePos] [getFucked.ass+], [ringmaker.name] grins as her move is met by a surprised, erotic yelp. Turning [getFucked.her] head back, [getFucked.name] raises [getFucked.her] ass and shakes it from side to side as [getFucked.she] [getFucked.moans], [getFucked.speech(~Aah!~ How are you still so hard...? I don't think I can handle ~Mmh!~ both of you at the same time...!)]
+		</p>
+		<p>
+			[#playerPositioning] [pc.speech(Too late to worry about that, [getFucked.girl]! Now it's time for you to show us what an obedient subby slut you are!)]
+		</p>
+		<p>
+			With an enthusiastic [getFucked.moan], [getFucked.name] prepares to be used by the two of you...
+		</p>
+	]]>
+    </htmlContent>
+	
+	<htmlContent tag="THREESOME_SEX"><![CDATA[
+		<p>
+			[pc.speech(I'd like to 
+			#IF(getFucked.hasVagina())
+				use your [getFucked.pussy],
+			#ELSEIF(getFucked.hasPenisIgnoreDildo())
+				ride your [getFucked.cock],
+			#ELSE
+				grind against your groin,
+			#ENDIF
+			)] you reply, before asking [ringmaker.name], [pc.speech(Lift [getFucked.herHim] up, please?)]
+		</p>
+		<p>
+			[ringmaker.speech(You got it!)] she exclaims, immediately doing as [ringmaker.sheIs] asked and carrying [getFucked.name] up by [getFucked.her] [getFucked.legs+], with her [ringmaker.cock+] still buried in [getFucked.her] asshole, putting [getFucked.herHim] in a full Nelson position! 
+		</p>
+		<p>
+			[getFucked.Moaning] lewdly, [getFucked.name] [getFucked.verb(turn)] [getFucked.her] head back, shaking [getFucked.her] ass from side to side as [getFucked.she] [getFucked.moans], [getFucked.speech(~Aah!~ How are you still so hard...? I don't think I can handle ~Mmh!~ both of you at the same time...!)]
+		</p>
+		<p>
+			Stepping forwards and reaching out to place your [pc.hands] on [getFucked.her] [getFucked.hips+], you tease, [pc.speech(Too late to worry about that, [getFucked.girl]! Now it's time for you to show us what an obedient subby slut you are!)]
+		</p>
+		<p>
+			With an enthusiastic [getFucked.moan], [getFucked.name] prepares to be used by the two of you...
+		</p>
+	]]>
+    </htmlContent>
+	
+	<htmlContent tag="THREESOME_RAPE_SPITROAST"><![CDATA[
+		#VAR
+			var positioning = "";
+			if(getFucked.getLegConfiguration()==LEG_CONFIGURATION_BIPEDAL) {
+				positioning = "onto [getFucked.her] hands and knees ";
+			}
+			var playerPositioning = "Falling to your knees in front of [getFucked.name], you say,";
+			if(pc.isTaur()) {
+				playerPositioning = "Turning your [pc.legConfiguration] body to one side, you present your groin to [getFucked.name], before calling down to [getFucked.herHim],";
+			}
+		#ENDVAR
+		
+		<p>
+			[pc.speech(Let me use your mouth,)] you command [getFucked.herHim]. [pc.speech(Get down on all fours now, so that we can all have some fun together.)]
+		</p>
+		<p>
+			Being forced to doing as [getFucked.sheIs] asked, [getFucked.name] drops down [#positioning]before you, with [ringmaker.namePos] [ringmaker.cock+] still inside. Looking over to one side, you see [ringmaker.name] gazing greedily down at [getFucked.her] ass. Sinking down onto her knees behind [getFucked.herHim], she [ringmaker.moans], [ringmaker.speech(Oh yeah, [pc.name] and I will show you a real good time, so you just relax and enjoy this.)]
+		</p>
+		<p>
+			Reaching down to squeeze [getFucked.namePos] [getFucked.ass+], [ringmaker.name] grins as her move is met by a surprised, erotic yelp. Trying to get away from the [ringmaker.race]'s grip, [getFucked.name] raises [getFucked.her] ass and shakes it from side to side as [getFucked.she] [getFucked.sobs], [getFucked.speech(~Aah!~ How are you still so hard...? I don't think I can handle ~Mmh!~ both of you at the same time...!)]
+		</p>
+		<p>
+			[#playerPositioning] [pc.speech(Too late to worry about that, [getFucked.girl]! Now it's time for you to show us what an obedient subby slut you are!)]
+		</p>
+		<p>
+			With an pitiful [getFucked.sob], [getFucked.name] prepares to be used by the two of you...
+		</p>
+	]]>
+    </htmlContent>
+	
+	<htmlContent tag="THREESOME_RAPE"><![CDATA[
+		<p>
+			[pc.speech(Let me use your 
+			#IF(getFucked.hasVagina())
+				[getFucked.pussy],
+			#ELSE
+				groin,
+			#ENDIF
+			)] you reply, before asking [ringmaker.name], [pc.speech(Lift [getFucked.herHim] up, please?)]
+		</p>
+		<p>
+			[ringmaker.speech(You got it!)] she exclaims, immediately doing as [ringmaker.sheIs] asked and carrying [getFucked.name] up by [getFucked.her] [getFucked.legs+], with her [ringmaker.cock+] still buried in [getFucked.her] asshole, putting [getFucked.herHim] in a full Nelson position! 
+		</p>
+		<p>
+			[getFucked.Sobbing] in distress, [getFucked.name] [getFucked.verb(try)] to get away from the [ringmaker.race]'s grip, shaking [getFucked.her] ass from side to side as [getFucked.she] [getFucked.sobs], [getFucked.speech(~Aah!~ How are you still so hard...? I don't think I can handle ~Mmh!~ both of you at the same time...!)]
+		</p>
+		<p>
+			Stepping forwards and reaching out to place your [pc.hands] on [getFucked.her] [getFucked.hips+], you threaten, [pc.speech(Too late to worry about that, [getFucked.girl]! Now it's time for you to show us what an obedient subby slut you are!)]
+		</p>
+		<p>
+			With an pitiful [getFucked.sob], [getFucked.name] prepares to be used by the two of you...
+		</p>
+	]]>
+    </htmlContent>
+	
+	<htmlContent tag="AFTER_SEX"><![CDATA[
+		<p>
+			[ringmaker.speech(Oooooh yeeeeees... I definitely needed that...)] she groans out, her body still shaking in post-orgasmic bliss. 
+			#IF(ringmaker.isCharactersCumInOrifice(ORIFICE_VAGINA, pc))
+				Semen leaks from her well-used [ringmaker.pussy], dripping down her legs. 
+			#ENDIF
+			[ringmaker.speech(Haa... that was amazing...♡)]
+		</p>
+		<p>
+			You're not that much different, heavily panting in exertion, her massive libido is thankfully sated... for now. You swear your essences get drained every time she cums, both figuratively and literally. 
+		</p>
+		<p>
+			After taking a while to collect herself, she saunters back into her chair, before sighing in bliss... [ringmaker.speech(Thanks for the meal~♡ Now shoo, I need to get cleaned up.)]
+		</p>
+		<p>
+			Before you can get to say anything else, you find yourself standing in front of her shop once more. Grumbling to yourself, you look around to decide what you should do now...
+		</p>
+		[##ringmaker.applyWash(true, true, null, 0)]
+		[#ringmaker.incrementAffection(pc, 10)]
+	]]>
+    </htmlContent>
+
+	<htmlContent tag="AFTER_SEX_THREESOME"><![CDATA[
+		<p>
+			You, [ringmaker.name], and [getFucked.name] all collapse down onto the floor together, panting and sighing as you all press closely against one another, while [getFucked.name] had fainted from being fucked for so long. After spending some time getting your breath back, you start to get your things together before eventually standing up, while [ringmaker.name] slide her [ringmaker.cock+] off [getFucked.her] well-used hole. 
+		</p>
+		<p>
+			[ringmaker.speech(Mmm, that was fun. We really should do this again some time, right, [#getFucked.getNameIgnoresPlayerKnowledge()]? ...oh, [getFucked.she] fainted,)] [ringmaker.name] realises with a little laugh.
+		</p>
+		<p>
+			[pc.speech(Yeah, that really was great,)] you reply, smiling and letting out a small laugh as the [ringmaker.race] slaps [getFucked.name] on the rump, making the unconscious [getFucked.race] to [getFucked.moan] out. 
+		</p>
+		<p>
+			[ringmaker.speech(Oh well! Time to go now,)] she stands back up as well and zips up her latex panties, before she teases, [ringmaker.speech(You should come and pay me a visit more often, maybe you'll get to spend more sexy time with me~?)]
+		</p>
+		<p>
+			[pc.speech(We'll see,)] you tease, making the ringmaker whine playfully. With a flippant wave, she vanishes down a corner, leaving you and [getFucked.name] in the alleyway. Not wanting to stay any longer, you leave as well. 
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="NO_SEX"><![CDATA[
+		<p>
+			Refusing to take her seriously after all of the trouble the [ringmaker.race] has brought you, you turn away from her and leave the shop.
+		</p>
+		<p>
+			[ringmaker.speech(Ah, wait, where are you going?! I need- ooooh fuuuck...♡)] her voice gets fainter as you close the door, with only muffled groans of pleasure leaking through the door. 
+		</p>
+		<p>
+			You feel slightly bad as you leave her desperately in heat, but after thinking things through, you decide to move on. 
+		</p>
+		[#ringmaker.incrementAffection(pc, -30)]
+	]]>
+    </htmlContent>
+
+	<htmlContent tag="NO_SEX_THREESOME"><![CDATA[
+		<p>
+			Politely refusing to join in you tell her that you need to go on your way. 
+		</p>
+		<p>
+			[ringmaker.speech(Aww, alright then, your loss,)] she pouts, before turning back to [getFucked.name] and smacks [getFucked.herHim] on the [getFucked.ass], earning [getFucked.a_moan] from [getFucked.herHim]. [ringmaker.speech(Oi, tighten up that hole of yours! Don't tell me you're tired already when it's just the third round!)]
+		</p>
+		<p>
+			You turn away from the scene, leaving the two to have their fun. Maybe you can join in next time. 
+		</p>
+	]]>
+    </htmlContent>
+</dialogue>

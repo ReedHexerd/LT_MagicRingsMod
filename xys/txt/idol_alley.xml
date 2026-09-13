@@ -1,0 +1,905 @@
+<dialogue>
+	<!-- ALLEYWAYS -->
+	<htmlContent tag="INTRO_ALLEYWAYS"><![CDATA[
+		<p>
+			You find yourself walking down yet another narrow passage, lined by a series of inset doorways. As you're passing one such recess, something makes you pause — a muffled groan and someone arguing, just beyond a corner. Curiosity piqued, you take a few hesitant steps toward the commotion.  
+		</p>
+		<p>
+			The voice becomes louder as you approach, a distinctly feminine one. You hide behind one of the crates lining up the wall, before peeking out. [idol.A_raceFull(true)] is lifting up [beaten1.a_race] [#(idol.getHeightValue() < beaten1.getHeightValue())?'larger than herself':'around the same size as herself'] by the collar, her back turned against you. On the ground is [beaten2.a_race] and [beaten3.a_race] lying face down on the street, bruised and groaning in pain. 
+			#IF(pc.hasTraitActivated(PERK_OBSERVANT) && flags.hasFlag('xys_idol_intro_dancefloor'))
+				With widened [pc.eyes], you notice that it's [idol.name], the idol that appeared in the Watering Hole's dance floor. 
+			#ENDIF
+		</p>
+		<p>
+			[idol.speech(... my turf, do you fucking HEAR ME?!)] [idol.name] shouts, shaking the [beaten1.race] roughly. [idol.speech(I don't want <i>any</i> of you <i>FUCKERS</i> coming near this place, <b>CLEAR?!</b>)]
+		</p>
+		<p>
+			[beaten1.speech(Y-Yes ma'am...!)] the apparent leader of these thugs [beaten1.verb(exclaim)], trembling like a leaf in the [#(idol.getHeightValue() < beaten1.getHeightValue())?'smaller ':' ']girl's hands. With a huff, she drops the thug on the ground. [beaten1.She] [beaten1.verb(scramble)] onto [beaten1.her] [beaten1.feet], before dragging away [beaten1.her] fallen comrades deeper into the alleyway. Seeing that the trouble is over, the mysterious [idol.race] sighs, picking up a wooden bat on the floor and resting it on her shoulder.
+		</p>
+		<p>
+			[idol.speech(Hey you,)] she suddenly says. You reflexively hide back behind the crate. [idol.speech(Don't bother hiding, I know you're there. I saw that [beaten1.race] briefly turned to see you. Come on out, or else...)] 
+		</p>
+		<p>
+			Footsteps slowly approaches your position. With no other choice, you decide to... 
+		</p>
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="INTRO_ALLEYWAYS_VICTORY"><![CDATA[
+		<p>
+			[idol.Name] falls to her knees, completely defeated. She glances up at you for a moment, desperately whimpering and biting her [idol.lip], completely overwhelmed by the power of your arcane aura. 
+		</p>
+		<p>
+			[idol.speech(Grr... t-this isn't ~Aah!~ over...!)] she groans as she shakily stands up. [idol.speech(I will remember you... This is not ~Aah!~ the last time you'll see me!)] 
+		</p>
+		<p>
+			With that, she slips on a [#(flags.hasFlag('xys_playerHasTransformed')?'familiar-looking ring':'ring')], before conjuring up a thick, chlling mist from nowhere and blinding your sight. When the wind blows away the unusual mist, [idol.name] is gone. 
+		</p>
+		[#idol.setAffection(pc, -40)]
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="INTRO_ALLEYWAYS_DEFEAT"><![CDATA[
+		<p>
+			You simply don't have the energy to continue fighting any more, and with a defeated groan, you collapse to the ground. A disgruntled sigh causes you to look up, and you see disappointment in her weary [idol.eyes] as she looks down at you.
+		</p>
+		<p>
+			Pulling you to your feet, [idol.name] pushes you against a nearby wall. [idol.speech(Right, I'll give you a chance to explain. Or do you want to want to be like the thugs I just handled?)] she asks. 
+		</p>
+		<p>
+			[pc.speech(Look, it's really just a coincidence! I heard a commotion around here and decided to check—)] You try to explain more, but she interrupts you with a shake of her head.
+		</p>
+		<p>
+			[idol.speech(Haa... fine, whatever. I'm tired, so I don't have the energy for all your talks,)] [idol.Name] unceremoniously drops you down, before shouldering her bat once more. [idol.speech(Bye, hope we don't meet again.)]
+		</p>
+		#IF(pc.hasCompanions())
+			<p>
+				With that, she turns around and walks off, leaving you and your companion panting and sweating as you attempt to recover from your alarming experience...
+			</p>
+		#ELSE
+			<p>
+				With that, she turns around and walks off, leaving you panting and sweating as you attempt to recover from your alarming experience...
+			</p>
+		#ENDIF
+		[#idol.setAffection(pc, -20)]
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="INTRO_ALLEYWAYS_SURRENDER"><![CDATA[
+		<p>
+			Not risking for a fight, you hold out your [pc.arms] in the air, a sign of surrender. 
+		</p>
+		<p>
+			Seeing your gesture, [idol.name] lets out a sigh, before pointing her bat at you. [idol.speech(Right, I'll give you a chance to explain. Or do you want to want to be like the thugs I just handled?)] she asks. 
+		</p>
+		<p>
+			[pc.speech(I heard a commotion around here and decided to check...)] You try to explain more, but she interrupts you with a shake of her head.
+		</p>
+		<p>
+			[idol.speech(Haa... so a false alarm. Whatever. I'm tired, I don't have the energy for all your talks,)] [idol.Name] states, shouldering her bat once more. [idol.speech(Bye, hope we don't meet again.)]
+		</p>
+		#IF(pc.hasTraitActivated(PERK_OBSERVANT) && flags.hasFlag('xys_idol_intro_dancefloor'))
+			<p>
+				[pc.speech(Wait!)] you call out to her just as she turns around to leave, pausing her in her tracks. [pc.speech(Aren't you [idol.name]? The one singing in the redlight district—)]
+			</p>
+			<p>
+				[idol.speech(I don't know what you're talking about,)] [idol.name] interrupts you with an edge in her voice. [idol.speech(Now leave, <i>or else</i>...)] she threatens, letting her unspoken words hang in the air, before turning around and running off.
+			</p>
+		#ELSE
+			<p>
+				With that, she turns around and walks off, leaving you confused and alone in the now empty alleyway. Somewhere deep in your heart, you know you'll be seeing her again soon... 
+			</p>
+		#ENDIF
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="ALLEYWAYS_START"><![CDATA[
+		#VAR
+			var companions = pc.hasCompanions();
+		#ENDVAR
+		
+		<p>
+			Knowing that [idol.name(a)] is prowling around this area, you make sure to stay on high alert, carefully checking each and every dark corner and recess as you walk through the twisting passages. Just as you suspected, as you cautiously pass an inset doorway, a shadowy figure leaps out, blocking your path! You instantly recognise the [idol.fullRace(true)], and you jump back into a fighting stance as you expect this encounter to be much the same as the last one.
+		</p>
+		#IF(idol.isVisiblyPregnant())
+			#IF(!idol.isCharacterReactedToPregnancy(pc))
+				#IF(idol.getPregnantLitter().isFatherId(pc.getId()))
+					<p>
+						As she steps out from the shadows, however, you notice that there's definitely something different about her this time. The consequence of ejaculating inside of her is staring you right in the face, and you gulp as you see her pointing down at her [style.colourSex(pregnant belly)].
+					</p>
+					<p>
+						[idol.speech(That's right, you got me pregnant...)] [idol.name] mumbles, before clearing her throat and glaring at you.
+						#IF(idol.isAttractedTo(pc))
+							[idol.speech(Because of this, I can't do my night job properly, s-so you're gonna take responsibility for that, understand?!)]
+						#ELSE
+							[idol.speech(You're going to take responsibility for this, you horny motherfucker!)]
+						#ENDIF
+					</p>
+				#ELSEIF(companions && idol.getPregnantLitter().isFatherId(com))
+					<p>
+						As she steps out from the shadows, however, you notice that there's definitely something different about her this time. The consequence of [com.name] having ejaculating inside of her is staring you both right in the face, and your [com.companion] gulps as [com.she] sees [idol.name] pointing down at her [style.colourSex(pregnant belly)].
+					</p>
+					<p>
+						[idol.speech(Look what you did, you asshole!)] she shouts, confirming that [com.nameIs] the father of her children. [idol.speech(Do you know how annoying it is being pregnant?! You're gonna pay for this!)]
+					</p>
+				#ELSE
+					<p>
+						As she steps out from the shadows, however, you notice that there's definitely something different about her this time. The consequence of your old companion having ejaculating inside of her is staring the two of you right in the face, and you gulp as [idol.name] points down at her [style.colourSex(pregnant belly)].
+					</p>
+					<p>
+						[idol.speech(That's right, [#idol.getPregnantLitter().getFatherName()] got me pregnant...)] [idol.name] mumbles, before clearing her throat and glaring at you.
+						#IF(idol.isAttractedTo(pc))
+							[idol.speech(Because of this, I can't do my night job properly, s-so you're gonna take responsibility for that, understand?!)]
+						#ELSE
+							[idol.speech(You're going to take responsibility for this, you horny motherfucker!)]
+						#ENDIF
+					</p>
+				#ENDIF
+			#ELSE
+				<p>
+					#IF(idol.getPregnantLitter().isFatherId(pc.getId()))
+						You see that [idol.sheIs] still sporting a round, [style.colourSex(pregnant belly)], and she absent-mindedly strokes her swollen bump as she scowls, [idol.speech(That's right, I'm still pregnant, and it's all your fault!)]
+					#ELSEIF(companions && idol.getPregnantLitter().isFatherId(com.getId()))
+						You see that [idol.sheIs] still sporting a round, [style.colourSex(pregnant belly)], and she absent-mindedly strokes her swollen bump as she scowls, [idol.speech(That's right, I'm still pregnant, and it's all your fault, [com.name]!)]
+					#ELSE
+						You see that [idol.sheIs] still sporting a round, [style.colourSex(pregnant belly)], and she absent-mindedly strokes her swollen bump as she scowls, [idol.speech(That's right, I'm still pregnant, and it's all your and [#idol.getPregnantLitter().getFatherName()]'s fault!)]
+					#ENDIF
+				</p>
+			#ENDIF
+		#ENDIF
+		#IF(pc.isVisiblyPregnant() || (companions && com.isVisiblyPregnant()))
+			<p>
+				#IF((pc.isVisiblyPregnant() && !pc.isCharacterReactedToPregnancy(idol)) || (companions && com.isVisiblyPregnant() && !com.isCharacterReactedToPregnancy(idol)))
+					#IF(pc.isVisiblyPregnant())
+						#IF(companions && com.isVisiblyPregnant())
+							[idol.speech(Well, well, well, looks like you two fuckers have got yourselves knocked up!)] [idol.name] drawls, looking down at both your and [com.namePos] swollen bellies. [idol.speech(Not surprised, not surprised at all.)]
+						#ELSE
+							[idol.speech(Well, well, well,)] [idol.name] drawls, looking down at your swollen belly. [idol.speech(Looks like someone got you knocked up, huh? Been going around town submitting to anyone who wants to pump a load in you, I'll bet!)]
+						#ENDIF
+					#ELSE
+						[idol.speech(Well, well, well,)] [idol.name] drawls, looking down at [com.namePos] swollen belly. [idol.speech(Looks like someone got you knocked up, huh? Been going around town submitting to anyone who wants to pump a load in you, I'll bet!)]
+					#ENDIF
+				#ELSE
+					#IF(pc.isVisiblyPregnant())
+						#IF(companions && com.isVisiblyPregnant())
+							Looking down at both your and [com.namePos] swollen bellies, she sneers. [idol.speech(You sluts are still pregnant, huh? Looks like you're only good for being bred!)]
+						#ELSE
+							Looking down at your swollen belly, she sneers. [idol.speech(Looks like you're still pregnant, slut! Then again, not my problem.)]
+						#ENDIF
+					#ELSE
+						Looking down at [com.namePos] swollen belly, she sneers. [idol.speech(Looks like you're still pregnant, slut! Then again, not my problem.)]
+					#ENDIF
+				#ENDIF
+			</p>
+		#ENDIF
+		#IF(!idol.isVisiblyPregnant() && !pc.isVisiblyPregnant() && (!companions || !com.isVisiblyPregnant()))
+			#IF(game.getCurrentWeather().equals(WEATHER_MAGIC_STORM))
+				<p>
+					#IF(companions)
+						[idol.speech(You two again?!)] she growls agitatedly, [idol.speech(Well just in time, I'm in a very horny mood right now... so WHICH OF YOU WANTS TO FUCK?!)]
+					#ELSE
+						[idol.speech(You again?!)] she growls agitatedly, [idol.speech(Well just in time, I'm in a very horny mood right now... so LET'S FUCK!)]
+					#ENDIF
+				</p>
+			#ELSEIF(idol.getPlayerSurrenderCount() >= 3)
+				<p>
+					#IF(companions)
+						[idol.speech(Oh, it's you two,)] she deadpans, already not taking you both seriously. [idol.speech(Look, can you please just leave? Like, what's the point of keep submitting to me?)]
+					#ELSE
+						[idol.speech(Oh, it's you,)] she deadpans, already not taking you seriously. [idol.speech(Look, can you please just leave? Like, what's the point of keep submitting to me?)]
+					#ENDIF
+				</p>
+			#ELSE
+				<p>
+					#IF(companions)
+						[idol.speech(You two again?)] she groans exasperatedly, [idol.speech(Look, I don't really wanna fight you both, so can you all please leave?!)]
+					#ELSE
+						[idol.speech(You again?)] she groans exasperatedly, [idol.speech(Look, I don't really wanna fight you, so can you please leave?!)]
+					#ENDIF
+				</p>
+			#ENDIF
+		#ENDIF
+		<p>
+			#IF(game.getCurrentWeather().equals(WEATHER_MAGIC_STORM) && companions && idol.isAttractedTo(com))
+				The ongoing storm is clearly turning her on, and from her hungry gaze that lingers on [com.namePos] body, you're able to get a good idea of what she wants to do with your companion.
+				#IF(game.isNonConEnabled())
+					Knowing that defeat will likely result in [com.name] being raped by this horny [idol.race], the two of you ready yourselves for a fight.
+				#ELSE
+					Knowing that defeat will likely result in this horny [idol.race] wanting to have sex with [com.name], the two of you ready yourselves for a fight.
+				#ENDIF
+			#ELSEIF(game.getCurrentWeather().equals(WEATHER_MAGIC_STORM))
+				The ongoing storm is clearly turning her on, and from her hungry gaze that lingers on your body, you're able to get a good idea of what she wants to do with you.
+				#IF(game.isNonConEnabled())
+					Knowing that defeat will likely result in being raped by this horny [idol.race], you ready yourself for a fight.
+				#ELSE
+					Knowing that defeat will likely result in this horny [idol.race] wanting to have sex with you, you ready yourself for a fight.
+				#ENDIF
+			#ELSEIF(companions)
+				Although your powerful arcane aura is turning her on a little, it doesn't look as though [idol.sheIs] really all that interested in having sex with either you or [com.name], and will most likely only rob you if the two of you were to lose this fight. #IF(flags.hasFlag('xys_idol_alleyways_refuse_pay'))Then again, you can just leave...#ENDIF
+			#ELSE
+				Although your powerful arcane aura is turning her on a little, it doesn't look as though [idol.sheIs] really all that interested in having sex with you, and will most likely only rob you if you were to lose this fight. #IF(flags.hasFlag('xys_idol_alleyways_refuse_pay'))Then again, you can just leave...#ENDIF
+			#ENDIF
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_REFUSE_PAY"><![CDATA[
+		<p>
+			#IF(pc.isCowardly())
+				Wanting to avoid a fight if at all possible, you take a step backwards, fumbling about to grab a handful of flames to offer to [idol.name]. [pc.speech(I don't want to fight! Please, just take my money and leave me alone!)]
+			#ELSEIF(pc.isConfident())
+				Not wanting to waste your time dealing with this pathetic [idol.race], you produce a handful of flames, before confidently stepping forwards and holding them out to the mugger. [pc.speech(Count yourself lucky that I've got far more important things to do than waste my time on a miserable wretch like yourself!)]
+			#ELSE
+				Not wanting to get caught up in a fight with this [idol.race], you decide to take the safer route, and offer her a handful of your flames. [pc.speech(Here's your money. Now step aside and let me pass.)]
+			#ENDIF
+		</p>
+		<p>
+			[idol.speech(Don't need it, I'm not so poor as to rob someone,)] [idol.name] snaps, rolling her eyes. She stands aside and makes a shooing gesture, [idol.speech(Get out of my sight, you fucking bitch!)]
+		</p>
+		<p>
+			#IF(pc.isBrave())
+				With the conflict now resolved, you continue on your way, making sure to keep an eye on [idol.name] in case she tries following you. Thankfully for her, it looks like [idol.sheIs] staying behind like she said, and you soon turn a corner and leave the [idol.race] behind.
+			#ELSEIF(pc.isCowardly())
+				With the conflict now resolved, you hurry on your way, hoping that [idol.name] doesn't pursue you. Quickly retreating around a corner, you thankfully leave the [idol.race] behind, breathing a sigh of relief as you reflect on the fact that you just came close to having a violent confrontation.
+			#ELSE
+				With the conflict now resolved, you continue on your way, giving [idol.name] one last backwards glance to make sure she isn't going to follow you. Thankfully, it looks like [idol.sheIs] staying behind like she said, and after just a moment, you turn a corner and leave the [idol.race] behind.
+			#ENDIF
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_SURRENDER"><![CDATA[
+		<p>
+			#IF(pc.isCowardly())
+				Well and truly terrified at the prospect of this [idol.race] choosing to engage you in physical combat, you drop down before her and offer her your complete surrender. 
+					Letting out a confused huff as she sees how scared you are, the [idol.race] 
+			#ELSEIF(pc.isBrave())
+				Although not scared of [idol.race], you find yourself unwilling to engage her in combat, and so you drop down before her and offer her your complete surrender. 
+					Rolling her eyes as she sees the brave look in your [pc.eyes], the [idol.race] 
+			#ELSE
+				Not wanting to engage this [idol.race] in combat, you drop down before her and offer her your complete surrender. 
+					Letting out a confused huff as she sees your complete and utter submission, the [idol.race] 
+			#ENDIF
+			just decides to turn around and leave. 
+		</p>
+		<p>
+			Confused by her actions, you watch as she disappears down a corner. With nothing else to do, you stand back up, before deciding what to do next. 
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_OFFER_SEX"><![CDATA[
+		#IF(pc.hasCompanions())
+			<p>
+				Wanting to avoid a fight, you decide to do the only other thing you can think of, and flash a seductive smile at [idol.name]. [pc.speech(There's no need to fight. If you're looking for a bit of fun, all you have to do is ask...)]
+			</p>
+			<p>
+				[idol.speech(Oh really?)] [idol.name] replies, stepping forwards in an intimidating manner. You remain in place, biting your [pc.lip] and trying to make yourself as small as possible as you attempt to entice [idol.name] into using you for some sexual relief.
+			</p>
+			<p>
+				[com.speech(Are you sure about this?)] [com.name] asks, stepping forwards in preparation to defend you from [idol.namePos] advances.
+			</p>
+			<p>
+				[pc.speech(Don't worry, [com.name],)] you reply, reaching out to take hold of [com.her] [com.arm], before firmly pushing [com.herHim] to one side. [pc.speech(I've got this. You just keep a lookout for anyone else.)]
+			</p>
+			<p>
+				Much to your delight, your would-be attacker isn't put off by [com.namePos] interruption, and reaches up to grab you by the [pc.arms], before pulling you forwards into a tight embrace. Pressing her [idol.lips] against yours, she thrusts her [idol.tongue] into your mouth, aggressively kissing you for a moment before pulling back, growling, [idol.speech(You're going to be a good [pc.girl] now, aren't you bitch? Your little friend over there can watch me fuck you senseless!)]
+			</p>
+			<p>
+				Whimpering in delight, you surrender yourself to [idol.namePos] dominant touch, allowing yourself to be used as payment for trespassing on her territory...
+			</p>
+		#ELSE
+			<p>
+				Wanting to avoid a fight, you decide to do the only other thing you can think of, and flash a seductive smile at [idol.name]. [pc.speech(There's no need to fight. If you're looking for a bit of fun, all you have to do is ask...)]
+			</p>
+			<p>
+				[idol.speech(Oh really?)] [idol.name] replies, stepping forwards in an intimidating manner. You remain in place, biting your [pc.lip] and trying to make yourself as small as possible as you attempt to entice [idol.name] into using you for some sexual relief.
+			</p>
+			<p>
+				Much to your delight, your would-be attacker reaches up and grabs you by the [pc.arms], before pulling you forwards into a tight embrace. Pressing her [idol.lips] against yours, she thrusts her [idol.tongue] into your mouth, aggressively kissing you for a moment before pulling back, growling, [idol.speech(You're going to be a good [pc.girl] now, aren't you bitch?)]
+			</p>
+			<p>
+				Whimpering in the affirmative, you surrender yourself to [idol.namePos] dominant touch, allowing yourself to be used as payment for trespassing on her territory...
+			</p>
+		#ENDIF
+	]]>
+	</htmlContent>
+	
+	<!-- BITCH CONTENT -->
+	<htmlContent tag="ALLEYWAYS_SUBMIT_FEET"><![CDATA[
+		<p>
+			Dropping down before her, you tell her that you wants to be her bitch. Looking at you while humming thoughtfully, she points to the ground, ordering, [idol.speech(Lick my feet, bitch.)] 
+		</p>
+		<p>
+			Accepting your place as [idol.namePos] bitch, you do as she commands. Dropping your [pc.mouth] down to 
+			#IF(idol.getHighestZLayerCoverableArea(CA_FEET) != null)
+				her [idol.feet], you obediently kiss her [#idol.getHighestZLayerCoverableArea(CA_FEET).getName()].
+			#ELSE
+				the ground, you obediently kiss her [idol.feet+].
+			#ENDIF
+			#IF(idol.getPlayerSurrenderCount() == 3)
+				Quite surprised at your willingness, [idol.name] mutters, [idol.speech(Oh wow, you're actually doing it... wait, are you enjoying this, bitch?)] 
+			#ELSE
+				Dominantly pushing her [idol.feet] into your [pc.mouth], [idol.name] lets out a mocking laugh and teases, [idol.speech(You're definitely enjoying this aren't you, bitch?! Go on, kiss them some more!)] 
+			#ENDIF
+		</p>
+		<p>
+			After making you perform this degrading task for several minutes, [idol.name] finally [idol.steps] back and takes her [idol.feet] away from your face. 
+				Smirking down at you, she makes a gesture to get you to sit still, before placing her [idol.hands] on her hips. 
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_VICTORY"><![CDATA[
+		<p>
+			[idol.Name] collapses to the floor, completely defeated. As she looks up at you, you see that your powerful aura is having a strong effect on her, and there's a hungry, lustful look in her [idol.eyes+]. Despite that, she clearly still have some form of control over her burning desire. 
+		</p>
+		<p>
+			#IF(idol.getAffection(pc) >= AFFECTION_POSITIVE_TWO_LIKE.getMinimumValue())
+				[idol.speech(Grr... can't believe ~Aah!~ I've lost...!)] she [idol.moans] as she reaches down to her crotch and starts stroking herself, bucking her [idol.hips+] against her [idol.hand]. [idol.speech(This is where ~Aah!~ you're going to have your way with me, aren't you?!)] 
+			#ELSE
+				[idol.speech(Grr... can't believe I've lost...!)] she grunts, a hint of fear in her [idol.eyes+]. She tries to shuffle away from you, clearly worried about what your intentions are.
+			#ENDIF
+		</p>
+		#IF(game.isNonConEnabled())
+			<p>
+				You wonder if you should just leave her alone. Then again, you <i>could</i> take advantage of her weakened, vulnerable body...
+			</p>
+		#ENDIF
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="ALLEYWAYS_VICTORY_TALK"><![CDATA[
+		<p>
+			As you look down at the defeated form of the [idol.race] before you, you can't help but feel sorry for her. After all, she must really have been desperate to have attacked you like this, and is undoubtedly the victim of unfortunate circumstances. Taking a step back to show her that you're no further threat, you say, [pc.speech(Don't worry, I'm not going to do anything to you. I just want to know why you attacked me like that.)]
+		</p>
+		<p>
+			[idol.speech(W-What?)] the [idol.race] stammers, caught off guard by the amicable tone of your voice. [idol.speech(Y-You're not going to punish me?)]
+		</p>
+		<p>
+			[pc.speech(No, I just want to find out why you're attempting to mug innocent travellers.)]
+		</p>
+		<p>
+			Seeing that you are no longer hostile, she lets out a sigh. [idol.speech(Well, first off... I don't mug innocent travellers, only those other pesky muggers that came too close to my home. I just thought you're one of them...)]
+		</p>
+		<p>
+			You let out a sigh as you hear her reason for attacking you. [pc.speech(So you're just protecting yourself... What's your name?)]
+		</p>
+		<p>
+			The [idol.race] looks a little uncomfortable at answering your question at first, but after simply waiting a moment and giving her time to think, you're rewarded with an answer, [idol.speech(Name's [idol.name]... Why do you want to know?)]
+		</p>
+		<p>
+			[pc.speech(Well, because if I bump into you down here again, I'd like to greet you properly. My name's [pc.name], I hope I didn't hurt you too much back there,)] you reply, standing back upright as [idol.name] pushes herself to her [idol.feet].
+		</p>
+		<p>
+			[idol.speech(You're going to come back here? For payback?)] [idol.name] nervously asks, looking as though [idol.sheIs] ready to fight you again, despite how shaky she is.
+		</p>
+		<p>
+			[pc.speech(Of course not! This is a nice shortcut, and besides, I'd like to get to know you a little more in the future,)] you reply, smiling at [idol.name] to try and reassure her.
+		</p>
+		<p>
+			[idol.speech(You... want to get to know... m-me?)] [idol.name] asks, not quite believing what it is you've just said.
+		</p>
+		<p>
+			[pc.speech(That's right. Look, I need to be on my way now, and I'm sure you'd like to take a moment to think all of this over, but I'll come and find you here some other time, alright?)]
+		</p>
+		<p>
+			[idol.speech(O-Oh... uh... yeah, that would be good... I-I'll see you another time... [pc.name]...)] [idol.name] replies, dazed. Before you can say anything else, she turns around and runs off, leaving you alone once again.
+		</p>
+		<p>
+			Smiling to yourself as you think that you might have just made a new friend, you set off and continue on your way...
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_DEFEAT"><![CDATA[
+		<p>
+			You simply don't have the energy to continue fighting any more, and with a defeated groan, you collapse to the ground. A disgruntled sigh causes you to look up, and you see disappointment in her weary [idol.eyes] as she looks down at you.
+		</p>
+		<p>
+			Pulling you to your feet, [idol.name] pushes you against a nearby wall, before demanding that you hand over your money. Reluctantly, you do as she says, and after giving her some of your cash, she roughly throws you back down to the floor.
+		</p>
+		<p>
+			[idol.speech(I don't get why you want to fight me, but you've lost. Now get the FUCK outta my sight, <i>or else...</i>)] she growls, letting her unspoken words hang in the air, before turning around and running off.
+		</p>
+	]]>
+	</htmlContent>
+
+	<!-- PEACEFUL -->
+	<htmlContent tag="ALLEYWAYS_PEACEFUL_START"><![CDATA[
+		#VAR
+			var companions = pc.hasCompanions();
+		#ENDVAR
+		
+		<p>
+			Knowing that [idol.name(a)] is prowling around this area, you make sure to stay on high alert, carefully checking each and every dark corner and recess as you walk through the twisting passages. Just as you suspected, as you cautiously pass an inset doorway, a shadowy figure suddenly appears, blocking your path!
+		</p>
+		<p>
+			You instantly recognise the [idol.fullRace(true)], and as she sees that it's you, she quickly takes a step back. [idol.speech(Oh, [pc.name]. I thought you were someone else...)]
+		</p>
+		
+		#IF(idol.isVisiblyPregnant())
+			#IF(!idol.isCharacterReactedToPregnancy(pc))
+				#IF(idol.getPregnantLitter().isFatherId(pc.getId()))
+					<p>
+						As you step forwards and start to say hello, you immediately notice that there's something very different about [idol.name]. [idol.SheIs] cradling her stomach with both [idol.hands], and as you look down, you see the consequence of ejaculating inside of her, as [idol.sheIs] now sporting a [style.colourSex(pregnant belly)].
+					</p>
+					<p>
+						[idol.speech(Yeah, before you ask, it was you. You got me knocked up...)] she explains, shuffling her feet as she confirms that you're the father of her children. [idol.speech(Because of this pregnancy, I can't do my night job properly. If you wanted to take responsibility, then... s-spend some time with me at my place, I'd appreciate that.)]
+					</p>
+				#ELSEIF(companions && idol.getPregnantLitter().isFatherId(com.getId()))
+					<p>
+						As you step forwards and start to say hello, you immediately notice that there's something very different about [idol.name]. [idol.SheIs] cradling her stomach with both [idol.hands], and as you look down, you see the consequence of [com.name] having ejaculated inside of her, as [idol.sheIs] now sporting a [style.colourSex(pregnant belly)].
+					</p>
+					<p>
+						[idol.speech(Yeah, before you ask, it was you, [com.name]. You got me knocked up...)] she explains, shuffling her feet as she confirms that [com.nameIs] the father of her children. [idol.speech(Because of this pregnancy, I can't do my night job properly. If you wanted to take responsibility, then... s-spend some time with me at my place, I'd appreciate that.)]
+					</p>
+				#ELSE
+					<p>
+						As you step forwards and start to say hello, you immediately notice that there's something very different about [idol.name]. [idol.SheIs] cradling her stomach with both [idol.hands], and as you look down, you see the consequence of your previous companion having ejaculated inside of her, as [idol.sheIs] now sporting a [style.colourSex(pregnant belly)].
+					</p>
+					<p>
+						[idol.speech(Yeah, before you ask, it was [#idol.getPregnantLitter().getFatherName()]. They got me knocked up...)] she explains, shuffling her feet as she confirms that your old companion is the father of her children. [idol.speech(Because of this pregnancy, I can't do my night job properly. If you wanted to take responsibility, then... s-spend some time with me at my place, I'd appreciate that.)]
+					</p>
+				#ENDIF
+			#ELSE
+				<p>
+					#IF(idol.isCharacterPossiblyFather(pc.getId()))
+						As you step forwards and start to say hello, you see that [idol.name] still sporting a round, [style.colourSex(pregnant belly)], and she absent-mindedly strokes her swollen bump as she sighs, [idol.speech(That's right, I'm still pregnant... If you wanted to take responsibility, then... s-spend some time with me at my place, I'd appreciate that.)]
+					#ELSEIF(companions && idol.isCharacterPossiblyFather(com.getId()))
+						As you step forwards and start to say hello, you see that [idol.name] still sporting a round, [style.colourSex(pregnant belly)], and she absent-mindedly strokes her swollen bump as she sighs, [idol.speech(That's right, I'm still pregnant... If you wanted to take responsibility, [com.name], then... s-spend some time with me at my place, I'd appreciate that.)]
+					#ELSE
+						As you step forwards and start to say hello, you see that [idol.name] still sporting a round, [style.colourSex(pregnant belly)], and she absent-mindedly strokes her swollen bump as she sighs, [idol.speech(That's right, I'm still pregnant... If you wanted to take responsibility for what [#idol.getPregnantLitter().getFatherName()] did, then... s-spend some time with me at my place, I'd appreciate that.)]
+					#ENDIF
+				</p>
+			#ENDIF
+		#ENDIF
+		#IF(pc.isVisiblyPregnant() || (companions && com.isVisiblyPregnant()))
+			#IF((pc.isVisiblyPregnant() && !pc.isCharacterReactedToPregnancy(idol)) || (companions && com.isVisiblyPregnant() && !com.isCharacterReactedToPregnancy(idol)))
+				#IF(pc.isVisiblyPregnant())
+					#IF(companions && com.isVisiblyPregnant())
+						<p>
+							Smiling fondly at you and [com.name] as you approach, [idol.name] suddenly notices that you're both sporting swollen bellies, and she gasps as she looks back and forth between each of your pregnant bumps. [idol.speech(Oh! You're both pregnant! Congratulations, I'm sure the two of you will make wonderful mothers...)]
+						</p>
+					#ELSE
+						<p>
+							Smiling fondly at you as you approach, [idol.name] suddenly notices that you're sporting a swollen belly, and she gasps as she looks down at your pregnant bump. [idol.speech(Oh! You're pregnant! Congratulations, I'm sure you'll make a wonderful mother...)]
+						</p>
+					#ENDIF
+				#ELSE
+					<p>
+						Smiling fondly at you as you approach, [idol.name] suddenly notices that [com.namePos] sporting a swollen belly, and she gasps as she looks down at [com.her] pregnant bump. [idol.speech(Oh! You're pregnant! Congratulations, I'm sure you'll make a wonderful mother...)]
+					</p>
+				#ENDIF
+			#ELSE
+				<p>
+					#IF(pc.isVisiblyPregnant())
+						#IF(companions && com.isVisiblyPregnant())
+							[idol.speech(You're both still pregnant, huh?)] [idol.name] observes, flashing you and [com.name] a delighted smile. [idol.speech(Make sure to take good care of your kids...)]
+						#ELSE
+							[idol.speech(You're still pregnant, huh?)] [idol.name] observes, flashing you a smile. [idol.speech(You make sure to take good care of your kids...)]
+						#ENDIF
+					#ELSE
+						[idol.speech(You're still pregnant, huh?)] [idol.name] observes, flashing [com.name] a smile. [idol.speech(You make sure to take good care of your kids...)]
+					#ENDIF
+				</p>
+			#ENDIF
+		#ENDIF
+		#IF(!idol.isVisiblyPregnant() && !pc.isVisiblyPregnant() && (!companions || !com.isVisiblyPregnant()))
+			<p>
+				Stepping forwards, you greet her, [pc.speech(Hi, [idol.name]. I hope you've been taking care of yourself, and not causing too much trouble.)]
+			</p>
+			<p>
+				She snorts, tapping her bat on the floor. [idol.speech(You make it sound like <b>I'm</b> willingly causing trouble when I'm only defending myself.)]
+			</p>
+		#ENDIF
+		<p>
+			The two of you spend the next couple of minutes talking with one another, but your conversation is nothing more than idle chatter, and you quickly find yourself ready to move on. Then again, you could spend some time talking with [idol.name], in order to get to know her a little better. Or, if you were feeling like this has gone far enough, you could always betray her trust and attack her...
+		</p>
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="ALLEYWAYS_PEACEFUL_TALK"><![CDATA[
+		#IF(idol.getAffection(pc)<20)
+			<p>
+				Deciding to spend some time getting to know [idol.name] a little better, you ask, [pc.speech(How are you doing these days, [idol.name]? Do you have somewhere safe to sleep, and do you get enough to eat?)]
+			</p>
+			<p>
+				[idol.Name] casts her [idol.eyes] to the floor, shuffling her [idol.feet] a little as she grumbles, [idol.speech(I do have a place to sleep, and I usually have enough money to buy food and stuff, thank you for asking.)]
+			</p>
+			<p>
+				You nod, her well-being surprisingly better than you thought. [pc.speech(Do you have any friends or family?)] you ask.
+			</p>
+			<p>
+				[idol.Name] stills when you utter the word "family". It takes a concerningly long amount of time for her reply. [idol.speech(... no. You're the only "friend" I've got.)]
+			</p>
+			<p>
+				You see her starting to blink furiously, but before you can say anything to comfort her, she turns around and starts to run off, calling out behind her, [idol.speech(G-Gotta get going! Don't follow me!)]
+			</p>
+			<p>
+				Not wanting to make her feel too uncomfortable, you decide to respect her wish and not go chasing after her, and, letting out a sigh, you move off and continue on your way...
+			</p>
+		#ELSEIF(idol.getAffection(pc)<30)
+			<p>
+				Wanting to know if [idol.name] has started to get her affairs in order, you smile at her as you ask, [pc.speech(How are things going, [idol.name]? Are you eating enough?)]
+			</p>
+			<p>
+				[idol.speech(Of course I'm eating enough, what kind of question is that?)] [idol.name] replies, half-heartedly shrugging. [idol.speech(I mean, I'm fine, I get enough to eat and stuff. I'm more worried about other muggers coming into my territory, you know?)]
+			</p>
+			<p>
+				[pc.speech(I'm so sorry to hear that,)] you reply, wondering what you can do to help your friend. [pc.speech(You'll be ok, won't you?)]
+			</p>
+			<p>
+				[idol.speech(Yeah, yeah, don't worry about me!)] [idol.name] says, rolling her eyes. [idol.speech(Things have been a lot better recently. I'm feeling quite motivated, for one. And, well... <i>I've got you to talk to these days...</i>)] she mutters that last part to herself. 
+			</p>
+			<p>
+				Before you can say anything in response to that, [idol.name] throws her bat on her shoulder and continues, [idol.speech(Anyways! I need to get going, I, erm, need to go buy some things before the shops close. ...Thanks for talking with me again, [pc.name].)]
+			</p>
+			<p>
+				Throwing you a half-smirk, [idol.name] turns and runs off. You call out a farewell to her, and she briefly turns and waves goodbye, before disappearing around a corner. Letting out a sigh, you move off and continue on your way...
+			</p>
+		#ELSE
+			<p>
+				Having got to know [idol.name] fairly well by now, and wanting to spend some time talking with her, you ask, [pc.speech(How are you, [idol.name]? Are you doing well?)]
+			</p>
+			<p>
+				[idol.speech(I don't understand why you're asking me this, you know I'm not gonna be starving anytime soon,)] she replies, rolling her eyes good-naturedly. [idol.speech(But yeah I've been doing well. Night job's still a pain in the ass to do, but hey it pays well, so can't complain about it.)]
+			</p>
+			<p>
+				You can't help but smile as you hear [idol.name] saying that, and reply, [pc.speech(I'm glad to hear that you're doing ok for yourself. Just make sure to take care of yourself, ok? I'm always concerned about you, and wondering how you're getting on.)]
+			</p>
+			#IF(game.getMinutesUntilTimeInMinutes(1260) <= 15)
+				<p>
+					[idol.speech(Haa... seriously, you don't have to worry about me,)] [idol.name] retorts, yet letting out a warm smile. [idol.speech(Oh, that reminds me, I'm meant to go in fifteen minutes or so. I'd better get going!)]
+				</p>
+				<p>
+					After telling [idol.name] to do her best, the two of you say goodbye, and you wave at her as she runs off and turns a corner. Letting out a sigh, you move off and continue on your way...
+				</p>
+			#ELSE
+				<p>
+					[idol.speech(Haa... seriously, you don't have to worry about me,)] [idol.name] retorts, yet letting out a warm smile. 
+					#IF(!flags.hasFlag('xys_idol_home_first_visit'))
+						[##flags.setFlag('xys_idol_home_first_visit', true)]
+							[idol.speech(Anyways, wanna come over to my house? ...Oi, what's with the shocked look, I did tell you I have a place to live, dumbass.)] 
+						</p>
+						<p>
+							[pc.speech(Oh, I remembered. I'm just surprised that you're inviting me to your home...)] you explain, her offer peaking your curiosity as well. 
+						</p>
+						<p>
+							[idol.speech(I trust you enough. So what's it gonna be?)] she asks, awaiting your answer. 
+					#ELSEIF(flags.hasFlag('xys_idol_identity_discovered'))
+						[idol.speech(Anyways, wanna come over to my house? We can hang out or practice our dance there, if you want?)] she offers. 
+					#ELSE
+						[idol.speech(Anyways, wanna come over to my house? We can hang out there, if you want?) she offers. 
+					#ENDIF
+				</p>
+				<p>
+					You ponder on your choice, before answering... 
+				</p>
+			#ENDIF
+		#ENDIF
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_PEACEFUL_REFUSE_PAY"><![CDATA[
+		<p>
+			Knowing that [idol.name] could always use some money with which to buy herself food and clothing, you step forwards and hold out some flames. [pc.speech(I'm worried that you're not getting enough to eat. Here you go, you should buy yourself something good with this.)]
+		</p>
+		<p>
+			[idol.speech(Don't need it, I'm not that poor really,)] [idol.name] says, rolling her eyes. [idol.speech(I have a night job, so I'm not worry about not having money.)]
+		</p>
+		#IF(flags.hasFlag('xys_idol_identity_discovered'))
+			<p>
+				[pc.speech(Is it about being an i-)] you try to ask, but she immediately shushes you.
+			</p>
+			<p>
+				[idol.speech(Shh, be quiet, someone might hear us!)] she warns, turning around cautiously for eavesdroppers. [idol.speech(... but yeah, it's about <i>that</i>. In other words, don't worry about me. I'm fine on my own.)]
+			</p>
+			<p>
+				[idol.Name] turns her head away from you... and is she blushing? [idol.speech(But anyways... thanks for your concern.)]
+			</p>
+		#ELSE
+			<p>
+				Interested, you try to ask about it, but she adamantly refuses to answer you. Dejected, you try to divert the topic into something else instead... 
+			</p>
+		#ENDIF
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_PEACEFUL_LEAVE"><![CDATA[
+		<p>
+			You don't really have time to stop and talk with [idol.name] at the moment, and you tell her as much, [pc.speech(Sorry, [idol.name], I have someplace else to be. Maybe another time?)]
+		</p>
+		<p>
+			Her expression turns a bit dejected, but she nods. After telling [idol.name] to do her best, the two of you say goodbye, and you wave at her as she walks off and turns a corner. 
+		<p>
+			Letting out a sigh, you move off and continue on your way...
+		</p>
+	]]>
+	</htmlContent>
+	
+	<!-- HOME -->
+	<htmlContent tag="IDOL_HOME"><![CDATA[
+		#IF(!flags.hasFlag('xys_idol_home_first_visit'))
+			[##flags.setFlag('xys_idol_home_first_visit', true)]
+			<p>
+				[idol.Name] turns around and sets off down the alleyway. Following in her footsteps, you allow her to take the lead as she guides you through the trail of narrow passageways that lead to her home. As the width of the alleyways rarely offers you the chance to walk side-by-side, you decide to save conversation for when you finally arrive, leading to your five-minute journey being mostly in silence.
+			</p>
+			<p>
+				Eventually, [idol.name] steps off to one side, and, producing a set of keys, she unlocks an unassuming wooden door, before stepping inside and calling for you to follow her. Although there's not much of an exterior to look at, as you step into [idol.namePos] home, you find that the interior is far nicer, and larger, than you'd expected.
+			</p>
+			<p>
+				Looking down the length of the apartment, you see that there are both windows and a glass door set into the far end, allowing access to what appears to be a small, shared garden. A couple of doors off to the left-hand side hint at this place having two bedrooms, while the main body of the residence is used as a combined living and dining-room, with a small section partitioned off at the far end serving as a kitchen.
+			</p>
+			<p>
+				A small vanity table, tucked into one corner, is filled with a limited but growing collection of makeup essentials and skincare products. There's also a small rack to the side, with hats, shoes, and accessories stored inside. On the other corner, a guitar rests against the wall, while the other side of the room is a huge wall mirror, standing from floor to ceiling. 
+			</p>
+			<p>
+				[pc.speech(This is a nice place you've got,)] you say, admiring around the room. [idol.speech(The place is really clean and tidy.)]
+			</p>
+			<p>
+				[idol.speech(Pretty sweet, huh? Spent quite the penny to buy this place,)] [idol.name] replies, locking the door after you and motioning for you to take a seat, before heading over to the kitchen to make herself a drink. After just a moment she returns, leaning against the tabletop and taking a sip of her drink. [idol.speech(So... what do you want to do? I don't have much to do in the day, so I'm pretty free, unless it's around 9.)]
+			</p>
+		#ELSE
+			<p>
+				[idol.Name] turns around and sets off down the alleyway. Following in her footsteps, you allow [idol.herHim] to take the lead as she guides you through the trail of narrow passageways that lead to her home. As the width of the alleyways rarely offers you the chance to walk side-by-side, you decide to save conversation for when you finally arrive, leading to your five-minute journey being mostly in silence.
+			</p>
+			<p>
+				Eventually, you recognise that you're almost at your destination, and sure enough, [idol.name] soon steps off to one side, before unlocking the door to her apartment and stepping inside. Following [idol.herHim] inside, you're once again pleasantly surprised to find that the spacious interior is in a clean and orderly state.
+			</p>
+			<p>
+				Looking down the length of the apartment, you see that there are both windows and a glass door set into the far end, allowing access to what appears to be a small, shared garden. A couple of doors off to the left-hand side hint at this place having two bedrooms, while the main body of the residence is used as a combined living and dining-room, with a small section partitioned off at the far end serving as a kitchen.
+			</p>
+			<p>
+				A small vanity table, tucked into one corner, is filled with a limited but growing collection of makeup essentials and skincare products. There's also a small rack to the side, with hats, shoes, and accessories stored inside. On the other corner, a guitar rests against the wall, while the other side of the room is a huge wall mirror, standing from floor to ceiling. 
+			</p>
+			<p>
+				[idol.speech(The place is really clean and tidy, which, knowing you, is pretty surprising,)] you say, turning to smile at [idol.name].
+			</p>
+			<p>
+				[idol.speech(Fuck you [pc.name], I take my hygiene seriously,)] [idol.name] replies, locking the door after you and motioning for you to take your usual seat, before heading over to the kitchen to make herself a drink. After just a moment she returns, leaning against the tabletop and taking a sip of her drink. [idol.speech(So... what do you want to do? I don't have much to do in the day, so I'm pretty free, unless it's around 9.)]
+			</p>
+		#ENDIF
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="IDOL_HOME_PRACTICE"><![CDATA[
+		<p>
+			Looking at the huge wall-length mirror, you ask her, [idol.speech(Can I practice dancing with you?)]
+		</p>
+		<p>
+			[idol.speech(Oh? Alright then.)] She pushes herself off the counter, before rolling her neck and shoulders. [idol.speech(Change into something comfortable, it's gonna be quite intense.)] 
+		</p>
+		<p>
+			After changing into suitable clothes herself, she turns on a wall switch, and music starts blaring through hidden speakers. Standing beside [idol.name] and facing the mirror, you both start dancing. 
+		</p>
+		#IF(flags.getSavedLong('idol_performance_count') > 10)
+			<p>
+				[style.italicsGood(Memorised the routine by heart, you can perfectly keep up with [idol.namePos] pace!)] You both dance and sing with each other harmoniously, and you swear that the room seems to get brighter, the colours more vivid. And just like that, half an hour has passed, and you're not even tired! 
+			</p>
+			<p>
+				[idol.speech(Not bad! Not bad at all!)] she praises, looking you up and down with a smile. [idol.speech(Your moves are clean, and your stage presence is definitely improving. Just keep pushing your energy higher and connect more with the music. A little more intensity, and you'll be totally nailing it. Great job so far!)] 
+			</p>
+			<p>
+				[pc.speech(Uh, thanks...)] you mutter, not quite used to her praises. She pats you on the back, before going back to her corner again. 
+			</p>
+		#ELSEIF(flags.getSavedLong('idol_performance_count') > 8)
+			<p>
+				[style.italicsMinorBad(Now quite familiar with the routine, you can almost keep up with [idol.namePos] pace, only messing up once or twice!)] Half an hour passes, and you find yourself tired, but not out of breath. 
+			</p>
+			<p>
+				[idol.speech(That's much better! Your timing is on point, and your moves are starting to look more polished.)] [idol.name] says, nodding in approval. [idol.speech(Just remember to engage your whole body and put more emotion into it. You've got the technical part down, now bring in the energy that'll really make it pop!)] 
+			</p>
+			<p>
+				You nod, taking her pointers to heart. After resting a bit more, you sit back into the couch. 
+			</p>
+		#ELSEIF(flags.getSavedLong('idol_performance_count') > 5)
+			<p>
+				[style.italicsMinorBad(Now quite familiar with the routine, you can almost keep up with [idol.namePos] pace, only messing up once or twice!)] Half an hour passes, and you find yourself tired, but not out of breath. 
+			</p>
+			<p>
+				Wiping the sweat off your forehead, you see her offering you a glass of water, which you gladly drink up.
+			</p>
+			<p>
+				[idol.speech(You've improved, and I can see you're getting the hang of the routine, but there's still some hesitation in your transitions,)] [idol.name] points out. [idol.speech(Try loosening up your shoulders and moving with more confidence. It's almost there — you just need to feel the flow more naturally.)] 
+			</p>
+			<p>
+				You mutedly nod, taking her pointers to heart. After resting a bit more, you sit back into the couch with a sigh.
+			</p>
+		#ELSEIF(flags.getSavedLong('idol_performance_count') > 3)
+			<p>
+				Half an hour passes, and you find yourself totally worn out, sinking to the floor. You feel something cold touching your cheek, and you glance up to see her offering you a glass of water, which you gladly drink up.
+			</p>
+			<p>
+				[idol.speech(You're getting the basics, but your movements still feel a bit rushed and forced,)] [idol.name] criticizes. [idol.speech(You need to slow down, control your body, and focus on hitting each beat clearly. Right now, it's coming off as a little mechanical, and I want to see more fluidity.)] 
+			</p>
+			<p>
+				You tiredly nod, taking her pointers to heart. After resting a bit more, you stand back up again, and sink back into the couch. 
+			</p>
+		#ELSEIF(flags.getSavedLong('idol_performance_count') == 0)
+			<p>
+				[pc.thought(How hard can it be?)] you think. It should be quite easy, just follow [idol.namePos] movements, right?
+			</p>
+			<p>
+				A few minutes later, you regret thinking like that. 
+				#IF(pc.getOccupation() == OCCUPATION_ATHLETE || pc.hasTraitActivated(PERK_MARTIAL_ARTIST) || pc.getAttributeValue(ATTRIBUTE_MAJOR_PHYSIQUE) >= 30.0)
+					Sure, you can keep up with her movements, but you're not good with singing, not to mention <i>doing both at the same time,</i> and you're left panting and gasping on the floor in half an hour. 
+				#ELSEIF(pc.getOccupation() == OCCUPATION_MUSICIAN)
+					Sure, you can sing beautifully, but you're not good with dancing, not to mention <i>doing both at the same time,</i> and you're left panting and gasping on the floor in half an hour. 
+				#ELSE
+					[style.italicsBad(You suck at both dancing and singing, so doing both at the same time is out of the question,)] and you're left panting and gasping on the floor in half an hour. 
+				#ENDIF
+			</p>
+			<p>
+				[idol.speech(Wow, that was something.)] You glance up to see a very amused smile cross her face. [idol.speech(Eh, we all start somewhere I guess.)] 
+			</p>
+			<p>
+				You tiredly groan. Offering a hand, she helps you to stand back up again, and you sink back into the couch. 
+			</p>
+		#ELSE
+			<p>
+				[style.italicsBad(As you still suck at dancing and singing, you are completely out of tune with [idol.name]!)] You collapse on the floor in just half an hour, totally worn out.
+			</p>
+			<p>
+				[idol.speech(Honestly, your moves look really stiff and out of sync.)] You glance up to see her thoughtful face as she continues. [idol.speech(You're missing the rhythm entirely, and it feels like you're not putting any energy into it. If you don't feel the music, it won't connect with the audience at all.)]
+			</p>
+			<p>
+				You tiredly nod, taking her pointers to heart. After resting a bit more, you stand back up again, and sink back into the couch. 
+			</p>
+		#ENDIF
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="IDOL_HOME_TALK_BACKGROUND"><![CDATA[
+		<p>
+			Deciding that you'd like to get to know [idol.name] a little better, you ask her about her background, [pc.speech(So [idol.name], can you tell me about your life before meeting me?)]
+		</p>
+		<p>
+			Her relaxed expression turns cold for a brief moment, not answering you for a while. Seeing your growingly awkward and worried look, she sighs, before explaining her life. 
+		</p>
+		<p>
+			Born to a traveling merchant and a former bard, [idol.namePos] childhood was spent constantly on the move, performing in village taverns or city squares to earn enough flames for food. 
+				Her mother, a once-famous singer who had long since fallen into obscurity, taught her how to sing, while her father taught her how to survive. 
+					They never stayed in one place for too long, and she learned early on that the world wasn't kind to those who lingered.
+		</p>
+		<p>
+			When she was barely sixteen, tragedy struck during a routine stop in this city. 
+				She was separated from her parents during a street brawl between rival imp gangs, leaving [idol.name] to fend for herself. She doesn't know what happened to them since. 
+					With no family and no home, she spiraled into a pit of despair, working odd jobs and taking to the streets, finding herself surrounded by bunty hunters, muggers and prostitutes who either saw her as easy money, a quick fuck, or both. 
+		</p>
+		<p>
+			It wasn't until recently that an odd-looking merchant gave her a strange ring and a matching bracelet. With these, her life started improving for the better, able to take down the surrounding thugs around her new home, and landing herself a job as a singer in one of the nightclubs here. 
+		</p>
+		<p>
+			[idol.speech(And then, I met you. You rudely barged into my life, giving me your kindness and friendship.)] She finishes, looking at the ground. [idol.speech(...Thank you, really.)] 
+		</p>
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="IDOL_HOME_TALK_WORK"><![CDATA[
+		<p>
+			Deciding that you'd like to get to know [idol.name] a little better, you ask her about how [idol.sheIs] doing, [pc.speech(Tell me about your life! How's everything going for you right now?)]
+		</p>
+		#IF(!flags.hasFlag('xys_idol_identity_discovered'))
+			[##flags.setFlag('xys_idol_identity_discovered', true)]
+			<p>
+				[idol.speech(Hmm... eh, fuck it. So, I'm working as a dancer and singer at the Watering Hole, a nightclub of sorts.)] 
+			</p>
+			<p>
+				Not quite expecting that, you ask for more about it. She starts playing with a ring on her finger, before continuing, [idol.speech(Rowdy crowds, tiring performances, but hey it pays well, so can't really complain about that! And well, you know, there's always <i>someone</i> dumb enough to wander around in my territory, so I'm not really worried about money.)]
+			</p>
+			<p>
+				From her blase attitude, you can tell that [idol.sheHasFull] absolutely no qualms about beating people up and stealing their money. Before you can offer a response, she continues, [idol.speech(So yeah, everything's pretty good for me at the moment. I'm pretty happy with my current state.)]
+			</p>
+		#ELSE
+			<p>
+				[idol.speech(Eh, could be better. Rowdy crowds, tiring performances, and that blasted side effect...)] she mutters, playing with a ring on her finger. [idol.speech(But hey it pays well, so can't really complain about that! And well, you know, there's always <i>someone</i> dumb enough to wander around in my territory, so I'm not really worried about money.)]
+			</p>
+			<p>
+				From her blase attitude, you can tell that [idol.sheHasFull] absolutely no qualms about beating people up and stealing their money. Before you can offer a response, she continues, [idol.speech(So yeah, everything's pretty good for me at the moment. I'm pretty happy with my current state.)]
+			</p>
+		#ENDIF
+		<p>
+			Wanting to learn more about the manner in which she earns a living, you encourage [idol.name] to talk about her situation a little more, and as you ask a few more questions, she starts to get carried away while giving you the details of one of the recent encounters she had,
+		 [style.random(
+				[idol.speech(... And <i>he</i> was the one who attacked me first! So it was only fair that I took everything he had!)]
+				|
+				[idol.speech(... So then as she runs off, she's like 'You're gonna be sorry when I tell my boyfriend!', and then later this horse-boy shows up claiming to be her boyfriend, so I beat him up too!)]
+				|
+				[idol.speech(... And then I almost let my identity slip when I hum some songs while buying stuff! That was a close one...)]
+				|
+				[idol.speech(... So after the performance is over, I cornered that cat-girl hater and start fucking her right there in the alley! You should've seen her when she begs for more...)]
+				|
+				[idol.speech(... And I'm pushing him back against the wall, demanding he get the fuck off my turf, and I feel something pressing out against my leg. That horny dog-boy was getting turned on from being roughed up!)])]
+		</p>
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="IDOL_HOME_TALK_RING"><![CDATA[
+		#IF(flags.hasFlag('xys_ringmaker_bracelet_get') || flags.hasFlag('xys_ringmaker_bracelet_get_fb'))
+			<p>
+				You are curious about [idol.namePos] ring on her finger, so you ask her about it, [pc.speech(That ring... did an old, hunchbacked lady give it to you?)]
+			</p>
+			<p>
+				[idol.Name] blinks in surprise, and as you take out your own and show it to her, she starts chuckling. [idol.speech(Interesting... so that's what she means by "you'll meet similar people in the future"... Yes, I got it from an old merchant while I was out. She wants to give it to me, and I accepted. Took a while to understand what it actually does.)]
+			</p>
+		#ELSE
+			<p>
+				You are curious about [idol.namePos] ring on her finger, so you ask her about it, [pc.speech(I didn't know you're married.)]
+			</p>
+			<p>
+				[idol.Name] tilts her head in confusion, before realising what you mean and shows her hand. [idol.speech(Oh, this? I got it from an old merchant while I was out. She wants to give it to me, and I accepted. Took a while to understand what it actually does.)]
+			</p>
+		#ENDIF
+		<p>
+			[pc.speech(And... you just accept a stranger's gift? What if it's cursed?)]
+		</p>
+		<p>
+			[idol.Name] deadpans. [idol.speech(... she's surrounded by fallen thugs. I am <i>not</i> gonna question the frail-looking old lady about her gift, cursed or not.)]
+		</p>
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="IDOL_HOME_SEX"><![CDATA[
+		<p>
+			From the moment you entered [idol.namePos] apartment, you haven't been able to take your [pc.eyes] off of her. As she smiles #IF(idol.isFeminine())sweetly#ELSEcharmingly#ENDIF at you once more, you can't help but act.
+		</p>
+		<p>
+			[pc.speech(So, [idol.name],)] you say, putting on your most seductive voice as you shuffle closer to her on the sofa, [pc.speech(you must have taken a little more than just cash from some of the people wandering through 'your territory'... Perhaps you'd like to show me some of the things you do to them?)]
+		</p>
+		<p>
+			[idol.NamePos] mouth opens a little as she lets out a desperate little whine.
+			 With that as your only warning, the [idol.race] suddenly lurches forwards, grabbing your head in both [idol.hands] as she desperately presses her [idol.lips] to yours.
+		</p>
+		<p>
+			Reaching up to pull her close, you eagerly return [idol.namePos] passionate kiss, and, right there in the middle of her apartment, you show her just how much you love her...
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="IDOL_HOME_AFTER_SEX"><![CDATA[
+		#IF(idol.isSatisfiedFromLastSex())
+			<p>
+				As you step back from [idol.name], she sinks to the floor, totally worn out from her orgasm. Looking up at you, a satisfied smile settles across her face, and you realise that you gave her exactly what she wanted.
+			</p>
+			<p>
+				[idol.speech(Thanks, [pc.name],)] she sighs.
+			</p>
+		#ELSE
+			<p>
+				As you step back from [idol.name], she sinks to the floor, letting out a desperate whine as she realises that you've finished. her [idol.hands] dart down between her [idol.legs], and she frantically starts masturbating as she seeks to finish what you started.
+			</p>
+			<p>
+				[idol.speech([pc.Name]! You didn't satisfy me, you horny dumbass!)] she whines.
+			</p>
+		#ENDIF
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="IDOL_HOME_OUT_OF_TIME"><![CDATA[
+		<p>
+			[idol.Name] has been glancing at the clock on the wall for the last few minutes, and as you finish what you were talking about, she stands up. [idol.speech(Sorry, [idol.name], I really need to be getting on now...)]
+		</p>
+		<p>
+			You follow [idol.namePos] lead and get up, ready to leave as well. [idol.speech(Okay, well I hope you don't mind me coming to visit some other time!)]
+		</p>
+		<p>
+			[idol.speech(Mm, not at all,)] she replies, showing you to the door. You both say your farewells, and after just a few moments, you find yourself back out in the alleyways once again...
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="IDOL_HOME_LEAVE"><![CDATA[
+		<p>
+			You happen to glance up at the clock on the wall, before letting out a little gasp as you see what the time is. [pc.speech(Sorry, [idol.name], I really need to be getting on now...)]
+		</p>
+		<p>
+			She follows your lead as you stand up and get up off the sofa. [idol.speech(Ok, [pc.name], come back to visit soon!)]
+		</p>
+		<p>
+			[pc.speech(Of course, I'll visit you again as soon as I can,)] you reply, allowing [idol.name] to show you to the door. You both say your farewells, and after just a few moments, you find yourself back out in the alleyways once again...
+		</p>
+	]]>
+	</htmlContent>
+	
+</dialogue>

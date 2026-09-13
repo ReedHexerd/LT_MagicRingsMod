@@ -1,0 +1,220 @@
+<dialogue>
+	<htmlContent tag="ALLEYWAYS_VICTORY_SEX"><![CDATA[
+		<p>
+			Deciding to give [idol.name] what it is she so desperately craves, you step up to her, before reaching down to take hold of her [idol.arm] and pulling her to her [idol.feet]. The moment she finds herself standing, [idol.name] leans in against you, [idol.moaning], [idol.speech(~Mmm!~ Yes! Take me! Take me now!)]
+		</p>
+		<p>
+			Without any further warning, she suddenly presses her [idol.lips] against yours, and, eager to return her display of affection, you pull her into your embrace, passionately returning her kiss.
+		</p>
+		<p>
+			After a moment, you push [idol.name] away a little, grinning as you see her lust-filled gaze roam up and down your body. Preparing to make your next move, you take a firm grip on her [idol.hips+], before [pc.moaning], [pc.speech(This is going to be good...)]
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_VICTORY_SEX_GENTLE"><![CDATA[
+		<p>
+			Deciding to give [idol.name] what it is she so desperately craves, you step up to her, before reaching down to take hold of her [idol.hand]. WIth a disarming smile, you help to pull her to her [idol.feet], and the moment she finds herself standing, [idol.name] leans in against you, [idol.moaning], [idol.speech(~Mmm!~ Yes! Take me! Take me now!)]
+		</p>
+		<p>
+			Without any further warning, she suddenly presses her [idol.lips] against yours, and, happy to return her display of affection, you gently pull her into your embrace, before starting to return her passionate kiss.
+		</p>
+		<p>
+			After a moment, you pull back from [idol.name], grinning as you see her lust-filled gaze roam up and down your body. Preparing to make your next move, you place your [pc.hands] on her [idol.hips+], before softly [pc.moaning], [pc.speech(I'll take good care of you...)]
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_VICTORY_SEX_ROUGH"><![CDATA[
+		<p>
+			Deciding to give [idol.name] what it is she so desperately craves, you step up to her, before reaching down to grab hold of her [idol.arm] and yank her to her [idol.feet]. The moment she finds herself standing, [idol.name] leans in against you, [idol.moaning], [idol.speech(~Mmm!~ Yes! Take me! Take me now!)]
+		</p>
+		<p>
+			Without any further warning, she tries to press her [idol.lips] against yours, but, seeing it coming, and wanting to leave no doubt in [idol.namePos] mind as to who's in charge, you quickly reach up and grab hold of her neck, smirking in response to the sound of her startled cry.
+		</p>
+		<p>
+			[pc.speech(Don't you <i>dare</i> try to do anything without my permission, bitch!)] you snarl, using your commanding grip to tilt [idol.namePos] head to one side, before leaning in to give her a forceful kiss. Roughly thrusting your [pc.tongue+] into her mouth, you use your free [pc.hand] to reach around and give her [idol.ass+] a dominant squeeze.
+		</p>
+		<p>
+			After a moment, you push [idol.name] away, grinning as you see her lust-filled gaze roam up and down your body. Preparing to make your next move, you take a dominant grip on her [idol.hips+], before growling, [pc.speech(Good bitch. Now submit to your conqueror!)]
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_VICTORY_RAPE"><![CDATA[
+		<p>
+			Reaching down, you grab [idol.namePos] [idol.arm], and, pulling her to her feet, you start grinding yourself up against her. Seeing the lustful look in your [pc.eyes], she lets out a little [idol.sob], desperately trying to struggle out of your grip as you hold her firmly in your embrace...
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_VICTORY_RAPE_GENTLE"><![CDATA[
+		<p>
+			Reaching down, you take hold of [idol.namePos] [idol.arm], and, pulling her to her feet, you start pressing yourself up against her. Seeing the lustful look in your [pc.eyes], she lets out a little [idol.sob], desperately trying to struggle out of your grip as you hold her in your embrace...
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_VICTORY_RAPE_ROUGH"><![CDATA[
+		<p>
+			Reaching down, you grab [idol.namePos] [idol.arm], and, roughly yanking her to her feet, you start forcefully grinding yourself up against her. Seeing the lustful look in your [pc.eyes], she lets out a little [idol.sob], desperately trying to struggle out of your grip as you firmly hold her in your embrace...
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_VICTORY_NO_SEX"><![CDATA[
+		<p>
+			[idol.Name] collapses to the floor, completely defeated. She glances up at you for a moment, desperately whimpering and biting her [idol.lip], completely overwhelmed by the power of your arcane aura. Despite that, she tries to shuffle away from you, clearly still have some form of control over her burning desire, making pitiful little whining noises as she squirms on the floor.
+		</p>
+		<p>
+			[idol.speech(Grr... can't believe ~Aah!~ I've lost...!)] she [idol.moans] as she reaches down to her crotch and starts stroking herself, bucking her [idol.hips+] against her [idol.hand]. [idol.speech(This is where ~Aah!~ you're going to rape me, aren't you?!)]
+		</p>
+		#IF(game.isNonConEnabled())
+			<p>
+				You wonder if you should just leave her alone. Then again, you <i>could</i> take advantage of her weakened, vulnerable body...
+			</p>
+		#ENDIF
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="ALLEYWAYS_VICTORY_AFTER_SEX"><![CDATA[
+		#IF(idol.isSatisfiedFromLastSex())
+			<p>
+				As you step back from [idol.name], she sinks to the floor, totally worn out from her orgasm. Despite that you gave her exactly what she wanted, she lets out a embarrassed huff, turning her face away. 
+			</p>
+			<p>
+				Getting your things in order, you [pc.step] forwards and smirk down at the panting [idol.race]. She flips you off when she sees your smug look, before shakily stands back up and picking up her bat that's lying nearby. 
+			</p>
+			<p>
+				[idol.speech(Haa... right, thanks for helping me with... that,)] [idol.name] awkwardly says, shuffling her [idol.feet]. [idol.speech(Well, I guess I'll see you again...)]
+			</p>
+			<p>
+				With that, she turns around and walks off with a slight limp, leaving you alone. 
+			</p>
+			[#idol.incrementAffection(pc, 10)]
+		#ELSE
+			<p>
+				As you step back from [idol.name], she sinks to the floor, letting out a desperate whine as she realises that you've finished. Her [idol.hands] dart down between her [idol.legs], and she frantically starts masturbating as she seeks to finish what you started.
+			</p>
+			<p>
+				Leaving her to get some pleasure by herself, you set off and continue on your journey through the alleyways.
+			</p>
+			[#idol.incrementAffection(pc, -5)]
+		#ENDIF
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_VICTORY_SUBMIT"><![CDATA[
+		<p>
+			You really aren't sure what to do next, and start to feel pretty uncomfortable with the fact that you just beat up this poor [idol.race]. Leaning down, you do the first thing that comes into your mind, and start apologising, [pc.speech(Sorry... I was just trying to defend myself, you know... Erm... Is there anything I can do to make it up to you?)]
+		</p>
+		#IF(game.getCurrentWeather().equals(WEATHER_MAGIC_STORM))
+			<p>
+				For a moment, a look of confusion crosses over [idol.namePos] face, but, as she sees that you're genuinely troubled by what you've just done, a lustful grin spreads across her face. She stands up, and, grabbing you by the [pc.arm], roughly pulls you into her as she growls, [idol.speech(How about you start by apologising properly?!)]
+			</p>
+			<p>
+				[idol.NamePos] strong, dominant grip on your [pc.arm] causes you to let out a lewd little moan, and your submissive nature takes over as you do as she asks. [pc.speech(I'm really sorry! Please forgive me! I'll do anything! Anything you ask! Just please, don't be mad!)]
+			</p>
+			<p>
+				[idol.Name] roughly yanks you forwards, and with a menacing growl, she forces her tongue into your mouth. You let out a muffled yelp as your opponent takes charge, but as you feel her [idol.hands] reaching down to start roughly groping your ass, you realise that you couldn't be happier with how things have turned out...
+			</p>
+		#ELSE
+			<p>
+				For a moment, a look of confusion crosses over [idol.namePos] face, but, as she sees that you're genuinely troubled by what you've just done, she lets out an exasperated sigh. She stands up, and, grabbing you by the [pc.arm], roughly pushes you against a nearby wall as she growls, [idol.speech(How about you start by apologising properly?!)]
+			</p>
+			<p>
+				[idol.NamePos] strong, dominant grip on your [pc.arm] causes you to let out a lewd little moan, and your submissive nature takes over as you do as she asks. [pc.speech(I'm really sorry! Please forgive me! I'll do anything! Anything you ask! Just please, don't be mad!)]
+			</p>
+			<p>
+				[idol.speech(Then how about yow get the FUCK outta my sight?!)] she growls, taking your money before she roughly throws you back down to the floor. [idol.speech(I'm not interested in fucking you slut, so fuck off!)]
+			</p>
+			<p>
+				With that she turns around and disappears, leaving you bewildered and alone in the alleyway. Not expecting the encounter to end like this, you just stand back up, and decides to move on. 
+			</p>
+		#ENDIF
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_DEFEAT_SEX"><![CDATA[
+		<p>
+			You simply don't have the energy to continue fighting any more, and with a defeated groan, you collapse to the ground. A heated groan causes you to look up, and you see a hungry gleam in her [idol.eyes] as she looks down at you.
+		</p>
+		<p>
+			Pulling you to your feet, [idol.name] pushes you against a nearby wall. [idol.speech(This is where I'll have sex with you, right?)] [idol.name] asks, the tone of her voice dripping with lust as she presses herself against you and continues, [idol.speech(I'll give you one last chance to choose... leave, or get fucked!)]
+		</p>
+		<p>
+			Sensing her reasoning slipping by the second, you only have a brief time to think before giving your answer... 
+		</p>
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="ALLEYWAYS_DEFEAT_SEX_START"><![CDATA[
+		<p>
+			[pc.speech(I could do with taking a break,)] you say to [idol.name], smiling seductively at her.
+		</p>
+		<p>
+			[idol.speech(That's what I like to hear!)] [idol.name] exclaims, before turning you around and dominantly pulling you in against her. Leaning forwards, she then lustfully plants a wet kiss on your [pc.lips], before pulling back and growls, [idol.speech(Now let's get this started!)]
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_DEFEAT_AFTER_SEX"><![CDATA[
+		<p>
+			As [idol.name] steps back and sorts her clothes out, you sink to the floor, totally worn out from her dominant treatment of you. She looks down at you, and you glance up to see a very satisfied smile cross her face. She leans down and pats you on the head. [idol.speech(We should do this again some time!)]
+		</p>
+		<p>
+			With that, she walks off, leaving you panting on the ground. It takes a little while for you to recover from your ordeal, but eventually you feel strong enough to get your things in order and carry on your way.
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_DEFEAT_REFUSE_SEX"><![CDATA[
+		<p>
+			Not wanting to have sex with [idol.name], and seeing that she is clearly unwilling to force herself on you, you step back and tell her in no uncertain terms that you don't want to get intimate with her.
+		</p>
+		<p>
+			[idol.speech(Good, now fuck off!)] [idol.name] growls, clearly annoyed by the fact that you're refusing her advances. With one last snarl, she then turns around and walks off, leaving you to continue on your way...
+		</p>
+	]]>
+	</htmlContent>
+    
+	<htmlContent tag="ALLEYWAYS_PEACEFUL_SEX_AS_DOM"><![CDATA[
+		<p>
+			[idol.Name] is quite clearly attracted to you, and, as you're harbouring feelings towards her, you step forwards and take hold of her [idol.hips]. [pc.speech(I know what you really want, [idol.name]. There's no use denying it, I've noticed the lust in your [idol.eyes]...)]
+		</p>
+		<p>
+			Before she can respond, you press your [pc.lips] against hers, before slipping your [pc.hands] around to grab her [idol.ass+] and pull her in against you. Just as you already knew, [idol.name] is desperate to have sex with you, and happily throws her [idol.arms] around you, passionately returning your kiss as she fully submits to you...
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_PEACEFUL_SEX_AS_SUB"><![CDATA[
+		<p>
+			[idol.Name] is quite clearly attracted to you, and, as you're harbouring feelings towards her, you step forwards and tease, [pc.speech(I know what you really want, [idol.name]. All you have to do is come and take it...)]
+		</p>
+		<p>
+			Encouraged by your words, [idol.name] steps up against you, and, placing her [idol.hands] on your [pc.hips], presses her [idol.lips] against yours. As you lean in and return the sudden kiss, you feel her grip slipping around to grab your [pc.ass+], and with a firm tug, [idol.name] pulls you in against her. Happily throwing your [pc.arms] around her, you passionately return [idol.namePos] kiss as you fully submit to her...
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="ALLEYWAYS_PEACEFUL_AFTER_SEX"><![CDATA[
+		#IF(idol.isSatisfiedFromLastSex())
+			<p>
+				Both you and [idol.name] let out a happy sigh as the two of you step back from one another. Looking into your [pc.eyes], the [idol.race] smiles and says, [idol.speech(That was great... Thanks [pc.name], I really needed that.)]
+			</p>
+			<p>
+				The two of you set about gathering your things, and, satisfied from your sexual encounter, you prepare to continue on your way. Saying goodbye to [idol.name], and promising to come back and see her soon, you then set off on your journey...
+			</p>
+		#ELSE
+			<p>
+				Both you and [idol.name] let out a sigh as the two of you step back from one another. Looking into your [pc.eyes], the [idol.race] grumbles and says, [idol.speech(That was fun, but you didn't exactly satisfy me... Oh well, it was still nice sharing that time with you, [pc.name].)]
+			</p>
+			<p>
+				The two of you set about gathering your things, and, satisfied from your sexual encounter, you prepare to continue on your way. Saying goodbye to [idol.name], and promising to come back and see her soon, you then set off on your journey...
+			</p>
+		#ENDIF
+	]]>
+	</htmlContent>
+	
+</dialogue>

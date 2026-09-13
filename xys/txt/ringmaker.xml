@@ -1,0 +1,1227 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dialogue>
+
+	<!-- INTRO -->
+	<htmlContent tag="START"><![CDATA[
+		<p>
+			Hi there, this is the modmakers of the "Magical Rings" mod, X&Y. Look, you probably just wanna get the items in this mod, yes? But just to let you know, we've also added a whole quest in getting it, along with a unique NPC to go with it. You can choose if you want to play out the quest, or just get them right now. Your choice. Have fun!
+		</p>
+	]]>
+	</htmlContent>
+
+    <htmlContent tag="INTRO"><![CDATA[
+		<p>
+			You find yourself walking through labyrinthine alleyways, with not a soul in sight. Back-doors and steaming vents line the dark brick walls, and you often have to navigate around overflowing bins and stacks of empty crates in order to make progress.
+		</p>
+		#IF(flags.hasFlag('xys_ringmaker_discovered'))
+			<p>
+				As you pass by a stack of crates, you suddenly see a familiar-looking cloaked person, still selling her jewellery on her tattered blanket. 
+				#IF(game.getCurrentWeather()==WEATHER_MAGIC_STORM)
+					[style.colourArcane(Even with the arcane storm, she seems determined to sell these items.)]
+				#ENDIF
+			</p>
+			<p>
+				Taking a moment, you wonder whether to approach this mysterious person, or instead simply continue on your way...
+			</p>
+		#ELSE
+			[##flags.setFlag('xys_ringmaker_discovered', true)]
+			<p>
+				As you pass by a stack of crates, your eyes catches an oddity: a hunched, cloak-wearing person sitting on a tattered blanket, with jewellery scattered around them. 
+			</p>
+			<p>
+				Maybe it's the wares that catch your eyes; despite looking very beautiful, each gem meticulously polished, there's no one to buy them. In fact, you wonder why they want to sell them here in the first place. 
+				#IF(game.getCurrentWeather()==WEATHER_MAGIC_STORM)
+					[style.colourArcane(Or maybe it's because, despite the arcane storm right now, they're still not moving an inch from their spot.)]
+				#ENDIF
+			</p>
+			<p>
+				Not knowing what to make of this, you take a moment to decide whether to approach this mysterious individual or instead simply continue on your way...
+			</p>
+		#ENDIF
+	]]>
+    </htmlContent>
+
+    <htmlContent tag="INTRO_LEAVE"><![CDATA[
+		#IF(flags.hasFlag('xys_ringmaker_discovered'))
+			<p>
+				Deciding it's not worth the effort, you ignore her and continue on your way. As you leave this suspicious character behind, you swear you heard her whisper, [ringmaker.speech(We'll meet again...~)]
+			</p>
+		#ELSE
+			<p>
+				Deciding it's not worth the effort, you ignore them and continue on your way. As you leave this suspicious character behind, you swear you heard them whisper, [ringmaker.speech(We'll meet again...~)]. At least you now know they're a woman. 
+			</p>
+		#ENDIF
+	]]>
+    </htmlContent>
+	
+    <htmlContent tag="INTRO_START"><![CDATA[
+		<p>
+			Carefully approaching past the stack of crates, you find yourself standing right in front of the shady-looking individual. 
+			You can't really make out who they are, their face half-concealed under the cloak's hood, but from what you can see, the person has a weathered, yet feminine features, with ashen hair and strikingly pink eyes. 
+			Around her are various jewellery, ranging from bracelets to rings, each one gleaming brilliantly even from the faint lighting around you. 
+		</p>
+		<p>
+			She smiles as you approach, gesturing you to sit with a bony hand, as if expecting you. There's something both inviting and unsettling about her, and you hesitate for a moment before sitting down.
+		</p>
+		<p>
+			[ringmaker.speech(It must be fate that we've met...)], she croaks, her voice like grinding sandpaper. She then gestures the items displayed and says, [ringmaker.speech(Since today's such an opportune moment, you can have one of my items. Go on, perhaps you shall find something that speaks to the depths of your soul...)]
+		</p>
+		<p>
+			Still quite suspicious with what she's offering, you take more time looking through the stranger's ware, and it isn't long before your gaze lingers on a pair of identical bracelets. They are simple bands of metal with jewels on each end, one ending in [style.colourFeminine(pink gems)], the other with [style.colourAndrogynous(amethyst)]. As if compelled by something, you pick up those items, and you swear you feel <i>something</i> calling out from them...
+		</p>
+		<p>
+			[ringmaker.speech(Oh? I see you have an eye for the extraordinary...)] You jolt in surprise, seemingly forgot that the old woman is still here. Her eyes never leave yours as she continues mysteriously, [ringmaker.speech(Alas, you must choose but one... they're like quarelling siblings, y'see? Take your time, consider which aligns with your spirit.)] 
+		</p>
+	]]>
+    </htmlContent>
+
+	<htmlContent tag="INTRO_CHOICE"><![CDATA[
+		#IF(flags.hasFlag('xys_ringmaker_bracelet_get'))
+			<p>
+				In the end, you choose the bracelet with the [style.colourFeminine(pink gem)]. The ringmaker lets out a hum of approval. 
+			</p>
+			<p>
+				[ringmaker.speech(Now that your choice is made, I'll add this ring to your set,)] She rummages into her cloak, before pulling out a ring that glimmers in the faint light, and places it in your hands. The ring is simple yet refined, adorned with a single, heart-shaped demonstone crystal that complements the one on your bracelet. [ringmaker.speech(It will enhance and amplify the bracelet's magic, creating a harmonious synergy that will serve you well on your journeys.)]
+			</p>
+			<p>
+				You feel a gentle warmth resonating from both items, as if they recognize and welcome you. Their combined magic envelops you in a faint, yet empowering aura, even though you haven't worn them yet. 
+			</p>
+			[#pc.addClothing(itemGen.generateClothing('xys_magical_girl_unknown_bracelet', COLOUR_FEMININE, COLOUR_CLOTHING_STEEL, null, false), false)]
+		#ELSEIF(flags.hasFlag('xys_ringmaker_bracelet_fb_get'))
+			<p>
+				In the end, you choose the bracelet with the [style.colourAndrogynous(amethyst gem)]. The ringmaker lets out a hum of intrigue, but doesn't comment. 
+			</p>
+			<p>
+				[ringmaker.speech(Now that your choice is made, I'll add this ring to your set,)] She rummages into her cloak, before pulling out a ring that glimmers in the faint light, and places it in your hands. The ring is simple yet refined, adorned with a single, heart-shaped demonstone crystal that complements the one on your bracelet. [ringmaker.speech(It will enhance and amplify the bracelet's magic, creating a harmonious synergy that will serve you well on your journeys.)]
+			</p>
+			<p>
+				You feel a gentle warmth resonating from both items, as if they recognize and welcome you. Their combined magic envelops you in a faint, yet empowering aura, even though you haven't worn them yet. 
+			</p>
+			[#pc.addClothing(itemGen.generateClothing('xys_magical_girl_unknown_bracelet_fb', COLOUR_ANDROGYNOUS, COLOUR_CLOTHING_STEEL, null, false), false)]
+		#ENDIF
+		[#pc.addItem(itemGen.generateItem('xys_rings_ring_special_physical'))]
+		<p>
+			You ask what they are, and why you're given these items. [ringmaker.speech(Like I said, a gift for our first meeting... As for why? Well... you'll see...)] she grins, showing teeth yellowed with age. 
+		</p>
+		<p>
+			Before you can ask anything else, you're hit with a sudden nausea, your vision blurs to black... before refocusing almost immediately. But the old woman is already gone, along with all of her wares. You hurriedly stand up and look around, but you can't find hair nor hide of her. 
+		</p>
+    ]]>
+    </htmlContent>
+	
+    <htmlContent tag="INTRO_FINISH"><![CDATA[
+		<p>
+			Left with more questions than answers, you hold onto the given items, proofs that it's not a dream. They feel strangely warm in your hands, almost as if they pulse with a life of their own. 
+		</p>
+		<p>
+			What have you stumbled into, and who was this mysterious ringmaker? [style.italicsArcane(Maybe you should head towards the Shopping Arcade to look for clues?)]
+		</p>
+	]]>
+    </htmlContent>
+
+	<!-- RINGMAKER SHOP -->
+	<htmlContent tag="RINGMAKER_SHOP_EXTERIOR"><![CDATA[
+		#IF(flags.hasFlag('xys_ringmaker_fight_prelude') && flags.getSavedLong('xys_ringmaker_quest')!=game.getDateNow())
+			<p>
+				You find yourself standing in front of a familiar, dingy-looking jewellery shop, displaying a modest variety of silverware and gems through its window. As always, the Arcade's shoppers don't even give this store a glance. 
+			</p>
+		#ELSEIF(game.isWorkTime())
+			#IF(flags.hasFlag('xys_ringmaker_shop_firstVisit'))
+				<p>
+					You find yourself standing in front of a familiar, dingy-looking jewellery shop, displaying a modest variety of silverware and gems through its window. As always, the Arcade's shoppers don't even give this store a glance. 
+				</p>
+			#ELSE
+				<p>
+					As you take in the sights of the Shopping Arcade, you find something odd catches your eyes: a nameless, dingy-looking jewellery shop, displaying a modest variety of silverware and gems through its window. Having passed this area countless times before, you swear that you've never seen this store until today. What's more, you notice that the Arcade's shoppers don't even give this store a glance. 
+				</p>
+				<p>
+					Finding this pretty suspicious, and feeling an inexplicable pull towards it, you decide to take a closer look. You walk up to the entrance, and, looking through the glass into the shop's gloomy interior, you see signs of movement behind the counter.
+				</p>
+			#ENDIF
+			<p>
+				A printed timetable on the store's window states that the [style.colourMinorGood(opening hours are [unit.time(9)]-[unit.time(17)])]. You wonder if you should head inside, or perhaps come back at another time...
+			</p>
+		#ELSE
+			<p>
+				You find yourself standing in front of a nameless, dingy-looking jewellery shop, displaying a modest variety of silverware and gems through its window. Just like the rest of the shops in the arcade, this store is currently [style.colourBad(closed)]... although you can see some movements from the dimly-lit store. 
+			</p>
+			<p>
+				A printed timetable on the store's window states that the [style.colourMinorBad(opening hours are [unit.time(9)]-[unit.time(17)])]. It looks like you'll have to come back at a later time...
+			</p>
+		#ENDIF
+	]]>
+    </htmlContent>
+
+    <htmlContent tag="RINGMAKER_SHOP"><![CDATA[
+		<p>
+			A bell above the door tinkles as you enter, and a warm scent of sandalwood and sage wafted through the air, greeting you like an old friend. The interior is dimly lit, the only illumination coming from a cluster of candles set on various shelves. It was cluttered, yet meticulously organized. 
+			Display cases filled with rings of all shapes and sizes lined the walls, each one a work of art in its own right. Some were delicate, with intricate engravings and sparkling gemstones, while others were thick and heavy, their surfaces etched with cryptic symbols.
+		</p>
+
+		#IF(ringmaker.isPlayerKnowsName())
+			<p>
+				The owner of the store lazily looks up from her work, a busty [ringmaker.raceFull(true)] in her early twenties, with blonde hair and pink highlights in a low ponytail, and strikingly pink eyes. A tight-fitting crop top covers her arms, and you can't help but notice her massive pair of [ringmaker.cupSize]-cup breasts, which combined with her short stature seems even bigger. 
+			</p>
+			<p>
+				Her long, slender legs are crossed over the counter, showing off her black gothic heels. Subconsciously trailing your eyes further down, you notice the obvious bulge underneath her latex panties. Gemstone rings of various sizes hang around a chain on her side, with two of them catching your eyes: the same ring and bracelet as the ones you have. Finally, you see that she's wearing a simple black choker around her neck.
+			</p>
+
+			#IF(ringmaker.getAffection(pc) < 0)
+				<p>
+					[ringmaker.speech(Oh, it's the blue-baller...)] she drawls out while putting away her things messily, a mask of sorts. She stretches in her seat, giving you a perfect view of her deep cleavage, her large breasts straining against her latex bra, before reclining back lazily. 
+				</p>
+			#ELSE
+				<p>
+					[ringmaker.speech(Oh hey, you're back!)] she exclaims while putting away her things messily, a mask of sorts. She stretches in her seat, giving you a perfect view of her deep cleavage, her large breasts straining against her latex bra, before reclining back lazily. 
+				</p>
+			#ENDIF
+
+			#IF(ringmaker.isVisiblyPregnant())
+				#IF(ringmaker.hasStatusEffect(SE_PREGNANT_3))
+					[##ringmaker.endPregnancy(true); ringmaker.setCharacterReactedToPregnancy(pc, false)]
+					<p>
+						The [ringmaker.race] pats her smooth tummy, with an extra tally mark on her side. [ringmaker.speech(I'm finally done with being pregnant! Maybe you'll see our children soon~)] she sings, before licking her lips seductively. 
+						#IF(ringmaker.hasAnyIncubationLitter())
+							[ringmaker.speech(All that's left is these eggs, but I won't mind if you pump more babies in me while we wait...♡)]
+						#ELSE
+							[ringmaker.speech(In the meantime, I won't mind if you pump more babies in me...♡)]
+						#ENDIF
+					</p>
+				#ELSEIF(!ringmaker.isCharacterReactedToPregnancy(pc))
+					[##ringmaker.setCharacterReactedToPregnancy(pc, true)]
+					<p>
+						#IF(ringmaker.hasAnyIncubationLitter())
+							[ringmaker.speech(Not only that you stuffed me with eggs, you knocked me up too, you horny stud...♡)] she growls out while running a hand over her swollen belly, clearly excited at being pregnant. 
+						#ELSE
+							[ringmaker.speech(You got me pregnant by the way, congrats~♡)] she teases while running a hand over her swollen belly, clearly excited at being pregnant. 
+						#ENDIF
+						[ringmaker.speech(No, I don't need help, thank you very much. Buuuuut... if you wanna have a quick fuck, then I'm game~♡)]
+					</p>
+				#ELSE
+					<p>
+						#IF(ringmaker.hasAnyIncubationLitter())
+							[ringmaker.speech(Yes, I'm still pregnant <i>and</i> stuffed with eggs, thank you very much~♡)] she chuckles, running a hand over her swollen belly. 
+						#ELSE
+							[ringmaker.speech(Yes, I'm still pregnant, thanks by the way~♡)] she teases, running a hand over her swollen belly. 
+						#ENDIF
+						[ringmaker.speech(No, I don't need help, thank you very much. Buuuuut... if you wanna have a quick fuck, then I'm game~♡)]
+					</p>
+				#ENDIF
+				<p>
+					You sigh in exasperation. Even her pregnancy has no effect on her insatiable libido... 
+				</p>
+			#ENDIF
+
+			#IF(ringmaker.hasAnyIncubationLitter())
+				#IF(ringmaker.hasStatusEffect(SE_INCUBATING_EGGS_STOMACH_3))
+					<p>
+						#IF(ringmaker.hasIncubationLitter(ORIFICE_MOUTH))
+							[##ringmaker.endIncubationPregnancy(ORIFICE_MOUTH, true)]
+							[ringmaker.speech(Oh by the way, the eggs you put inside my stomach?)]
+						#ELSEIF(ringmaker.hasIncubationLitter(ORIFICE_ANUS))
+							[##ringmaker.endIncubationPregnancy(ORIFICE_ANUS, true)]
+							[ringmaker.speech(Oh by the way, the eggs you put inside my ass?)]
+						#ELSE
+							[##ringmaker.endIncubationPregnancy(ORIFICE_MOUTH, true)]
+							[##ringmaker.endIncubationPregnancy(ORIFICE_ANUS, true)]
+							[ringmaker.speech(Oh by the way, the eggs you put inside my stomach <i>and</i> my ass, you stud?)]
+						#ENDIF
+						, she asks while sticking her tongue out. [ringmaker.speech(Yeah I kinda laid them already. Also, try not to lay your eggs in me next time? I don't like carrying other people's spawns.)] 
+					</p>
+				#ENDIF
+				#IF(ringmaker.hasStatusEffect(SE_INCUBATING_EGGS_NIPPLES_3))
+					[##ringmaker.endIncubationPregnancy(ORIFICE_NIPPLE, true)]
+					<p>
+						[ringmaker.speech(Well, not saying that these aren't valid places for your eggs,)] she muses, hefting up her [ringmaker.breasts] and showing her slightly gaping [ringmaker.nipples], 
+							[ringmaker.speech(But <i>these</i> are for paizuris and making milk, not incubators!)] 
+					</p>
+				#ENDIF
+				#IF(ringmaker.hasStatusEffect(SE_INCUBATING_EGGS_NIPPLES_CROTCH_3))
+					[##ringmaker.endIncubationPregnancy(ORIFICE_NIPPLE_CROTCH, true)]
+					<p>
+						[ringmaker.speech(I don't have udders when I'm loaded, unless you decided to mess with my character data, or you used mods, or something. Congrats for finding this super duper rare message I guess.)] *lazily claps* 
+					</p>
+				#ENDIF
+				#IF(ringmaker.hasStatusEffect(SE_INCUBATING_EGGS_SPINNERET_3))
+					[##ringmaker.endIncubationPregnancy(ORIFICE_SPINNERET, true)]
+					<p>
+						[ringmaker.speech(I don't have spinnerets when I'm loaded, unless you decided to mess with my character data, or you used mods, or something. Congrats for finding this super duper rare message I guess.)] *lazily claps* 
+					</p>
+				#ENDIF
+				#IF(ringmaker.hasStatusEffect(SE_INCUBATING_EGGS_WOMB_3))
+					[##ringmaker.endIncubationPregnancy(ORIFICE_VAGINA, true)]
+					<p>
+						[ringmaker.speech(Not gonna lie, I'm <i>kinda</i> mad that you decide to put your eggs in my pussy. You know that I wanna get pregnant all the time right?)] she pouts, crossing her arms. 
+							[ringmaker.speech(I expect double the babies next time!)] 
+					</p>
+				#ENDIF
+			#ENDIF
+
+			#IF(pc.isVisiblyPregnant() && !pc.isCharacterReactedToPregnancy(ringmaker))
+				[##pc.setCharacterReactedToPregnancy(ringmaker, true)]
+				<p>
+					[ringmaker.speech(By the way, I see that you got pregnant, congrats!)] she says cheerfully, clapping her hands. 
+					#IF(pc.getPregnantLitter().isFatherId(ringmaker.getId()))
+						Sniffing into the air, she smirks. [ringmaker.speech(And it looks like the father's me, hmm~?)]
+					#ELSE
+						Sniffing into the air, she frowns slightly. [ringmaker.speech(A pity that the litter's not mine... maybe next time!)]
+					#ENDIF
+				</p>
+				#IF(ringmaker.isVisiblyPregnant())
+					<p>
+						She places a hand on her own swollen belly, stroking it affectionately. [ringmaker.speech(That makes us both being knocked up~♡ Wonder if our future kids will meet and accidentally fuck each other?)] she wonders, the excitement in her voice clearly suggesting that she finds the thought arousing. 
+					</p>
+				#ENDIF
+			#ENDIF
+		
+		#ELSE
+			<p>
+				The owner of the store looks up from the counter, an elderly woman with greying hair and strikingly pink eyes. Despite her seemingly frail appearance, you can't help but feel wary of her, especially since the hooded cloak she's wearing is covering most of her body, concealing what's underneath. 
+			</p>
+			#IF(!flags.hasFlag('xys_ringmaker_shop_firstVisit'))
+				[##flags.setFlag('xys_ringmaker_shop_firstVisit', true)]
+				<p>
+					[ringmaker.speech(Ah... I see you've found me...)] she chuckles, a familiar crackling to her voice like dried leaves. [ringmaker.speech(How was the experience, using my items?)] 
+				</p>
+				#IF(flags.hasFlag(FLAG_xys_playerHasTransformed))
+					<p>
+						You absentmindedly rubs your wrist, remembering the rush of power you feel as you transform for the first time... and the weird catchphrase you're forced to utter out. 
+					</p>
+					<p>
+						[ringmaker.speech(Pff... heheheheh... ah, I'm sorry, I don't mean to laugh at you,)] she states before you can get mad at her. [ringmaker.speech(It's just that, I like the look of surprise when my customers try my things... it makes this old woman happy.)] She then slowly shuffles back to her counter. 
+					</p>
+				#ELSE
+					<p>
+						You're confused, not really sure what she means. Does she mean the two items...?
+					</p>
+					<p>
+						[ringmaker.speech(Oh, you didn't try it out?)] she sighs, sounding disappointed. [ringmaker.speech(Kids these days, doesn't have the spirit to experiment anymore... oh well. <i>You should try to feel the ring's power when you're in combat.</i> But enough of that...)] the ringmaker waves off, before shuffling back to her counter. 
+					</p>
+				#ENDIF
+			#ENDIF
+		#ENDIF
+
+		#IF(flags.getSavedLong('MagicRingsModVersion') < 0 && !flags.hasFlag('xys_ringmaker_bracelet_fb_get'))
+			<p>
+				(Her eyes suddenly glow ominously. <b>[ringmaker.speech(This is X&Y, well, X&Y's Ysette speaking. I see that you're on an older version of our mod that didn't include the femboy bracelet. Here ya go~)]</b> An identical bracelet appears in her hand, before she flings it at you carelessly. You fumble about before finally catching it. <b>[ringmaker.speech(Happy playing~)]</b>)
+			</p>
+			[#pc.addClothing(itemGen.generateClothing('xys_magical_girl_unknown_bracelet_fb, COLOUR_ANDROGYNOUS, COLOUR_CLOTHING_SILVER, null, false), false)]
+			[##flags.setFlag('xys_ringmaker_bracelet_fb_get', true); flags.setSavedLong('MagicRingsModVersion', 3)]
+		#ENDIF
+		<p>
+			She spreads her arms out. [ringmaker.speech(Welcome to my humble shop,)] [ringmaker.name] says, splaying her arms out. [ringmaker.speech(Look around, see what fancies you. I'm sure there's something you'd like.)]
+		</p>
+	]]>
+    </htmlContent>
+
+	<htmlContent tag="RINGMAKER_SHOP_EVENT_DAILY"><![CDATA[
+		<p>
+			A bell above the door tinkles as you enter, and a warm scent of sandalwood and sage wafted through the air, greeting you like an old friend. The interior is dimly lit, the only illumination coming from a cluster of candles set on various shelves. It was cluttered, yet meticulously organized. 
+			Display cases filled with rings of all shapes and sizes lined the walls, each one a work of art in its own right. Some were delicate, with intricate engravings and sparkling gemstones, while others were thick and heavy, their surfaces etched with cryptic symbols.
+		</p>
+
+		[##var event = RND.nextInt(3)]
+		#IF(event == 1)
+			[##flags.setFlag('xys_ringmaker_event_1', true)]
+			<p>
+				You step into the surprisingly vacant store. It looks like the ringmaker isn't here... or so you thought. 
+			</p>
+			<p>
+				You hear the door close and lock behind you. Before you can turn around, a pair of arms wrap themselves around your waist. You are acutely aware of a pair of [ringmaker.cupSize]-cup breasts[#(ringmaker.isVisiblyPregnant())?' and her protuding belly':''] pressing into your back. 
+				[ringmaker.speech(Hey...♡)] the [ringmaker.raceFull(true)] purrs lusfully in your ear, making your hairs stand on end. 
+			</p>
+			<p>
+				[ringmaker.speech(What perfect timing... I was getting <i>quite</i> horny, y'know?)] she drawls out, her hand slowly caressing your lower abdomen, teasingly slipping lower and lower... Your 
+				#IF(pc.hasPenisIgnoreDildo())
+					[pc.cock] stand in attention
+					#IF(pc.hasVagina())
+						, your [pc.pussy] drooling as well
+					#ENDIF
+				#ELSEIF(pc.hasVagina())
+					[pc.pussy] to drool
+				#ELSE
+					your genderless mound to ache
+				#ENDIF
+				... but she never goes further, making you squirm in anticipation... 
+			</p>
+			[#
+				var lust = RND.nextInt(20) + 10;
+				if(pc.hasFetish(FETISH_SUBMISSIVE)) lust *= 1.5;
+				if(pc.hasFetish(FETISH_NON_CON_SUB)) lust *= 1.5;
+				if(pc.hasFetish(FETISH_DENIAL_SELF)) lust *= 1.5;
+				pc.incrementLust(lust, false);
+			]
+			#IF(game.getCurrentWeather().equals(WEATHER_MAGIC_STORM))
+				<p>
+					[ringmaker.speech(And don't even think about saying "no"...)] You feel her hold around you tighten, almost painfully, as she whispers dangerously. [ringmaker.speech(I know you're not affected by the storm, but I'm quite a sensitive gal... and I need. <b>To. <i>FUCK. ♡</i></b>)] 
+				</p>
+				<p>
+					You gulp nervously. It looks like you'll need to satisfy the bunny, or else you won't be going anywhere... 
+				</p>
+			#ELSE
+				<p>
+					[ringmaker.speech(So what's it gonna be, [pc.girl]?)] You feel her head resting on your shoulder as she whispers huskily. [ringmaker.speech(Wanna fuck like rabbits? ♡)] 
+				</p>
+				<p>
+					You gulp nervously. 
+				</p>
+			#ENDIF
+
+		#ELSEIF(event == 2)
+			[##ringmaker.setAbleToBeImpregnated(false)]
+			[##game.addNPC('GenericSexualPartner', 'getFucker'); getFucker.setPenisType(getFucker.getRace().getRacialBody().getPenisType()); getFucker.incrementPenisCumStorage(500); getFucker.fillCumToMaxStorage()]
+			<p>
+				The sounds of flesh slapping against flesh is the first thing that greets you, along with the passionate moans of said participants. You see a familiar [ringmaker.raceFull(true)] lies atop the shop counter, while a [getFucker.raceFull(true)] is hammering [getFucker.her] [getFucker.hips+] into her. 
+			</p>
+			<p>
+				[ringmaker.speech(~Aah!~ yeah, shake those ~Mmh!~ hips for me, you stud!)] [ringmaker.name] [ringmaker.moan] underneath [getFucker.herHim], and the [getFucker.race] redoubles [getFucker.her] efforts, slamming wildly into the ringmaker and making her [ringmaker.moan] even more in delight! 
+			</p>
+			#IF(pc.hasFetish(FETISH_VOYEURIST) || pc.getAttributeValue(ATTRIBUTE_MAJOR_CORRUPTION) > 50)
+				<p>
+					You find your eyes unable to tear away from the scene, taking in the way the [getFucker.race] moans and breathes down on the [ringmaker.race]'s neck, her [getFucker.hands+] gripping tightly around her waist, rutting the [YsetteRingmake.race] like she's [getFucker.her] bitch... You find your body heating up from the sight, suppressing a moan of your own as you rub your [pc.legs] together... 
+				</p>
+			#ENDIF
+			[#pc.incrementFetishExperience(FETISH_VOYEURIST, 100); pc.incrementLust(20, false)]
+			<p>
+				You're about to announce your presence before the [getFucker.race] suddenly slams forward, burying [getFucker.her] [getFucker.cock+] deep inside [ringmaker.name] before orgasming! The [ringmaker.race] [ringmaker.moan] powerfully underneath [getFucker.herHim], [getFucker.cum+] running down her [ringmaker.legs]. 
+			</p>
+			<p>
+				[#getFucker.calculateGenericSexEffects(true, true, ringmaker, getFucker.getSubspecies(), getFucker.getHalfDemonSubspecies(), SEX_PT_NORMAL, PENETRATION_PENIS, ORIFICE_VAGINA, Array(SEX_FLAG_LIMITED_DESCRIPTION_NEEDED, SEX_FLAG_FORCE_CREAMPIE))]
+			</p>
+			<p>
+				The two is left panting heavily, the [getFucker.race] moreso than the ringmaker, who just tiredly slips on a ring. She lightly pushes [getFucker.herHim] away before pointing it at [getFucker.herHim], opening a portal underneath the [getFucker.race] and sending [getFucker.herHim] away. She groans out, slipping a few fingers into her well-used hole, [getFucker.cum+] still dripping from it. 
+			</p>
+			[##game.banishNPC(getFucker); ringmaker.setAbleToBeImpregnated(true)]
+
+		#ELSE
+			[##game.addNPC('GenericSexualPartner', 'getFucked')]
+			<p>
+				The sounds of flesh slapping against flesh is the first thing that greets you, along with the passionate moans of said participants. You see a familiar [ringmaker.raceFull(true)] bent over the shop counter, hammering her [ringmaker.hips+] into [getFucked.a_raceFull(true)]. 
+			</p>
+			<p>
+				[ringmaker.speech(~Aah!~ yeah, squeeze tighter, I'm ~Aah!~ close...!)] [ringmaker.name] [ringmaker.verb(exclaim)], bringing a hand to smack the [getFucked.race]'s exposed cheeks. A squeal accompanies the sharp sound of flesh being whacked, which drives her to deliver yet another blow to [getFucked.her] [getFucked.ass]. 
+			</p>
+			#IF(pc.hasFetish(FETISH_VOYEURIST) || pc.getAttributeValue(ATTRIBUTE_MAJOR_CORRUPTION) > 50)
+				<p>
+					You find your eyes unable to tear away from the scene, taking in the way the [ringmaker.race] moans and breathes down on the [getFucked.race]'s neck, her [ringmaker.hands+] gripping tightly around [getFucked.her] waist, her pendulum-like [ringmaker.balls] swinging with her wildly thrusting hips... You find your body heating up from the sight, suppressing a moan of your own as you rub your [pc.legs] together... 
+				</p>
+			#ENDIF
+			[#pc.incrementFetishExperience(FETISH_VOYEURIST, 100); pc.incrementLust(20, false)]
+			<p>
+				You're about to announce your presence before the ringmaker suddenly slams forward, burying her [ringmaker.cock+] deep inside her partner before orgasming! The [getFucked.race] [getFucked.moan] powerfully underneath the [ringmaker.race], [ringmaker.cum+] running down [getFucked.her] [getFucked.legs].
+			</p>
+			<p>
+				#IF(getFucked.hasVagina())
+					[#ringmaker.calculateGenericSexEffects(true, true, getFucked, ringmaker.getSubspecies(), ringmaker.getHalfDemonSubspecies(), SEX_PT_NORMAL, PENETRATION_PENIS, ORIFICE_VAGINA, SEX_FLAG_LIMITED_DESCRIPTION_NEEDED)]
+				#ELSE
+					[#ringmaker.calculateGenericSexEffects(true, true, getFucked, ringmaker.getSubspecies(), ringmaker.getHalfDemonSubspecies(), SEX_PT_NORMAL, PENETRATION_PENIS, ORIFICE_ANUS, SEX_FLAG_LIMITED_DESCRIPTION_NEEDED)]
+				#ENDIF
+			</p>
+			<p>
+				With a final slap, the ringmaker steps away from her handiwork, before turning to you. [ringmaker.speech(Oh, you're here. Didn't notice you there,)] she says rather breathlessly, her [ringmaker.cock] still dripping with [ringmaker.cum+]. Slipping on a ring, she points it at the still trembling [getFucked.race], opening a portal underneath [getFucked.herHim] and sending [getFucked.herHim] away. 
+			</p>
+			#IF(getFucked.isPregnant())[##getFucked.endPregnancy(true); game.banishNPC(getFucked)]#ENDIF
+		#ENDIF
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="EVENT_FINISHED"><![CDATA[
+		<p>
+			[ringmaker.speech(Mmmh... I definitely needed that...)] she groans out as she stretches, pushing out her [ringmaker.cupSize]-cup breasts and showing off her still drooling cock. With a lazy snap of her fingers, her clothes rearranges themselves, making herself presentable again. 
+		</p>
+		<p>
+			She saunters back towards the counter, while smiling cheekily at you. [ringmaker.speech(So, do you like the little show~?)] the ringmaker teases, before sitting back on her chair and throwing her [ringmaker.legs] on the countertop. [ringmaker.speech(Well, you don't have to be <i>jealous</i> about it. After all, I'd let you use me <i>any~ way~ you~ want~♡</i>)] she sings the last part, biting her lip with an aroused expression.
+		</p>
+		<p>
+			[ringmaker.speech(But! I know you're not here for that, sadly. So...)] she raises an elegant eyebrow. [ringmaker.speech(What can I get you?)] 
+		</p>
+	]]>
+    </htmlContent>
+
+	<htmlContent tag="EVENT_1_NO_SEX"><![CDATA[
+		<p>
+			You shake your head, refusing the offer. You have things to do with her after all. 
+		</p>
+		<p>
+			[ringmaker.speech(Tsk... you damn tease...)] she voices her displeasure, untangling herself from you... but not before bringing a hand to smack your [pc.ass+]. 
+		</p>
+		<p>
+			Seemingly satisfied as you jerk from the sudden slap, she bounces back towards the back of the counter, slipping into her seat and kicking her legs over the countertop. [ringmaker.speech(Well, hurry up! What'd you wanna ask poor ol' me to do today?)] the ringmaker demands, resting her cheek on her fist as she drums on the armrest impatiently. 
+		</p>
+	]]>
+    </htmlContent>
+
+	<htmlContent tag="RINGMAKER_SHOP_LEAVE"><![CDATA[
+		<p>
+			Having nothing else to do, you tell the ringmaker that you've got to be on your way, before waving goodbye. As you leave the shop, her voice calls out after you, [ringmaker.speech(We'll meet again...~)]
+		</p>
+	]]>
+    </htmlContent>
+	
+	<!-- QUESTIONS -->
+	<htmlContent tag="RINGMAKER_QUESTION"><![CDATA[
+		#IF(ringmaker.isPlayerKnowsName())
+			<p>
+				She shifts slightly in her seat, looking at you half-heartedly. [ringmaker.speech(Ask away.)]
+			</p>
+		#ELSE
+			<p>
+				Humming to herself, she stops whatever she's doing, before coming face-to-face towards you. [ringmaker.speech(So, what would you like to know?)]
+			</p>
+		#ENDIF
+	]]>
+    </htmlContent>
+
+	<htmlContent tag="RINGMAKER_IDENTITY"><![CDATA[
+		<p>
+			You ask about who she is, wanting to know more about herself. 
+		</p>
+		#IF(ringmaker.isPlayerKnowsName())
+			<p>
+				[ringmaker.speech(Hmm... where do I start...)] she hums to herself, a ringed hand on her chin. She thinks for a moment, before telling you of her story.
+			</p>
+			<p>
+				[ringmaker.name] was different from the moment she took her first breath. Unlike the children of Lunette, who reveled in chaos and destruction, she found joy in creation. After her mother dumped her to her father, she was raised in a quite modest village. Unbeknowst to the elder lilin at the time, she displayed an unusual ability: by consuming crystals, she could create prized, and sometimes magical, jewels within her own body. She uses this gift to make the village prosper, and lived a pretty stress-free life. 
+			</p>
+			<p>
+				However, a recognised daughter of Lunette came by, the centauress and her kin razing the village to the ground and laid claim to her, capturing and marking her with a cattle tag on her left ear that could never be removed. Though the centauress demanded her obedience, Ysette's chaotic nature couldn't be fully controlled. The ringmaker made her rings, yes, but each one came with a mischievous twist, enchanting the bearer with unpredictable magic. Some brought fortune, others disaster, depending on her whim at the time.
+			</p>
+			<p>
+				She bid her time, waiting for a chance to escape while she begrudgingly worked underneath the centauress' demands... and one night, she escaped by causing a sudden arcane storm over the camp, causing everyone within the viscinity to collapse from the arousal, except herself. Since then, the ringmaker has wandered from city to city, leaving a trail of enchanted rings in her wake. Some sought her out for her beauty and seductive charm, but most sought the power she could offer. 
+			</p>
+			<p>
+				[ringmaker.speech(Well, there's nothing much between then and now,)] the ringmaker states, idly counting with her fingers. [ringmaker.speech(Spent years perfecting my craft while running around. Setting up shop here while masquerading as an old woman this time, need to get away from prying eyes. Aaaaaaaand... oh, meeting you. That's about it.)]
+			</p>
+		#ELSE
+			<p>
+				[ringmaker.speech(Me? I'm just an old ringmaker running from her past...)] she chuckles dryly. [ringmaker.speech(But to be honest... it's more trouble talking about it. Maybe in due time...)]
+			</p>
+		#ENDIF
+	]]>
+    </htmlContent>
+
+	<htmlContent tag="RINGMAKER_RINGS"><![CDATA[
+		<p>
+			You inquire about how these rings are made. 
+		</p>
+		#IF(ringmaker.isPlayerKnowsName())
+			#IF(flags.getSavedLong('xys_ringmaker_win_count')>0)
+				<p>
+					[ringmaker.speech(Hmm... since you've won against me... sure, why not?)] She shrugs, before a smirk grows on her face. [ringmaker.speech(Just don't get <i>too</i> surprised by it, mm?)]
+				</p>
+				<p>
+					The ringmaker picks up a nearby demonstone, the crystal about the size of your fist. She opens her mouth wide, her surprisingly long tongue coiling around the crystal... before she swallows it, her cheeks bulging from the size. Then she begins chewing down on it. 
+				</p>
+				<p>
+					<i>CRUNCH. CRUNCH. CRUNCH. CRUNCH.</i>
+				</p>
+				<p>
+					You wince at the noise, like stones grinding up against your ears. Sparks of arcane energy fly from her mouth, along with low groans of pleasure. It looks like the "ringmaking" process is highly pleasurable to her, as the [ringmaker.race] has started masturbating right in front of you, her latex panties unzipped as her fingers stroke furiously around her [ringmaker.cock]. 
+				</p>
+				<p>
+					[ringmaker.speech(Rrrngh... aaaanh...♡ sho gooodh... mmmph, cummmhiiing...♡)] she moans out, before she throws her head back as she orgasms, spraying her [ringmaker.cum+] all over the floor! After a few minutes of teeth-clenching bliss, she manages to calm down somewhat, before spitting out a finished, brilliantly cut gemstone into her hand. 
+				</p>
+				<p>
+					[ringmaker.speech(Phew... and <i>that</i>, is how I make my rings. Satisfied your curiosity?)] the [ringmaker.race] asks teasingly while zipping up her panties. You look at the saliva-coated gem, then back at her, before nodding numbly. [ringmaker.speech(Good!)]
+				</p>
+			#ELSE
+				<p>
+					She deadpans. [ringmaker.speech(What part of <i>not telling you</i> do you not understand? No means no. Not like you can copy it anyways.)] 
+				</p>
+				<p>
+					Humming to herself, the [ringmaker.race] added, [ringmaker.speech(Well... unless you beat me in a fight. <i>Then,</i> we'll see...♡)]
+				</p>
+				<p>
+					You figure that is the case. 
+				</p>
+			#ENDIF
+		#ELSE
+			<p>
+				She deadpans. [ringmaker.speech(I'm not telling you; people literally risks their lives for my craft, so what makes <i>you</i> think that I'll freely share it to you?)] 
+			</p>
+			<p>
+				She crosses her arms, not wanting to say anything further. 
+			</p>
+		#ENDIF
+	]]>
+    </htmlContent>
+	
+	<htmlContent tag="RINGMAKER_BRACELET"><![CDATA[
+		<p>
+			You show the bracelet to the ringmaker, asking about its origin and purpose.
+		</p>
+		#IF(ringmaker.isPlayerKnowsName())
+			<p>
+				[ringmaker.speech(Oh, that thing? Welp, I was bored one time. Was browsing through some old books when I came across some girls transforming their clothes into magical outfits. Then I thought, "Hey this looks pretty cool, wonder if I can make something similar." Aaaaaaaand that's how its made.)]
+			</p>
+			<p>
+				You look at the bracelet, then back at the [ringmaker.race]. [pc.speech(...that's it?)]
+			</p>
+			<p>
+				[ringmaker.speech(Weeeeeeeeeell... I <i>may</i> have given some of these to random people.)]
+			</p>
+			<p>
+				[pc.speech(How many?)]
+			</p>
+			<p>
+				[ringmaker.speech(Err...)] She started counting with her fingers, getting more and more nervous with each one. And promptly gives up midway with a wave of her hand. [ringmaker.speech(I-It doesn't matter! Just know that you might meet more "magical girls" in the future.)]
+			</p>
+		#ELSE
+			<p>
+				[ringmaker.speech(Oh, that bracelet... I made it myself of course. Took me months to get it to work just the way I want it...)] she chuckles hoarsely.
+			</p>
+			#IF(pc.getFemininityValue()>50)
+				<p>
+					[pc.speech(But... why turning me into a magical girl?)] 
+				</p>
+				<p>
+					[ringmaker.speech(Hmm, is that what you call your outfit? Sounds... quite fitting. Anyways... its main purpose is to create a suitable outfit for the wearer to protect themselves. I'm not responsible for any more... extra effects it gives,)] she smiles mysteriously.
+				</p>
+			#ELSE
+				<p>
+					[pc.speech(But... why am I in a dress?)] 
+				</p>
+				<p>
+					[ringmaker.speech(Hmm, is that what the bracelet gave you? Its main purpose is to create a suitable outfit for the wearer to protect themselves. Why does it give you a dress? Well... maybe you know the answer, deep down...)] she smiles mysteriously. 
+				</p>
+			#ENDIF
+		#ENDIF
+	]]>
+    </htmlContent>
+
+	<htmlContent tag="RINGMAKER_FIGHT"><![CDATA[
+		<p>
+			You ask about what was point about the fight. 
+		</p>
+		<p>
+			[ringmaker.speech(Okay, first off, I'm sorry for jumping on you like that. I need to know if you're strong enough, someone who wouldn't flinch even with the prospect of defeat.)] 
+			#IF(flags.getSavedLong('xys_ringmaker_win_count')>0)
+				She shifts in her place and licks her lips as the [ringmaker.race] remembers what happens after. [ringmaker.speech(And you've proven yourself quite... capable indeed...♡)]
+			#ENDIF
+		</p>
+		#IF(flags.getSavedLong('xys_ringmaker_win_count')>=1 && !flags.hasFlag('xys_ringmaker_ring_portal'))
+			<p>
+				[ringmaker.speech(Oh, that reminds me, I was supposed to give you this after the fight,)] the [ringmaker.race] suddenly says, before she smoothly pulls a ring from her finger, then tossing it to you -- a graceful arch that lands right in your fumbling hands. [ringmaker.speech(Here, a prize of sorts~)]
+			</p>
+			[#pc.addClothing(itemGen.generateClothing('xys_rings_ring_portal', COLOUR_CLOTHING_ROSE_GOLD, COLOUR_GENERIC_ARCANE, null, false), false)]
+			[##flags.setFlag('xys_ringmaker_ring_portal', true)]
+		#ENDIF
+		<p>
+			You look at her, confused. [pc.speech(Strong enough? For what?)]
+		</p>
+		<p>
+			The ringmaker sighs tiredly, like she is aging back into her "old" persona. [ringmaker.speech(Strong enough... to face my mother, the elder lilin Lunette. I need your help in taking her down.)]
+		</p>
+		#IF(pc.isQuestProgressGreaterThan(QUEST_LINE_MAIN, QUEST_MAIN_3_E_THEMISCYRA_ATTACK))
+			<p>
+				You remember one of her sisters, Lunexis. [pc.speech(I've met your sister before, Lunexis I think?)] 
+			</p>
+			<p>
+				[ringmaker.speech(...what's your relationship with her?)] You tense up at her tone, the air around you feels colder all of the sudden as the [ringmaker.race] stares at you intently. Your gaze lands on the tag on her ear, before portaling the dots almost immediately.
+			</p>
+			<p>
+				Sensing that a fight might break out soon, you quickly clarify. [pc.speech(I-I've fought her before! My friends and I managed to escape from her.)]  
+			</p>
+			<p>
+				She keeps staring at you wordlessly, still determining whether you're lying to her. After a few minutes of tense silence, she just sighs, relaxing back into her chair. [ringmaker.speech(Eh, whatever. I'm much stronger now. I don't really care about your exact relationship with her, but if you even think about bringing me back to her...)] she trails off, the words left hanging in the air threateningly.
+			</p>
+			<p>
+				[ringmaker.speech(But yeah, Lunexis ruined my life, pretty sure I've already explained it my life story.)] She shrugs casually. [ringmaker.speech(It's all in the past now. No sense to mop around, and you're probably not here to listen to a sob story.)]
+			</p>
+		#ELSE
+			<p>
+				Not really getting what she's talking about, you ask her to elaborate further. 
+			</p>
+			<p>
+				[ringmaker.speech(You probably don't know about this, but mommy dearest is planning something for a while now. Don't really know the reason why, but... one day, one of her recognised daughters, Lunexis, came about my village and started destroying everything. Probably looking for me and my unique skills. Managed to tag me, but I got the fuck away. Lost everyone in the process though.)] She shrugs casually. [ringmaker.speech(It's all in the past now. No sense to mop around, and you're probably not here to listen to a sob story.)]
+			</p>
+		#ENDIF
+		<p>
+			[ringmaker.speech(But anyways, yes, I need your help in taking her down. And what better way to do that than to train you up? Besides...)] [ringmaker.name] smirks flirtatiously, [ringmaker.speech(I reward those that do their best, quite generously too...♡)]
+		</p>
+	]]>
+    </htmlContent>
+
+	<htmlContent tag="RINGMAKER_QUESTION_FINISHED"><![CDATA[
+		<p>
+			You shake your head, done with your questions. 
+		</p>
+		<p>
+			[ringmaker.speech(Mmh, you done? Then, look around...)] [ringmaker.name] says, shooing you away.
+			#IF(flags.getSavedLong('xys_ringmaker_win_count')>0)
+				Pausing a bit, she added with a smirk. [ringmaker.speech(Unless you wanna fuck, then I'm down~)]
+			#ENDIF
+		</p>
+	]]>
+    </htmlContent>
+
+	<!-- QUEST -->
+    <htmlContent tag="RINGMAKER_QUEST_START"><![CDATA[
+		<p>
+			You ask why does it look like no one's noticing this particular shop, while looking out the window where the Arcade's shoppers are milling about. 
+		</p>
+		<p>
+			[ringmaker.speech(That's because they <i>can't</i> see this shop...)] she drawls out, as if it's obvious. [ringmaker.speech(I've made it so those that fit my criteria will see it, and those that don't, won't. Of course, if there's someone more powerful than I am, they'll see my shop as well.)]
+		</p>
+		<p>
+			Your curiosity peak further. Why the secrecy?
+		</p>
+		<p>
+			[ringmaker.speech(Because there's nosy people after my things, that's why!)] the ringmaker grumbles darkly. [ringmaker.speech(My particular skill of making rings is unique among jewellers; it cannot be copied easily. But I <b>am</b> looking for a protege of sorts...)]
+		</p>
+		#IF(ringmaker.isPlayerKnowsName())
+			<p>
+				The [ringmaker.race] then smiles sweetly. [ringmaker.speech(Thanks for returning my strength by the way~ is there anything I can do for you to make it up...?)] Her gaze turns lustful as she licks her lips. 
+			</p>
+			<p>
+				You do think of several ways, unconsciously trailing your eyes all over her body... which she definitely likes by the lewd looks she keeps throwing at you. 
+			</p>
+		#ELSE
+			#IF(!flags.hasFlag('xys_ringmaker_quest_start'))
+				[##flags.setFlag('xys_ringmaker_quest_start', true)]
+				<p>
+					Something compels you to soothe her, saying that you'd help. 
+				</p>
+				<p>
+					[ringmaker.speech(You do? Oh, that's great!)] the old woman exclaims, smiling in joy. [ringmaker.speech(Then... can I task you with gathering some demonstone crystals for me? Ah, one moment...)] she turns around, slipping into the door behind her, before reemerges after a short while and place a piece of paper into your hand. [ringmaker.speech(Here's a list of what I need... please help this old woman, okay?)] 
+				</p>
+				[#pc.addItem(itemGen.generateItem('xys_rings_todo_list'))]
+				<p>
+					You're surprised by your own actions. What made you say that...? 
+				</p>
+				<p>
+					Sensing your unwillingness she quickly adds, [ringmaker.speech(Of course, you will be compensated for your troubles... I'll give you my rings for free, one for each crystal! It's just that... I need them for... personal reasons, and I can't get them without being noticed...)]
+				</p>
+				<p>
+					[pc.thought(That's not suspicious at all...)] You sigh, before you nod. 
+				</p>
+			#ELSE
+				<p>
+					Something compels you to declare that you'll collect those demonstone crystals in no time. 
+				</p>
+			#ENDIF
+			<p>
+				[ringmaker.speech(Heheheheh... thank you, dear...~)] 
+			</p>
+		#ENDIF
+	]]>
+    </htmlContent>
+	
+    <htmlContent tag="RINGMAKER_RINGMAKING"><![CDATA[
+		#IF(flags.getSavedLong('xys_ringmaker_crystal_rare') != 4 || flags.getSavedLong('xys_ringmaker_crystal_epic') != 4 || flags.getSavedLong('xys_ringmaker_crystal_legendary') != 1)
+			<p>
+				You give the crystal to her, and almost instantly, it's gone from your hand. [ringmaker.speech(Ah, yeeeeees.... a crystal! Shiny, shiny crystal... ehehehehehe...~)] The old ringmaker creepily laughs, rubbing her cheek against it... 
+				#IF(flags.getSavedLong('xys_ringmaker_crystal_rare') != 4 && pc.hasWeaponType(WEAPON_innoxia_crystal_rare, true))
+					[ringmaker.speech(Mm, mm... Yes, this is good enough...)] 
+				#ELSEIF(flags.getSavedLong('xys_ringmaker_crystal_epic') != 4 && pc.hasWeaponType(WEAPON_innoxia_crystal_epic, true))
+					[ringmaker.speech(And it's a epic one! Yes, good... very good...)] 
+				#ELSE
+					[ringmaker.speech(And you're really giving me a <i>legendary</i> one too! Oooooooh, you know how to make a woman happy, dear...~)] 
+				#ENDIF
+			</p>
+			<p>
+				The old woman bounds towards the back of the counter in a speed unfitting for her age, slipping into the door behind her. You're left all alone in the shop, feeling quite baffled at the spectacle. 
+			</p>
+			<p>
+				But that doesn't compare to the sounds coming from beyond the door: noises like crunching, moaning, grinding, and more... The entire store seems to vibrate at whatever the ringmaker is doing to the poor demonstone. 
+			</p>
+			<p>
+				It isn't until 10 minutes later that the old woman emerges from the door, her cloak disheveled and covered in crystal dust and soot, with arcane energy sparking around her. [ringmaker.speech(It's done...)] she says, her voice sounds quite shaky but satisfied, as she drops a brilliantly cut gemstone ring into your hand. [ringmaker.speech(And here's your payment... try it out in combat next time...)]
+			</p>
+
+			#IF(flags.getSavedLong('xys_ringmaker_crystal_rare') != 4 && pc.hasWeaponType(WEAPON_innoxia_crystal_rare, true))
+				[##
+					var weaponArray = pc.getAllWeaponsInInventory().keySet().toArray();
+					var mainArray = pc.getMainWeaponArray();
+					var offArray = pc.getOffhandWeaponArray();
+					var temp = flags.getSavedLong('xys_ringmaker_crystal_rare');
+					for (var i = 0; i < weaponArray.length; i++) {
+						var weapon = weaponArray[i];
+						if(weapon.getWeaponType().equals(WEAPON_innoxia_crystal_rare)) {
+							var colour = weapon.getDamageType().getColour();
+							if(!pc.hasClothingType(CLOTHING_xys_rings_ring_glow, true)) {
+								game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_glow, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+							}
+							else if(!pc.hasClothingType(CLOTHING_xys_rings_ring_clean, true)) {
+								game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_clean, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+							}
+							else if(!pc.hasClothingType(CLOTHING_xys_rings_ring_heal, true)) {
+								game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_heal, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+							}
+							else {
+								game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_defend, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+							};
+							flags.setSavedLong('xys_ringmaker_crystal_rare', flags.getSavedLong('xys_ringmaker_crystal_rare') + 1);
+							pc.removeWeapon(weapon);
+							break;
+						};
+					};
+				
+					if(temp == flags.getSavedLong('xys_ringmaker_crystal_rare')) {
+						for (var i = 0; i < mainArray.length; i++) {
+							var weapon = mainArray[i];
+							if(weapon != null && weapon.getWeaponType().equals(WEAPON_innoxia_crystal_rare)) {
+								var colour = weapon.getDamageType().getColour();
+								if(!pc.hasClothingType(CLOTHING_xys_rings_ring_glow, true)) {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_glow, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								}
+								else if(!pc.hasClothingType(CLOTHING_xys_rings_ring_clean, true)) {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_clean, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								}
+								else if(!pc.hasClothingType(CLOTHING_xys_rings_ring_heal, true)) {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_heal, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								}
+								else {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_defend, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								};
+								flags.setSavedLong('xys_ringmaker_crystal_rare', flags.getSavedLong('xys_ringmaker_crystal_rare') + 1);
+								pc.unequipMainWeaponIntoVoid(i, false);
+								break;
+							};
+						};
+					};
+
+					if(temp == flags.getSavedLong('xys_ringmaker_crystal_rare')) {
+						for (var i = 0; i < offArray.length; i++) {
+							var weapon = offArray[i];
+							if(weapon != null && weapon.getWeaponType().equals(WEAPON_innoxia_crystal_rare)) {
+								var colour = weapon.getDamageType().getColour();
+								if(!pc.hasClothingType(CLOTHING_xys_rings_ring_glow, true)) {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_glow, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								}
+								else if(!pc.hasClothingType(CLOTHING_xys_rings_ring_clean, true)) {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_clean, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								}
+								else if(!pc.hasClothingType(CLOTHING_xys_rings_ring_heal, true)) {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_heal, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								}
+								else {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_defend, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								};
+								flags.setSavedLong('xys_ringmaker_crystal_rare', flags.getSavedLong('xys_ringmaker_crystal_rare') + 1);
+								pc.unequipOffhandWeaponIntoVoid(i, false);
+								break;
+							};
+						};
+					};
+				]
+			#ELSEIF(flags.getSavedLong('xys_ringmaker_crystal_epic') != 4 && pc.hasWeaponType(WEAPON_innoxia_crystal_epic, true))
+				[##
+					var weaponArray = pc.getAllWeaponsInInventory().keySet().toArray();
+					var mainArray = pc.getMainWeaponArray();
+					var offArray = pc.getOffhandWeaponArray();
+					var temp = flags.getSavedLong('xys_ringmaker_crystal_epic');
+					for (var i = 0; i < weaponArray.length; i++) {
+						var weapon = weaponArray[i];
+						if(weapon.getWeaponType().equals(WEAPON_innoxia_crystal_epic)) {
+							var colour = weapon.getDamageType().getColour();
+							if(!pc.hasClothingType(CLOTHING_xys_rings_ring_accelerate, true)) {
+								game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_accelerate, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+							}
+							else if(!pc.hasClothingType(CLOTHING_xys_rings_ring_bind, true)) {
+								game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_bind, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+							}
+							else if(!pc.hasClothingType(CLOTHING_xys_rings_ring_excite, true)) {
+								game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_excite, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+							}
+							else {
+								game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_finisher, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+							};
+							flags.setSavedLong('xys_ringmaker_crystal_epic', flags.getSavedLong('xys_ringmaker_crystal_epic') + 1);
+							pc.removeWeapon(weapon);
+							break;
+						};
+					};
+				
+					if(temp == flags.getSavedLong('xys_ringmaker_crystal_epic')) {
+						for (var i = 0; i < mainArray.length; i++) {
+							var weapon = mainArray[i];
+							if(weapon != null && weapon.getWeaponType().equals(WEAPON_innoxia_crystal_epic)) {
+								var colour = weapon.getDamageType().getColour();
+								if(!pc.hasClothingType(CLOTHING_xys_rings_ring_accelerate, true)) {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_accelerate, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								}
+								else if(!pc.hasClothingType(CLOTHING_xys_rings_ring_bind, true)) {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_bind, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								}
+								else if(!pc.hasClothingType(CLOTHING_xys_rings_ring_excite, true)) {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_excite, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								}
+								else {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_finisher, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								};
+								flags.setSavedLong('xys_ringmaker_crystal_epic', flags.getSavedLong('xys_ringmaker_crystal_epic') + 1);
+								pc.unequipMainWeaponIntoVoid(i, false);
+								break;
+							};
+						};
+					};
+
+					if(temp == flags.getSavedLong('xys_ringmaker_crystal_epic')) {
+						for (var i = 0; i < offArray.length; i++) {
+							var weapon = offArray[i];
+							if(weapon != null && weapon.getWeaponType().equals(WEAPON_innoxia_crystal_epic)) {
+								var colour = weapon.getDamageType().getColour();
+								if(!pc.hasClothingType(CLOTHING_xys_rings_ring_accelerate, true)) {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_accelerate, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								}
+								else if(!pc.hasClothingType(CLOTHING_xys_rings_ring_bind, true)) {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_bind, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								}
+								else if(!pc.hasClothingType(CLOTHING_xys_rings_ring_excite, true)) {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_excite, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								}
+								else {
+									game.appendToTextEndStringBuilder(pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_finisher, COLOUR_CLOTHING_STEEL, colour, null, false), false));
+								};
+								flags.setSavedLong('xys_ringmaker_crystal_epic', flags.getSavedLong('xys_ringmaker_crystal_epic') + 1);
+								pc.unequipOffhandWeaponIntoVoid(i, false);
+								break;
+							};
+						};
+					};
+				]
+			#ELSEIF(flags.getSavedLong('xys_ringmaker_crystal_legendary') != 1 && pc.hasWeaponType(WEAPON_innoxia_crystal_legendary, true))
+				[##
+					var weaponArray = pc.getAllWeaponsInInventory().keySet().toArray();
+					var mainArray = pc.getMainWeaponArray();
+					var offArray = pc.getOffhandWeaponArray();
+					var temp = flags.getSavedLong('xys_ringmaker_crystal_legendary');
+					for (var i = 0; i < weaponArray.length; i++) {
+						var weapon = weaponArray[i];
+						if(weapon.getWeaponType().equals(WEAPON_innoxia_crystal_legendary)) {
+							if(weapon.getDamageType().equals(DAMAGE_TYPE_FIRE)) {
+								game.appendToTextEndStringBuilder(pc.addItem(itemGen.generateItem(ITEM_xys_rings_ring_special_fire), false));
+							}
+							else if(weapon.getDamageType().equals(DAMAGE_TYPE_ICE)) {
+								game.appendToTextEndStringBuilder(pc.addItem(itemGen.generateItem(ITEM_xys_rings_ring_special_ice), false));
+							}
+							else if(weapon.getDamageType().equals(DAMAGE_TYPE_POISON)) {
+								game.appendToTextEndStringBuilder(pc.addItem(itemGen.generateItem(ITEM_xys_rings_ring_special_poison), false));
+							}
+							else {
+								game.appendToTextEndStringBuilder(pc.addItem(itemGen.generateItem(ITEM_xys_rings_ring_special_physical), false));
+							};
+							flags.setSavedLong('xys_ringmaker_crystal_legendary', flags.getSavedLong('xys_ringmaker_crystal_legendary') + 1);
+							pc.removeWeapon(weapon);
+							break;
+						};
+					};
+				
+					if(temp == flags.getSavedLong('xys_ringmaker_crystal_legendary')) {
+						for (var i = 0; i < mainArray.length; i++) {
+							var weapon = mainArray[i];
+							if(weapon != null && weapon.getWeaponType().equals(WEAPON_innoxia_crystal_legendary)) {
+								if(weapon.getDamageType().equals(DAMAGE_TYPE_FIRE)) {
+									game.appendToTextEndStringBuilder(pc.addItem(itemGen.generateItem(ITEM_xys_rings_ring_special_fire), false));
+								}
+								else if(weapon.getDamageType().equals(DAMAGE_TYPE_ICE)) {
+									game.appendToTextEndStringBuilder(pc.addItem(itemGen.generateItem(ITEM_xys_rings_ring_special_ice), false));
+								}
+								else if(weapon.getDamageType().equals(DAMAGE_TYPE_POISON)) {
+									game.appendToTextEndStringBuilder(pc.addItem(itemGen.generateItem(ITEM_xys_rings_ring_special_poison), false));
+								}
+								else {
+									game.appendToTextEndStringBuilder(pc.addItem(itemGen.generateItem(ITEM_xys_rings_ring_special_physical), false));
+								};
+								flags.setSavedLong('xys_ringmaker_crystal_legendary', flags.getSavedLong('xys_ringmaker_crystal_legendary') + 1);
+								pc.unequipMainWeaponIntoVoid(i, false);
+								break;
+							};
+						};
+					};
+
+					if(temp == flags.getSavedLong('xys_ringmaker_crystal_legendary')) {
+						for (var i = 0; i < offArray.length; i++) {
+							if(offArray[i] != null && offArray[i].getWeaponType().equals(WEAPON_innoxia_crystal_legendary)) {
+								if(weapon.getDamageType().equals(DAMAGE_TYPE_FIRE)) {
+									game.appendToTextEndStringBuilder(pc.addItem(itemGen.generateItem(ITEM_xys_rings_ring_special_fire), false));
+								}
+								else if(weapon.getDamageType().equals(DAMAGE_TYPE_ICE)) {
+									game.appendToTextEndStringBuilder(pc.addItem(itemGen.generateItem(ITEM_xys_rings_ring_special_ice), false));
+								}
+								else if(weapon.getDamageType().equals(DAMAGE_TYPE_POISON)) {
+									game.appendToTextEndStringBuilder(pc.addItem(itemGen.generateItem(ITEM_xys_rings_ring_special_poison), false));
+								}
+								else {
+									game.appendToTextEndStringBuilder(pc.addItem(itemGen.generateItem(ITEM_xys_rings_ring_special_physical), false));
+								};
+								flags.setSavedLong('xys_ringmaker_crystal_legendary', flags.getSavedLong('xys_ringmaker_crystal_legendary') + 1);
+								pc.unequipOffhandWeaponIntoVoid(i, false);
+								break;
+							};
+						};
+					};
+				]
+			#ENDIF
+			[##flags.setSavedLong('xys_ringmaker_crystal', flags.getSavedLong('xys_ringmaker_crystal') + 1)]
+
+			<p>
+				You wisely remain silent as you pocket the gemstone ring away. Some questions are better left unanswered... 
+			</p>
+
+			#IF(flags.getSavedLong('xys_ringmaker_crystal') == 9) 
+				[##flags.setFlag('xys_ringmaker_quest_complete', true)]
+				[##pc.removeItemByType(ITEM_xys_rings_todo_list, 1, true)]
+			#ENDIF
+		#ELSE
+			<p>
+				You give the crystal to her, but she shakes her head. [ringmaker.speech(Sorry dear, but I already have enough of that crystal. Please give me something new...?)]
+			</p>
+			<p>
+				You can only pocket it back. Looks like you'll have to swap out with a new one...
+			</p>
+		#ENDIF
+	]]>
+    </htmlContent>
+	
+	<!-- BOSS FIGHT -->
+	<htmlContent tag="RINGMAKER_QUEST_COMPLETE"><![CDATA[
+		<p>
+			[ringmaker.speech(Now, with that all set and done... [pc.name], come back tomorrow,)] the old woman unexpectedly says as she looks at you seriously. The playful air around her is gone, replaced with a heavy one. [ringmaker.speech(Be prepared, and get stronger. We'll be fighting. Now shoo, I need to prepare.)]
+		</p>
+		<p>
+			[pc.speech(What? But-)] 
+		</p>
+		<p>
+			Before you can say anything else, you find yourself standing in front of the store once more. No matter how hard you try to open or pound against the door, it won't budge an inch. Seeing that you can do nothing else, you step away from the shop, trying to make sense of her behaviour. Looks like you'll have to come back later to get more answers...
+		</p>
+	]]>
+    </htmlContent>
+
+	<htmlContent tag="RINGMAKER_FIGHT_PRELUDE"><![CDATA[
+		<p>
+			A bell above the door tinkles as you enter, and a warm scent of sandalwood and sage wafted through the air, greeting you like an old friend. The interior is dimly lit, the only illumination coming from a cluster of candles set on various shelves. It was cluttered, yet meticulously organized. 
+			Display cases filled with rings of all shapes and sizes lined the walls, each one a work of art in its own right. Some were delicate, with intricate engravings and sparkling gemstones, while others were thick and heavy, their surfaces etched with cryptic symbols.
+		</p>
+		<p>
+			However, something was amiss: the old ringmaker isn't here. As you look around for her, you hear a low chuckle and the door lock behind you, and you immediately turn around to confront the old ringmaker- but your words die in your throat as you take her in. 
+		</p>
+		<p>
+			Gone was the graying hair and the hunched posture. In her place stood a beautiful woman in her early twenties, with blonde hair and pink highlights in a low ponytail, and familiar strikingly pink eyes. The furry, twitching rabbit ears on her head are enough to identify her as [ringmaker.a_raceFull(true)]. Her cloak is gone, replaced with a tight-fitting crop top that covers her arms. You can't help but notice that she has a massive pair of [ringmaker.cupSize]-cup breasts, which combined with her short stature seems even bigger, her black latex bra straining to contain it all. 
+		</p>
+		<p>
+			Subconsciously trailing your eyes downwards, past her tattooed stomach, you notice an obvious bulge underneath her latex panties, showing that she has many more things to hide. Her long, smooth legs are covered in a pair of knee-length heels, and hanging on her side is a metal chain, with gemstone rings of various sizes hanging on it. Several jewelleries are on her as well, with two of them catching your eyes: the same ring and bracelet as the ones you have. Finally, you see that she's wearing a simple black choker around her neck.
+		</p>
+		<p>
+			[ringmaker.speech(Done checking me out?)] she teases, her voice no longer the raspy tone of an old woman, but seductive and honeyed. Her eyes gleaming with a hint of mischief. [ringmaker.speech(Well, I'm not surprised, I'm pretty hot after all, if I do say so myself~)]
+		</p>
+		<p>
+			You're still reeling from the shock of her transformation. [pc.speech(What's going on? What's all this? Why the disguise?)]
+		</p>
+		<p>
+			[ringmaker.speech(Oh, one at a time, would you?)] She casually waves away your questions, her movements cause significant bouncing of her assets. [ringmaker.speech(For the last question, it's useful to have multiple personas in my line of work. People tend to underestimate an old crone. Also, makes it easier to get what I need without attracting too much attention. As for the first and second... well, that's why you're here now, yes?)] 
+		</p>
+		<p>
+			You tense up, your instincts telling you that something isn't quite right... and not liking where this is going.
+		</p>
+		<p>
+			She smirks devilishly, before with a wave, all of the items in the shop disappears, and the walls seem to stretch further... until you're suddenly in a large, empty arena. You didn't get to look around for long, before a sudden bolt of arcane energy whizzes past your head, making you dodge. [ringmaker.speech(Hey hey, eyes on me~)] she teases, holding out what seems to be a pepperball revolver from nowhere. 
+		</p>
+		<p>
+			[ringmaker.speech(You did me quite the favour in restoring my strength, y'know? And I was thinking, like... how should I repay you in the best way possible. And that got me thinking-)] she pauses to throw another bolt of arcane lightning from her ring, which you narrowly dodge once more. [ringmaker.speech(Y'know how there's secret bosses in games? Like you'll have to do certain stuff to trigger it? <i>I just so happen to fit the criteria!</i>)]
+		</p>
+		<p>
+			[pc.speech(You're insane!)] You manage to yell out, before having to step aside from a barrage of energy.
+		</p>
+		<p>
+			[ringmaker.speech(Hey I'll let you know that I'm not, I'm just thinking about what benefits the both of us! Besides...)] she trails off, slipping on a ring as she walks towards you with a menacing smile. [ringmaker.speech(If I'm right... you're gonna need this training. So!)] 
+		</p>
+		[#ringmaker.useItem(itemGen.generateItem('xys_rings_ring_special_lust'), ringmaker, false)]
+		<p>
+			With her transformation done, she conjures out another gun in a flash of pink light, before twirling them playfully in her hands. [ringmaker.speech(Think fast, darling~♡)]
+		</p>
+	]]>
+    </htmlContent>
+	
+	<htmlContent tag="RINGMAKER_FIGHT_AGAIN"><![CDATA[
+		<p>
+			A feral grin blooms on the [ringmaker.race]'s face as she kicks herself off her chair, before bouncing over to you. [ringmaker.speech(Well well well~ you do know how to tug at my heartstrings, honey~)] she says gleefully. 
+		</p>
+		<p>
+			With a wave of her hand, all the items in the shop disappears, and the walls seem to stretch further... until a familiar arena is formed. You take on a combat stance, while she lazily rolls her neck and shoulders.
+		</p>
+		[#ringmaker.useItem(itemGen.generateItem('xys_rings_ring_special_lust'), ringmaker, false)]
+		<p>
+			[ringmaker.speech(I won't go easy on ya, so don't hold back for me please~)] she teases. With her transformation done, she conjures out her twin guns in a flash of pink light, before twirling them playfully in her hands. [ringmaker.speech(Alright, enough talk. It's go time~♡)] 
+		</p>
+	]]>
+    </htmlContent>
+
+	<htmlContent tag="VICTORY"><![CDATA[
+		#IF(flags.getSavedLong('xys_ringmaker_win_count')>0)
+			<p>
+				The fight is just as tough as you remembered, and it takes all of your concentration to fight. Her attacks are relentless, yet moving with fluid grace. But with your perseverance, you manage to bring her to her knees once more. 
+			</p>
+			<p>
+				Said [ringmaker.race] is panting heavily as well, her clothes all torn up and exposing her [ringmaker.breasts] and [ringmaker.cock+]. [ringmaker.speech(Haa, yes... this is the best...)] she states, her cheeks flush in apparent arousal despite her condition. With a wave of her hand, the damage around the area recedes, the walls shrinking back.. until you're back inside Ysette's shop once more. 
+			</p>
+			<p>
+				She sits on the counter, before she cups one of her [ringmaker.breasts] with a hand, while the other starts stroking her [ringmaker.cock]. [ringmaker.speech(Mmf... nothing better than fucking our brains out with the rush of adrenaline...♡)] she moans, desperately bucking her hips in the air, her [ringmaker.pussy+] drooling all over the counter. [ringmaker.speech(Hhaa... c'mon, claim your reward...♡ That's what you want after every fight, right? C'mon, fuck me...!)]
+			</p>
+			<p>
+				You watch as she masturbates right in front of you with a deep sigh. Looks like you need to calm her down again from this lustful state...
+			</p>
+		#ELSE
+			<p>
+				It is a surprisingly tough fight; you didn't realise that the ringmaker is this strong, and it takes all of your concentration to fight. Her attacks are relentless, yet moving with fluid grace. But with your perseverance, you manage to bring her to her knees. 
+			</p>
+			<p>
+				Said [ringmaker.race] is panting heavily as well, her clothes all torn up and exposing her [ringmaker.breasts] and [ringmaker.cock+]. [ringmaker.speech(W-Well, I see that you're... quite prepared after all...)] she states, her cheeks flush in apparent arousal despite her condition. With a wave of her hand, the damage around the area recedes, the walls shrinking back.. until you're back inside Ysette's shop once more. 
+			</p>
+			<p>
+				She sits on the counter, before she cups one of her [ringmaker.breasts] with a hand, while the other starts stroking her [ringmaker.cock]. [ringmaker.speech(Mmf... aah fuck, the fight makes me so horny...)] she moans, desperately bucking her hips in the air, her [ringmaker.pussy+] drooling all over the counter. [ringmaker.speech(Hhaa... c'mon, claim your reward...♡ That's what you want after every fight, right? Please, I just want someone to fuck me...!)]
+			</p>
+			<p>
+				Utterly incredulous, you watch as she masturbates right in front of you. Looks like you're not getting an answer while she's in this lustful state...
+			</p>
+		#ENDIF
+		[##flags.setSavedLong('xys_ringmaker_win_count', flags.getSavedLong('xys_ringmaker_win_count')+1)]
+	]]>
+    </htmlContent>
+	
+	<htmlContent tag="DEFEAT"><![CDATA[
+		<p>
+			It is a surprisingly tough fight; you didn't realise that the ringmaker is this strong, and it takes all of your concentration to fight. Her attacks are relentless, yet moving with fluid grace. But despite your perseverance, you didn't manage to bring her down. You're left lying on the ground, utterly exhausted. 
+		</p>
+		<p>
+			[ringmaker.speech(Well, that was disappointing... but not expected,)] you hear her say as she approaches, towering over you with a frown. Her clothes are ruffled and torn in places by the fight, yet she doesn't look even slightly winded. [ringmaker.speech(...but I can say that you've fought well.)] 
+		</p>
+		<p>
+			[pc.speech(I didn't know that I'll be fighting you!)] you exclaim, wincing as you sit up. Questions and more questions fill your head. [pc.speech(And why? Why do I have to fight you? What was the point?)]
+		</p>
+		<p>
+			The ringmaker purses her lips. [ringmaker.speech(...I guess I should tell you, as a consolation prize, at the very least.)] With a wave of her hand, the damage around the area recedes, the walls shrinking back.. until you're back inside Ysette's shop once more. 
+		</p>
+		<p>
+			She saunters off towards the counter, her [ringmaker.hips+] swaying mesmerizingly as she moves. You didn't notice that you are staring until she sits back down with a knowing smirk on her face. 
+		</p>
+	]]>
+    </htmlContent>
+
+	<htmlContent tag="DEFEAT_AGAIN"><![CDATA[
+		#IF(flags.getSavedLong('xys_ringmaker_win_count')>0)
+			<p>
+				The fight is just as tough as you remembered, and it takes all of your concentration to fight. Her attacks are relentless, yet moving with fluid grace. However, despite your perseverance, you didn't manage to bring her down this time. You're left lying on the ground, utterly exhausted. 
+			</p>
+			<p>
+				[ringmaker.speech(Hmph, you've been slacking,)] you hear her say as she approaches, towering over you with a frown. Her clothes are ruffled and torn in places by the fight, yet she doesn't look even slightly winded. [ringmaker.speech(Do you just wanna get beaten up by me? Like... if that's what you want, you can just ask, y'know?)] 
+			</p>
+		#ELSE
+			<p>
+				The fight is just as tough as you remembered, and it takes all of your concentration to fight. Her attacks are relentless, yet moving with fluid grace. But despite your perseverance, you didn't manage to bring her down once more. You're left lying on the ground, utterly exhausted. 
+			</p>
+			<p>
+				[ringmaker.speech(Hmm... not bad, not bad,)] you hear her say as she approaches, towering over you with a frown. Her clothes are ruffled and torn in places by the fight, yet she doesn't look even slightly winded. [ringmaker.speech(Could be better though.)] 
+			</p>
+		#ENDIF
+		<p>
+			You don't have the energy to refute, wincing as you sit up. Shrugging to herself and with a wave of her hand, the damage around the area recedes, the walls shrinking back.. until you're back inside Ysette's shop once more. 
+		</p>
+		<p>
+			She saunters off towards the counter, her [ringmaker.hips+] swaying mesmerizingly as she moves. You didn't notice that you are staring until she sits back down with a knowing smirk on her face. 
+		</p>
+	]]>
+    </htmlContent>
+
+	<!-- ALLEYWAYS -->
+	<htmlContent tag="RINGMAKER_ALLEYWAYS"><![CDATA[
+		<p>
+			You find yourself walking down yet another narrow passage, lined by a series of inset doorways. As you're passing one such recess, you hear the unmistakeable sounds of moaning, and the impacts of flesh against flesh. 
+		</p>
+		<p>
+			The noises get louder the closer you get, and turning another corner, you're greeted with the sight of a certain [ringmaker.raceFull(true)] hammering her [ringmaker.hips+] into someone against the wall. 
+			#IF(getFucked.isRelatedTo(pc))
+				On closer inspection, you realise it's [getFucked.name], your [getFucked.relation(pc)]. 
+			#ELSEIF(getFucked.getHistory()==OCCUPATION_NPC_PROSTITUTE)
+				On closer inspection, you realise it's [getFucked.name], [getFucked.a_raceFull(true)] that's whoring [getFucked.herself] out nearby. 
+			#ELSEIF(getFucked.hasEncounteredBefore() && getFucked.getAffectionLevel(pc).isLessThan(AFFECTION_POSITIVE_ONE_FRIENDLY))
+				On closer inspection, you recognise it's [getFucked.a_raceFull(true)] that's prowling around this area. 
+			#ELSE
+				On closer inspection, she is having sex with someone you don't know, [getFucked.a_raceFull(true)] to be exact. 
+			#ENDIF
+		</p>
+		<p>
+			Hearing footsteps, [ringmaker.name] turns to face you, a look of surprise on her face. [ringmaker.speech(Oh [pc.name], fancy ~Mmh!~ meeting you here! I'm currently in the middle of ~Aah!~ something right now,)] she manages to groan out without pausing her movements, not caring if she's having sex in front of you. 
+		</p>
+		<p>
+			You nod dumbly, but before you can say anything else she cuts you off. [ringmaker.speech(You know, I was ~Aah!~ thinking, that the three of us could ~Mmh!~ have some fun together,)] she teases, turning [getFucked.name] to face you as she rolls her hips, earning [getFucked.a_moan] from [getFucked.herHim]. [ringmaker.speech(You want to show [pc.name] and I what a horny little sub you are, don't you my [getFucked.race]?)]
+		</p>
+		#IF(getFucked.isAttractedTo(pc) || game.getCurrentWeather().equals(WEATHER_MAGIC_STORM))
+			<p>
+				[getFucked.speech(~Aah!~ Yes, [ringmaker.name],)] [getFucked.she] replies, before submissively leaning back as [getFucked.she] [getFucked.verb(offer)] [getFucked.herself] to you. [getFucked.speech(How would you like to ~Aah!~ use me?)]
+			</p>
+			<p>
+				With the way [getFucked.she] [getFucked.verb(gaze)] you hungrily, you can tell that he really wants to have sex with you. 
+			</p>
+		#ELSE
+			<p>
+				[getFucked.speech(~Aah!~ No, please!)] [getFucked.she] [getFucked.verb(whimper)], before being made to lean back as [getFucked.sheIs] forced to offer [getFucked.herself] to you. [getFucked.speech(Please ~Aah!~ don't fuck me!)]
+			</p>
+		#ENDIF
+	]]>
+	</htmlContent>
+
+	<!-- EXTRA EVENTS -->
+	<htmlContent tag="update_event"><![CDATA[
+		[##
+			pc.unequipMove('xys_magical_girl'); pc.unequipMove('xys_magical_girl_offhand'); pc.unequipMove('xys_change');
+			for (var i = 0; i < pc.getArmRows(); i++) {
+				if(pc.getMainWeapon(i) != null && pc.getMainWeapon(i).getWeaponType().equals(WEAPON_xys_rings_ring_special)) {
+					pc.unequipMainWeapon(i, false, false);
+				};
+				if(pc.getOffhandWeapon(i) != null && pc.getOffhandWeapon(i).getWeaponType().equals(WEAPON_xys_rings_ring_special)) {
+					pc.unequipOffhandWeapon(i, false, false);
+				};
+			};
+			var val = pc.getWeaponCount(itemGen.generateWeapon(WEAPON_xys_rings_ring_special, DAMAGE_TYPE_PHYSICAL))
+					+ pc.getWeaponCount(itemGen.generateWeapon(WEAPON_xys_rings_ring_special, DAMAGE_TYPE_FIRE))
+					+ pc.getWeaponCount(itemGen.generateWeapon(WEAPON_xys_rings_ring_special, DAMAGE_TYPE_ICE))
+					+ pc.getWeaponCount(itemGen.generateWeapon(WEAPON_xys_rings_ring_special, DAMAGE_TYPE_POISON))
+					+ pc.getWeaponCount(itemGen.generateWeapon(WEAPON_xys_rings_ring_special, DAMAGE_TYPE_LUST));
+		]
+		<p>
+			The world suddenly seems to shift out of focus, the surroundings becoming washed out and greyscaled. You try to move, but find yourself unable to. Even your eyelids refuse to move. 
+		</p>
+		<p>
+			From the corners of your eyes, you find [#(ringmaker.isPlayerKnowsName()?'Ysette':'a certain ringmaker')] walking towards you, her steps loud and echoing in this silent realm. 
+			Stopping right in front of you, she gazes you with glowing ominous eyes. She reaches out her hands... and the 'Special' [#((val>1)?'rings':'ring')] in your inventory [#((val>1)?'are':'is')] taken away from you. 
+		</p>
+		<p>
+			<b>[ringmaker.speech(Sorry about all this fuss, but I've made changes to the rings,)]</b> [ringmaker.name] bleps cheekily. 
+			She closes her hands, light pouring from the gaps between her fingers, before reopening them. There's no visual changes... but you can feel that it's <i>different</i>. 
+		</p>
+		[##var inv = pc.getInventory().getAllWeaponsInInventory().keySet().toArray(); var nums = pc.getInventory().getAllWeaponsInInventory().values().toArray();
+			for (var i = 0; i < inv.length; i++) {
+				var ringWeapon = inv[i];
+				var num = nums[i];
+				if(ringWeapon.getWeaponType().equals(WEAPON_xys_rings_ring_special)) {
+					if(ringWeapon.getDamageType().equals(DAMAGE_TYPE_PHYSICAL)) {
+						pc.addItem(itemGen.generateItem('xys_rings_ring_special_physical'), num, false, true);
+					}
+					else if(ringWeapon.getDamageType().equals(DAMAGE_TYPE_FIRE)) {
+						pc.addItem(itemGen.generateItem('xys_rings_ring_special_fire'), num, false, true);
+					}
+					else if(ringWeapon.getDamageType().equals(DAMAGE_TYPE_ICE)) {
+						pc.addItem(itemGen.generateItem('xys_rings_ring_special_ice'), num, false, true);
+					}
+					else if(ringWeapon.getDamageType().equals(DAMAGE_TYPE_POISON)) {
+						pc.addItem(itemGen.generateItem('xys_rings_ring_special_poison'), num, false, true);
+					}
+					else if(ringWeapon.getDamageType().equals(DAMAGE_TYPE_LUST)) {
+						pc.addItem(itemGen.generateItem('xys_rings_ring_special_lust'), num, false, true);
+					};
+					pc.removeWeapon(ringWeapon, num);
+				};
+			};
+		]
+		<p>
+			The [#((val>1)?'rings vanish':'ring vanishes')] in an instant, and you instinctively know that it's deposited back into your inventory. 
+			<b>[ringmaker.speech(Oh right, had to do changes to the remaining ones...)]</b> she mutters, before she claps her hands. 
+		</p>
+		<p>
+			<b>[ringmaker.speech(Aight, that is all~ Happy playing~)]</b> the eccentric ringmaker waves, before disappearing. In an instant, the world unpauses. You stumble a bit from the sudden continuity, before shaking your head to reorient yourself. 
+		</p>
+	]]>
+    </htmlContent>
+</dialogue>

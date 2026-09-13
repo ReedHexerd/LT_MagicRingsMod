@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dialogue>
+	<!-- INTRO -->
+	<htmlContent tag="INTRO_DANCEFLOOR"><![CDATA[
+		<p>
+			The middle of the club is taken up by a large dance floor, which is currently occupied by a huge crowd of revellers. It's from here that the bassy background music originates, and, looking up towards the ceiling, you see a series of arcane-powered loudspeakers, which are clearly responsible for blaring out the generic club music.
+		</p>
+		<p>
+			Suddenly, the lights go out. A thick mist rolls in, swirling around dance floor, while a screen begins lowering down from the ceiling, displaying a countdown. Instead of people panicking around you, they seem to get... excited? They're even taking out what seems to be glow sticks. 
+		</p>
+		<p>
+			[beaten1.speech(Oh, is she here?!)] [beaten2.speech(Woah, what's happening?)] [beaten3.speech(SHE'S HERE SHE'S HERE SHE'S HERE-)]
+		</p>
+		<p>
+			The numbers tick down from ten, and the crowd joins in, their voices growing louder with each passing second. "FIVE! FOUR! <i>THREE! TWO! <b>ONE!</b></i>"
+		</p>
+		<p>
+			With a deafening roar, the dance floor explodes in a burst of light and sound! A dazzling array of lasers shoots across the nightclub, while the beat of the opening track thunders through the speakers, shaking the very foundation of the building.
+		</p>
+		<p>
+			The screen now shows a silhouette, slowly descending from the ceiling on a floating platform adorned with shimmering lights. The figure's presence is electrifying, even before she reveals herself. The music builds, the bassline pulsating with energy as the silhouette draws nearer.
+		</p>
+		<p>
+			Finally, the platform touches down, and the stage lights up to reveal the idol in all her glory. Dressed in a sparkling[#(flags.hasFlag('xys_playerHasTransformed'))?', and rather familiar, ':' ']outfit that catches every beam of light, she strikes a pose, her face breaking into a confident smile. The crowd erupts, the sound of their cheers blending with the music to create a symphony of excitement.
+		</p>
+		<p>
+			[idol.speech(Hello everyone, and welcome back! Tonight, we're going to make memories that'll last forever! Let's make this a night we'll never forget! Are you <b>READY!?</b>)] she shouts, her voice clear and powerful as it echoes through the nightclub. The audience responds with a unified scream, their enthusiasm palpable. 
+		</p>
+		<p>
+			With a wink and a playful laugh, she takes center stage, raising her microphone high. The beat drops, and the idol launches into her opening number, her voice soaring above the music. The stage erupts into a spectacle of light and movement, with dancers flanking her on either side. Every move is precise, every note pitch-perfect as she captivates the audience, drawing them deeper into her world. 
+		</p>
+		<p style='text-align:center;'>
+			[idol.speech(
+				<i>
+					Fusagu me ni ochiru keshiki no you ni
+					<br/>
+					Kasumu watashi wa dare no mono demo nai no
+					<br/>
+					BUY ME
+					<br/>
+					SO FEELING
+					<br/>
+					Karakawanaide
+					<br/>
+					Watashi dake ni misete
+					<br/>
+					Ibitsu na yoru o douzo
+				</i>
+			)]
+		</p>
+		<p>
+			The energy in the arena reaches a fever pitch, with the crowd dancing, singing, and waving their glow sticks in perfect harmony. The idol commands the stage, her presence larger than life as she leads her fans through an unforgettable opening show. Swept up by the excited energy in the air, you move along with the crowd, wildly cheering for the idol.
+		</p>
+		<p>
+			And as the first song reaches its climax, she strikes another powerful pose, letting the final note hang in the air. The audience goes crazy, the sound of their applause shaking the entire foundation of the building! 
+		</p>
+		<p>
+			[idol.speech(Thank you, thank you everyone!)] she waves cheerfully at the excited fans. [idol.speech(There will be more coming up, so don't just leave yet! The night's still young, after all!)] 
+		</p>
+		<p>
+			With that she steps off the stage, 
+			#IF(flags.hasFlag('xys_idol_intro_alleyways'))
+				her eyes roaming around before landing on you, a look of surprise and recognition appearing on her face, 
+			#ELSE
+				her eyes briefly landed on you, 
+			#ENDIF
+			before mingling with the audience. Excitmement still lingering in the air, you turn to the person next to you, a [beaten1.raceFull(true)] with glowing runes painted on [beaten1.her] cheeks and a wide, knowing smile on [beaten1.her] face.
+		</p>
+		<p>
+			[beaten1.speech(Oh, you must be new! That was just the beginning, the grand entrance of our idol, [idol.name]! She appeared quite recently, but she has been making a name for herself in the redlight district for her songs!)] the [beaten1.race] says, [beaten1.her] eyes sparkling with enthusiasm. [beaten1.speech(Trust me, by the end of the night, you'll be completely enchanted!)]
+		</p>
+	]]>
+	</htmlContent>
+
+	<!-- IDOL -->
+	<htmlContent tag="IDOL_BACKGROUND"><![CDATA[
+		<p>
+			You can see [idol.name] singing her heart out for her fans, dancing to the nightclub's music with a bright smile on her face. 
+		</p>
+		#IF(idol.getAffection(pc) >= 40)
+			<p>
+				As if sensing you gaze, she turns to look at you. Her smile seems to get even sweeter as she gives you a small wave, before turning back towards the crowd with more vigor than before. 
+			</p>
+		#ELSEIF(idol.getAffection(pc) < 40 && idol.getAffection(pc) > -40)
+			#IF(flags.hasFlag('xys_idol_intro_alleyways'))
+				<p>
+					As if sensing you gaze, she turns to look at you. A look of familiarity appears on the face, before turning back towards the crowd, not quite done with her performance just yet. 
+				</p>
+			#ELSE
+				<p>
+					Her gaze briefly meets yours, before turning back towards the crowd, not quite done with her performance just yet. 
+				</p>
+			#ENDIF
+		#ELSE
+			<p>
+				As if sensing you gaze, she turns to look at you. Her smile seems to dim slightly, before turning back towards the crowd without so much as acknowledging your existence. 
+			</p>
+		#ENDIF
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="IDOL_PERFORMANCE"><![CDATA[
+		<p>
+			You wave towards [idol.name], catching her gaze, before gesturing that you'd like to join in on her performance. 
+		</p>
+		#IF(!flags.hasFlag('xys_idol_dance_first_performance'))
+			[##flags.setFlag('xys_idol_dance_first_performance', true)]
+			#IF(pc.hasStatusEffect(SE_xys_set_magical_girl))
+				<p>
+					She is quite shocked to see you, not expecting someone to have the same outfit as hers to be in the crowd. Shaking herself out of her stupor, she gives a silent signal to someone unseen, before with a fluorish, she points at you, the lights following her target!
+				</p>
+			#ELSE
+				<p>
+					She is quite intrigued to see you, not expecting someone to have a similar outfit as hers to be in the crowd. Shaking herself out of her stupor, she gives a silent signal to someone unseen, before with a fluorish, she points at you, the lights following her target!
+				</p>
+			#ENDIF
+			<p>
+				[idol.speech(You, I see that you're quite the fan of mine! What's your name?)]
+			</p>
+			<p>
+				Now suddenly put in the spotlight, figuratively and literally, you answer back. [pc.speech([pc.Name]! I would like to have a dance with you!)]
+			</p>
+			<p>
+				[beaten3.speech(A new challenger approaches?!)] [beaten1.speech(UWOOOOOH LET'S FUCKING GOOOOO!)] [beaten2.speech(Where do these people keep popping up...?)]
+			</p>
+		#ELSEIF(idol.getAffection(pc) >= 40)
+			<p>
+				She nods enthusiatically, gesturing you to come over while hyping up the crowd. [idol.speech(Ladies and gentlemen, please welcome our beloved co-star of tonight, [#pc.getName().toUpperCase()]!)]
+			</p>
+		#ELSEIF(idol.getAffection(pc) < 40 && idol.getAffection(pc) > -40)
+			<p>
+				She hums in thought for a while... before she nods, gesturing you to come over while hyping up the crowd. [idol.speech(Ladies and gentlemen, please welcome our beloved co-star of tonight, [#pc.getName().toUpperCase()]!)]
+			</p>
+		#ELSE
+			<p>
+				She sighs, a frown briefly appearing on her face before returning back to her smile. [idol.speech(Ladies and gentlemen, please welcome our beloved co-star of tonight, [#pc.getName().toUpperCase()]!)]
+			</p>
+		#ENDIF
+		<p>
+			The audience goes wild as you step forward to the stage, the nightclub instantly abuzz with excitement and wonder! [#(pc.isShy()?'Giving everyone a shy little wave,':'Giving everyone a polite wave,')] you start to sing and dance with the idol. 
+		</p>
+		<p>
+			#IF(flags.getSavedLong('idol_performance_count') > 10)
+				[style.italicsGood(Now used to the routine, you can perfectly keep up with [idol.namePos] pace, making the crowd go crazy with excitement from the performance!)]  
+				[##flags.setSavedLong('idol_performance_multiplier', 5)]
+			#ELSEIF(pc.getOccupation() == OCCUPATION_ATHLETE || pc.hasTraitActivated(PERK_MARTIAL_ARTIST) || pc.getAttributeValue(ATTRIBUTE_MAJOR_PHYSIQUE) >= 30.0)
+				[style.italicsMinorGood(Despite not being used to singing, you make up for it with your dancing, easily moving along [idol.namePos] pace, bringing cheers and applause from the crowd!)] 
+				[##flags.setSavedLong('idol_performance_multiplier', 2)]
+			#ELSEIF(pc.getOccupation() == OCCUPATION_MUSICIAN)
+				[style.italicsMinorGood(Despite not being used to dancing, you make up for it with your singing, providing beautiful vocals in tune with [idol.namePos], bringing cheers and applause from the crowd!)]
+				[##flags.setSavedLong('idol_performance_multiplier', 2)]
+			#ELSEIF(flags.getSavedLong('idol_performance_count') > 5)
+				[style.italicsMinorBad(Still not too familiar with the routine, you messes up the first few steps of the dance, making the audience laugh.)] But after that embarrassing moment, your steps become much smoother than before, able to somewhat keep up with [idol.namePos] pace.
+				[##flags.setSavedLong('idol_performance_multiplier', 1)]
+			#ELSE
+				[style.italicsBad(As you are an absolute newbie at being on stage, you are completely out of tune with [idol.name], making the audience holler with laughter!)] You step away from the stage after just a few minutes on stage, utterly embarrassed with your own performance. 
+				[##flags.setSavedLong('idol_performance_multiplier', 0)]
+			#ENDIF
+		</p>
+		[#pc.incrementMoney(100 + (200 * flags.getSavedLong('idol_performance_multiplier')) + RND.nextInt(101))]
+		[#idol.incrementAffection(pc, 10)]
+		#IF(game.getHourOfDay() + 1 == 24)
+			[##flags.setSavedLong('temp', 1)]
+			<p>
+				As you continue to dance into the night, you briefly see [idol.name] from the corners of your eye, moving away from the crowd and slipping into the backroom. 
+			</p>
+			#IF(pc.hasTraitActivated(PERK_OBSERVANT))
+				<p>
+					It would be none of your concern, had you not also noticed that she's pretty flushed in the face and shaking slightly. 
+					#IF(flags.hasFlag('xys_idol_identity_discovered'))
+						Remembering what happened last time, you can guess that she's going towards the back alley to "relieve" herself. You ponder if you should follow her... 
+					#ELSE
+						Perhaps she needs to rest a bit before continue with her performance. 
+					#ENDIF
+				</p>
+			#ELSE
+				<p>
+					Since it's none of your concern, you continue to dance and mingle with the other clubbers, but you secretly wonder when she'll be back. 
+				</p>
+			#ENDIF
+		#ENDIF
+	]]>
+	</htmlContent>
+
+	<!-- BACK ALLEY -->
+	<htmlContent tag="IDOL_BACK_ALLEY"><![CDATA[
+		[##idol.setLust(100)]
+		<p>
+			You find yourself at the alleyway behind the Watering Hole, the nightclub's music still blaring loudly behind you. You look around for a bit, before you hear someone moaning from behind a corner. 
+		</p>
+		<p>
+			You walk towards the idol, hearing heavy breathing along with suspiciously wet noises the closer you get to her. As you round the corner, you find yourself looking down on [idol.namePos] bewildered face, her fingers stuck mid-way through her [idol.pussy+]. 
+		</p>
+		#IF(flags.hasFlag('xys_idol_identity_discovered'))
+			<p>
+				Seeing that it's you, [idol.name] just continues her masturbation, making pitiful little whining noises as she squirms on the floor. [idol.speech(Please ~Aah!~ help...!)] she [idol.moans], bucking her [idol.hips+] against her [idol.hand] as she fingers her [idol.pussy+]. 
+			</p>
+		#ELSE
+			[##flags.setFlag('xys_idol_identity_discovered', true)]
+			<p>
+				[idol.speech(W-Who's there?!)] she exclaims while trying to stand up, but falls back on her knees. 
+					Desperately whimpering and biting her [idol.lip], she reaches down and continues her masturbation, making pitiful little whining noises as she squirms on the floor. [idol.speech(Stupid... side ~Aah!~ effect...!)] she [idol.moans], bucking her [idol.hips+] against her [idol.hand]. 
+			</p>
+		#ENDIF
+		<p>
+			Seeing her pitiful state, you're unsure whether you should help her with her "situation" again, or just leave her be. You ponder on your choices, before deciding to... 
+		</p>
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="IDOL_BACK_ALLEY_OFFER_THREESOME"><![CDATA[
+		<p>
+			Wanting to help with [idol.namePos] predicament, you decide to do the only other thing you can think of, and flash a seductive smile at [idol.name]. [pc.speech(You know, maybe [com.name] and I can help you...)]
+		</p>
+		<p>
+			#IF(com.isAttractedTo(idol) || !game.isNonConEnabled())
+				[com.speech(That's right,)] [com.name] teases. [com.speech(We can satisfy your desires...)]
+			#ELSE
+				[com.speech([pc.Name]!)] [com.name] interjects. [com.speech(I-I really don't want to do this!)]
+			#ENDIF
+		</p>
+		<p>
+			Looking at the two of you with a hungry look, she shakily stands back up before stepping forwards and placing [idol.a_hand] on each of your waists. With a hungry growl, she dominantly pulls the two of you up against her, before leaning in to give you a passionate kiss. 
+		</p>
+		<p>
+			As you press yourself up against [idol.name], she suddenly breaks off the kiss, before turning to [com.name] and giving [com.herHim] a taste of her [idol.lips].
+			#IF(com.isAttractedTo(idol) || !game.isNonConEnabled())
+				[com.Name] lets out a delighted [com.moan], before eagerly returning the kiss and [com.moaning], [com.speech(~Mmm!~ Yes!)]
+			#ELSE
+				[com.Name] lets out a flustered yelp, before pushing [idol.name] away from [com.herHim] and shouting, [com.speech(G-Get away from me!)]
+			#ENDIF
+		</p>
+		<p>
+			Before either of you can make another move, [idol.name] suddenly reaches up to grab you both by the shoulders, and with a determined push, forces the two of you down onto all fours. Dropping down behind you, [idol.name] growls, [idol.speech(You dirty sluts! I'll put the two of you in your place!)]
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="IDOL_BACK_ALLEY_OFFER_COMPANION"><![CDATA[
+		<p>
+			Wanting to help with [idol.namePos] predicament, you decide to do the only other thing you can think of. Turning towards [com.name], you step towards [com.herHim], and in a low tone, you ask, [pc.speech(You'll take one for the team, won't you, [com.name]? She seems to be suffering pretty badly. All you need to do is let her fuck you...)]
+		</p>
+		<p>
+			#IF(com.isAttractedTo(idol) || !game.isNonConEnabled())
+				[com.speech(Sure thing, [pc.name],)] [com.name] replies. [com.speech(If that's really what you want me to do...)]
+			#ELSE
+				[com.speech([pc.Name]! W-What the hell?!)] [com.name] replies in alarm. [com.speech(I-I really don't want to do that!)]
+			#ENDIF
+		</p>
+		<p>
+			[idol.speech(What are you ~Mmh!~ two muttering about?!)] [idol.name] calls out, stopping her masturbation and standing back up, looking at the two of you with a hungry look. 
+		</p>
+		<p>
+			#IF(com.isAttractedTo(idol) || !game.isNonConEnabled())
+				[com.speech(We were just deciding who's going to be the lucky one you get to fuck!)] [com.name] replies, turning around and stepping up to [idol.name]. [com.speech(And it turns out it's me!)]
+			#ELSE
+				[pc.speech(We were just deciding who's going to be the lucky one you get to fuck!)] you reply, spinning [com.name] around and pushing [com.herHim] towards [idol.name]. [pc.speech(And it turns out it's [com.name]!)]
+			#ENDIF
+		</p>
+		<p>
+			Before either of you can make another move, [idol.name] lets out a hungry [idol.moan], before reaching up to grab [com.namePos] [com.arm]. With a dominant pull, she forces [com.name] into her embrace, before planting a passionate kiss on [com.her] [com.lips]. After a moment, she breaks away, before growling, [idol.speech(You're going to be a good [com.girl] now, aren't you bitch? Your little friend over there can watch me fuck you senseless!)]
+		</p>
+		<p>
+			You let out a sigh of relief, happy that you don;t have to fuck [idol.name]. Leaning back against a nearby wall, you decide to keep watch for any other aggressors while [idol.name] has her fun with your companion...
+		</p>
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="IDOL_BACK_ALLEY_NO_HELP"><![CDATA[
+		<p>
+			You think that it's too much of a hassle to help [idol.name], and decide to turn around and leave her by herself. 
+		</p>
+		<p>
+			[idol.speech(~Aah!~ N-No, wait...!)] She reaches out to you, but drops her arm to continue her desperate masturbation on the floor. 
+		</p>
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="IDOL_BACK_ALLEY_PASSBY"><![CDATA[
+		<p>
+			You find yourself at the alleyway behind the Watering Hole, the nightclub's music still blaring loudly behind you. You look around for a bit, before catching a glimpse of a blue skirt peeking out from a corner. 
+		</p>
+		<p>
+			You walk towards [idol.name], hearing heavy breathing the closer you get to her. Your footsteps should have alerted her of your presence, yet she does nothing about it. 
+		</p>
+		<p>
+			When you reach her, [idol.Name] glances up at you for a moment, desperately whimpering and biting her [idol.lip] while in the middle of stroking herself, making pitiful little whining noises as she squirms on the floor. [idol.speech(Please ~Aah!~ help...!)] she [idol.moans], bucking her [idol.hips+] against her [idol.hand] as she continues touching herself. 
+		</p>
+		<p>
+			Seeing her pitiful state, you're unsure whether you should help her with her "situation", or just leave her be. You ponder on your choices, before deciding to... 
+		</p>
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="IDOL_BACK_ALLEY_AFTER_SEX"><![CDATA[
+		<p>
+			As you step back from [idol.name], she sinks to the floor, totally worn out from her orgasm. Despite that you gave her exactly what she wanted, she lets out a embarrassed huff, turning her face away. 
+		</p>
+		<p>
+			Getting your things in order, you [pc.step] forwards and smirk down at the panting [idol.race]. She flips you off when she sees your smug look, before shakily stands back up and picking up her bat that's lying nearby. 
+		</p>
+		#IF(flags.hasFlag('xys_idol_isGirlFriend'))
+			<p>
+				[idol.speech(Haa... right, thanks for helping me with that,)] [idol.name] says, before hugging around your neck and kisses your cheek. [idol.speech(Well, I guess I'll see you back in the club. Join in if you want!)]
+			</p>
+		#ELSE
+			<p>
+				[idol.speech(Haa... right, thanks for helping me with... that,)] [idol.name] awkwardly says, shouldering her bat once more. [idol.speech(Well, I guess I'll see you back in the club...)]
+			</p>
+		#ENDIF
+		<p>
+			With that, she walks back into the Watering Hole with a slight limp, leaving you alone. 
+		</p>
+		[#idol.incrementAffection(pc, 10)]
+	]]>
+	</htmlContent>
+
+	<htmlContent tag="IDOL_BACK_ALLEY_AFTER_SEX_COMPANION"><![CDATA[
+		<p>
+			As [idol.name] steps back and sorts her clothes out, [com.name] sink to the floor, totally worn out from her dominant treatment of [com.herHim]. She looks down at [com.herHim], and you see a very satisfied smile cross her face. She leans down and pats [com.herHim] on the head. [idol.speech(Thanks for helping me with that, we should do this again some time, [com.name]!)]
+		</p>
+		<p>
+			With that, she walks back into the Watering Hole, leaving [com.her] panting on the ground. It takes a little while for [com.herHim] to recover from your ordeal, but eventually [com.she] [com.verb(feel)] strong enough to get back up again. 
+		</p>
+		<p>
+			[pc.speech(Hey, are you alright?)] you ask. 
+		</p>
+		#IF(com.isAttractedTo(idol) || !game.isNonConEnabled())
+			<p>
+				[com.speech(Yeah, I'm okay, [pc.name]...)] [com.name] replies, a satisfied smile on [com.her] own face. [com.speech(Shall we keep going?)]
+			</p>
+			<p>
+				You nod, getting your things in order before carrying your way. 
+			</p>
+		#ELSE
+			<p>
+				[com.speech([pc.Name], w-why?)] [com.name] [com.sobs], looking at you in betrayal. [com.speech(I-I feel so... so...!)]
+			</p>
+			<p>
+				You give her a look of apology, which seems to infuriate [com.her] more. You get your things in order before carrying your way, the journey now becoming much more awkward...
+			</p>
+		#ENDIF
+	]]>
+	</htmlContent>
+	
+	<!-- BETRAYAL -->
+	<htmlContent tag="HELL_HATH_NO_FURY"><![CDATA[
+		[##
+			var loader = COLOUR_COVERING_RED.getClass().getClassLoader();
+			var MainClass = loader.loadClass("com.lilithsthrone.main.Main");
+			var mainController = MainClass.getDeclaredField("mainController").get(null);
+			var engine = mainController.getWebEngine();
+			var webView = mainController.getWebViewMain();
+			
+			function vibration(strength, duration, cycles, ogCycles) {
+				var tt = loader.loadClass("javafx.animation.TranslateTransition").getConstructor().newInstance();
+				tt.setNode(webView);
+				
+				var mult = (0.001 + 1.0 * cycles)/(0.001 + 1.0 * ogCycles);
+				tt.setFromX(-15.0 + RND.nextInt(30));
+				tt.setFromY(-15.0 + RND.nextInt(30));
+				if (cycles == ogCycles) {
+					tt.setFromX(0);
+					tt.setFromY(0);
+				}
+
+				tt.setByX(-strength * mult + 2 * strength * mult * RND.nextDouble());
+				tt.setByY(-strength * mult + 2 * strength * mult * RND.nextDouble());
+
+				tt.setCycleCount(1);
+				tt.setDuration(tt.getDuration().multiply(duration / (0.25 + 0.75 * mult)));
+				tt.setAutoReverse(true);
+				if(cycles > 1) {
+					tt.setOnFinished(function (event) {
+						vibration(strength, duration, cycles - 1, ogCycles);
+					});
+				} else {
+					tt.setOnFinished(function(event) {
+						var resetTT = loader.loadClass("javafx.animation.TranslateTransition").getConstructor().newInstance();
+						resetTT.setNode(webView);
+						resetTT.setFromX(webView.getTranslateX());
+						resetTT.setFromY(webView.getTranslateY());
+						resetTT.setToX(0);
+						resetTT.setToY(0);
+						resetTT.setDuration(tt.getDuration().multiply(0.25));
+						resetTT.setCycleCount(1);
+						resetTT.play();
+					});
+				}
+				tt.play();
+			};
+		]
+		#IF(flags.getSavedLong('idol_fury_count') == 0)
+			<p>
+				Having had enough of this joke of a friendship between you and [idol.name], you step forwards and sneer, [pc.speech(You know, I never really expected much of you, being the worthless trash that you are, yet somehow I'm still disappointed by how pathetic you are.)]
+			</p>
+			<p>
+				#IF(pc.hasFetish(FETISH_SADIST))
+					You see her relaxed expresion turns cold as you deliver the crushing insult, and, feeling particularly sadistic today, you continue, [pc.speech(Aww, what's the matter? Going to cry? You disgust me. To think that the citizens of Dominion put up with the likes of you skulking around in their city. All you're really good for is being a slave. At least then someone could make use of you as a cock-sleeve.)]
+				#ELSE
+					You see her relaxed expresion turns cold as you deliver the crushing insult, and you continue, [pc.speech(Knock it off. You don't get to play the victim here, having attacked and mugged countless innocent people!)]
+				#ENDIF
+			</p>
+			<p>
+				[idol.speech(...)] she is surprisingly calm from being betrayed by the only friend [idol.she] ever had. [idol.speech(...do you really mean what you said?)]
+			</p>
+			<p>
+				[pc.speech(Of course I do!)] you say, grinning at [idol.name] as you prepare to attack her.
+			</p>
+			<p>
+				[idol.speech(I see.)] 
+			</p>
+			<p>
+				In an instant, you're engulfed in a fiery explosion! Yelping by the sudden flames, you roll around the floor, trying to snuff out the fires. But no matter what you do, it keeps clinging onto you stubbornly! Your powerful arcane aura is protecting you from most of the damage, so you don't get burned, but it still hurts pretty badly. 
+			</p>
+			<p>
+				You see her walking towards you from the corners of your [pc.eyes], before standing above you, her feet in your view. Then you're suddenly sent flying into the air by her kick, spending a graceful few minutes in the air... before dropping back down harshly on the floor. 
+			</p>
+			<p>
+				Letting out a grunt of pain, you try to stand back up, but [idol.name] sits in your lap, before she rears back for a punch. 
+			</p>
+		#ELSEIF(flags.getSavedLong('idol_fury_count') == 1)
+			<p>
+				<i>Punch!</i> [idol.speech(YOU FUCKING PIECE OF SHIT!)] 
+			</p>
+			[##pc.incrementHealth(-pc.getHealth() / 4)]
+		#ELSEIF(flags.getSavedLong('idol_fury_count') == 2)
+			<p>
+				<i>Punch!</i> [idol.speech(I put my trust in you, and <i>this is what I get?!</i>)] <i>Punch!</i> [idol.speech(You <i>HEARTLESS JERK!</i>)]
+			</p>
+			[##pc.incrementHealth(-pc.getHealth() / 4)]
+		#ELSEIF(flags.getSavedLong('idol_fury_count') == 3)
+			<p>
+				<i>Punch!</i> [idol.speech(DON'T YOU KNOW?!)]
+			</p>
+			[##vibration(10, 0.1, 12, 12)]
+			[##pc.incrementHealth(-pc.getHealth() / 4)]
+		#ELSEIF(flags.getSavedLong('idol_fury_count') == 4)
+			<p style='text-align:center; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);'>
+				<b>[pc.speech(That YOUR ACTIONS!)]</b>
+			</p>
+			[##vibration(20, 0.1, 12, 12)]
+			[##pc.incrementHealth(-pc.getHealth() / 2)]
+		#ELSEIF(flags.getSavedLong('idol_fury_count') == 5)
+			<p style='font-size: 50px; text-align:center; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);'>
+				<b>[pc.speech(HAVE!)]</b>
+			</p>
+			[##vibration(20, 0.1, 12, 12)]
+			[##pc.incrementHealth(-pc.getHealth() / 2)]
+		#ELSEIF(flags.getSavedLong('idol_fury_count') == 6)
+			<p style='font-size: 100px; text-align:center; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);'>
+				<b>[pc.speech(CONSEQUENCES!?)]</b>
+			</p>
+			[##vibration(20, 0.1, 20, 20)]
+			[##pc.incrementHealth(-pc.getHealth() / 2)]
+		#ELSE
+			<p>
+				With a final punch in the face for good measure, she lets you drop on the ground like a sack of potatoes. She stands back up, looking at you with eyes filled with hatred and grief, before she turns around and leaves without a word. 
+			</p>
+			[##vibration(10, 0.1, 12, 12)]
+			[##pc.setHealth(1)]
+		#ENDIF
+	]]>
+	</htmlContent>
+	
+	<htmlContent tag="HELL_HATH_NO_FURY_END"><![CDATA[
+		<p>
+			You shakily stands back up, almost collapsing from how disoriented you are. Shaking your head, you wonder why you say all those hurtful words to her. But it's too late to apologize... [style.italicsBad(you don't think you'll see her anytime soon...)]
+		</p>
+	]]>
+	</htmlContent>
+	
+</dialogue>
