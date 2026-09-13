@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<encounterRoot>
+	
+	<additionalPlaceTypeTriggers>
+		<placeType>DOMINION_PLAZA</placeType>
+		<placeType>DOMINION_STREET</placeType>
+		<placeType>DOMINION_BOULEVARD</placeType>
+		<placeType>DOMINION_SHOPPING_ARCADE</placeType>
+		<placeType>DOMINION_AUNTS_HOME</placeType>
+		<placeType>DOMINION_PARK</placeType>
+		<placeType>DOMINION_BACK_ALLEYS_SAFE</placeType>
+		<placeType>DOMINION_BACK_ALLEYS</placeType>
+		<placeType>DOMINION_DARK_ALLEYS</placeType>
+		<placeType>DOMINION_ALLEYS_CANAL_CROSSING</placeType>
+		<placeType>DOMINION_CANAL</placeType>
+	</additionalPlaceTypeTriggers>
+	
+	<possibleEncounters>
+		<encounter>
+            <name><![CDATA[Mod_Update_v0.3]]></name>
+            <chanceToTrigger opportunisticEncounter="false"><![CDATA[
+				#IF(pc.hasWeaponType(WEAPON_xys_rings_ring_special, true) && !flags.hasFlag('xys_update_event'))
+					101
+				#ELSE
+					0
+				#ENDIF
+            ]]></chanceToTrigger>
+			<dialogueReturned><![CDATA[xys_dominion_ringmaker_update_event]]></dialogueReturned>
+		</encounter>
+	</possibleEncounters>
+	
+</encounterRoot>

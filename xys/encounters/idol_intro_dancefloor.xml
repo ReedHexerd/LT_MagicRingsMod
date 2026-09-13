@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<encounterRoot>
+	
+	<additionalPlaceTypeTriggers>
+		<placeType>WATERING_HOLE_DANCE_FLOOR</placeType>
+	</additionalPlaceTypeTriggers>
+	
+	<possibleEncounters>
+		<encounter>
+            <name><![CDATA[Idol_Intro_DanceFloor]]></name>
+            <chanceToTrigger opportunisticEncounter="false"><![CDATA[
+				#IF(!flags.hasFlag('xys_idol_intro_dancefloor') && game.isHourBetween(21, 4))
+					#IF(flags.hasFlag('xys_idol_intro_alleyways') && idol.hasFlag(NPC_FLAG_genericNPCBetrayedByPlayer))
+						0
+					#ELSE
+						101
+					#ENDIF
+				#ELSE
+					0
+				#ENDIF
+            ]]></chanceToTrigger>
+			<dialogueReturned><![CDATA[xys_dominion_idol_intro_danceFloor]]></dialogueReturned>
+		</encounter>
+	</possibleEncounters>
+	
+</encounterRoot>

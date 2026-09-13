@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<encounterRoot>
+	
+	<additionalPlaceTypeTriggers>
+		<placeType>DOMINION_BACK_ALLEYS</placeType>
+	</additionalPlaceTypeTriggers>
+	
+	<possibleEncounters>
+		<encounter>
+            <name><![CDATA[Ringmaker_Quest_Start]]></name>
+            <chanceToTrigger opportunisticEncounter="false"><![CDATA[
+            #IF(!(flags.hasFlag('xys_ringmaker_bracelet_get') || flags.hasFlag('xys_ringmaker_bracelet_fb_get')) && !flags.hasFlag('xys_ringmaker_daily_encounter') && game.getCurrentWeather()!=WEATHER_MAGIC_STORM)
+                25
+            #ELSE
+	        	0
+            #ENDIF
+            ]]></chanceToTrigger>
+			<dialogueReturned><![CDATA[
+				#IF(flags.hasFlag('xys_ringmaker_discovered'))
+					xys_dominion_ringmaker_intro
+				#ELSE
+					xys_dominion_ringmaker_start
+				#ENDIF
+			]]></dialogueReturned>
+		</encounter>
+	</possibleEncounters>
+	
+</encounterRoot>

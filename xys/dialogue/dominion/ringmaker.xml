@@ -1,0 +1,1531 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dialogueNodes>
+
+    <!-- DOMINION ALLEY ENCOUNTER -->    
+    <scene id="start">
+        <preParsingEffects><![CDATA[
+            [##flags.setSavedLong('MagicRingsModVersion', 3)]
+            #IF(flags.hasSavedLong('ringmaker'))
+                [#game.setModdedCharacterParserTarget(flags.getSavedLong('ringmaker'), 'ringmaker')]
+            #ELSE
+                [##flags.setSavedLong('ringmaker', game.importModdedCharacter('res/mods/xys/characters/ringmaker.xml', 'ringmaker'))]
+            #ENDIF
+			[#ringmaker.setLocation(WORLD_TYPE_EMPTY, PLACE_TYPE_GENERIC_HOLDING_CELL, true)]
+		]]></preParsingEffects>
+		<title><![CDATA[Magical Rings Mod]]></title>
+        <content folderPath="mods/xys/txt/ringmaker">START</content>
+        <secondsPassed minutes="true"><![CDATA[0]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Quest]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You'd like to see what this quest is like. 
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[xys_dominion_ringmaker_intro]]></nextDialogue>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[No Quest]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You don't want to do a whole quest to get them. Skip the quest and give me those rings! 
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    [##
+                        flags.setFlag('xys_ringmaker_bracelet_get', true);
+                        flags.setFlag('xys_ringmaker_bracelet_fb_get', true);
+			            flags.setFlag('xys_ringmaker_shop_firstVisit', true);
+                        flags.setFlag('xys_ringmaker_quest_complete', true);
+                        flags.setFlag('xys_ringmaker_fight_prelude', true);
+                    ]
+                    [##
+                        pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_accelerate, COLOUR_CLOTHING_STEEL, COLOUR_CLOTHING_WHITE, null, false), false);
+                        pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_bind, COLOUR_CLOTHING_STEEL, COLOUR_CLOTHING_WHITE, null, false), false);
+                        pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_clean, COLOUR_CLOTHING_STEEL, COLOUR_CLOTHING_WHITE, null, false), false);
+                        pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_defend, COLOUR_CLOTHING_STEEL, COLOUR_CLOTHING_WHITE, null, false), false);
+                        pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_excite, COLOUR_CLOTHING_STEEL, COLOUR_CLOTHING_WHITE, null, false), false);
+                        pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_finisher, COLOUR_CLOTHING_STEEL, COLOUR_CLOTHING_WHITE, null, false), false);
+                        pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_glow, COLOUR_CLOTHING_STEEL, COLOUR_CLOTHING_WHITE, null, false), false);
+                        pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_heal, COLOUR_CLOTHING_STEEL, COLOUR_CLOTHING_WHITE, null, false), false);
+                        pc.addClothing(itemGen.generateClothing(CLOTHING_xys_rings_ring_portal, COLOUR_CLOTHING_STEEL, COLOUR_CLOTHING_WHITE, null, false), false);
+                        pc.addClothing(itemGen.generateClothing(CLOTHING_xys_magical_girl_unknown_bracelet, COLOUR_GENERIC_ARCANE, COLOUR_CLOTHING_SILVER, null, false), false);
+                        pc.addClothing(itemGen.generateClothing(CLOTHING_xys_magical_girl_unknown_bracelet_fb, COLOUR_GENERIC_ARCANE, COLOUR_CLOTHING_SILVER, null, false), false);
+                    ]
+		            [##
+                        pc.addItem(itemGen.generateItem('xys_rings_ring_special_physical'));
+		                pc.addItem(itemGen.generateItem('xys_rings_ring_special_fire'));
+		                pc.addItem(itemGen.generateItem('xys_rings_ring_special_ice'));
+		                pc.addItem(itemGen.generateItem('xys_rings_ring_special_poison'));
+		                pc.addItem(itemGen.generateItem('xys_rings_ring_special_lust'))
+                    ]
+                    [##
+                        ringmaker.setLocation(WORLD_TYPE_SHOPPING_ARCADE, 8, 6, true);
+                        ringmaker.getCell().getPlace().setPlaceType(PLACE_TYPE_xys_dominion_shopping_arcade_ringmaker_shop);
+                        ringmaker.unequipClothingIntoVoid(IS_TORSO_OVER, false, ringmaker);
+                        ringmaker.setAgeAppearanceDifference(-5);
+                        ringmaker.setDescription("[ringmaker.Name] is the demonic rabbit-morph ringmaker and shopkeeper of a nameless jewellery store in Shopping Arcade. She usually dresses up as an old crone to blend in with the crowd, though she deems you trustworthy enough to drop the facade. She's pretty vain, and is a massive slut.");
+                        ringmaker.setPlayerKnowsName(true);
+                        ringmaker.setRaceConcealed(false);
+                        ringmaker.setAbleToBeImpregnated(true);
+                    ]
+                    #IF(flags.getSavedLong('xys_ringmaker_win_count')<0)
+                        [##flags.setSavedLong('xys_ringmaker_win_count', 1)]
+                    #ELSE
+                        [##flags.setSavedLong('xys_ringmaker_win_count', flags.getSavedLong('xys_ringmaker_win_count')+1)]
+                    #ENDIF
+				]]></effects>
+            </response>
+        </responses>
+    </scene>
+
+    <scene id="intro">
+        <preParsingEffects><![CDATA[
+            [##flags.setFlag('xys_ringmaker_daily_encounter', true)]
+		]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/ringmaker">INTRO</content>
+        <secondsPassed minutes="true"><![CDATA[5]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Approach]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Approach the old lady.
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[xys_dominion_ringmaker_choose_your_fate]]></nextDialogue>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[0]]></index>
+                <responseTitle><![CDATA[Ignore]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    It's probably best to ignore who or whatever is lurking in the shadows...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker', 'INTRO_LEAVE'))]
+				]]></effects>
+            </response>
+        </responses>
+    </scene>
+
+    <scene id="choose_your_fate">
+        <preParsingEffects><![CDATA[
+   			[#ringmaker.setLocation(pc, false)]
+		]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/ringmaker">INTRO_START</content>
+        <secondsPassed minutes="true"><![CDATA[5]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Choose]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    You find your eyes drifting towards the bracelet with the [style.colourFeminine(pink gem.)] You feel that it will change you in [style.colourFeminine(certain ways)] if you pick this one...
+                    <br/>[style.italicsMinorGood(Don't worry, you can get the other one later.)]
+ 			    ]]></responseTooltip>
+                <colour><![CDATA[FEMININE]]></colour>
+                <nextDialogue><![CDATA[xys_dominion_ringmaker_fate_set]]></nextDialogue>
+                <effects><![CDATA[
+                    [##flags.setFlag('xys_ringmaker_bracelet_get', true)]
+				]]></effects>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Choose]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    You find your eyes drifting towards the bracelet with the [style.colourAndrogynous(purple gem.)] You feel that it will change you in [style.colourAndrogynous(certain ways)] if you pick this one...
+                    <br/>[style.italicsMinorGood(Don't worry, you can get the other one later.)]
+ 			    ]]></responseTooltip>
+                <colour><![CDATA[ANDROGYNOUS]]></colour>
+                <nextDialogue><![CDATA[xys_dominion_ringmaker_fate_set]]></nextDialogue>
+                <effects><![CDATA[
+                    [##flags.setFlag('xys_ringmaker_bracelet_fb_get', true)]
+				]]></effects>
+            </response>
+        </responses>
+    </scene>
+
+    <scene id="fate_set">
+        <content folderPath="mods/xys/txt/ringmaker">INTRO_CHOICE</content>
+        <secondsPassed minutes="true"><![CDATA[5]]></secondsPassed>
+        <continuesDialogue>true</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <inventoryDisabled>true</inventoryDisabled>
+        <regenerationDisabled>false</regenerationDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    You're left wondering what just happened...
+ 			    ]]></responseTooltip>
+                <nextDialogue stripContent="true"><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker', 'INTRO_FINISH'))]
+                    [#ringmaker.setLocation(WORLD_TYPE_SHOPPING_ARCADE, 8, 6, true)]
+                    [#ringmaker.getLocationPlace().setPlaceType(PLACE_TYPE_xys_dominion_shopping_arcade_ringmaker_shop)]
+				]]></effects>
+            </response>
+        </responses>
+    </scene>
+
+    <!-- RINGMAKER'S SHOP -->
+    <scene id="ringmaker_shop_exterior">
+        <content folderPath="mods/xys/txt/ringmaker">RINGMAKER_SHOP_EXTERIOR</content>
+        <secondsPassed minutes="true"><![CDATA[5]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>false</travelDisabled>
+        <inventoryDisabled>false</inventoryDisabled>
+        <regenerationDisabled>false</regenerationDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Enter]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(flags.hasFlag('xys_ringmaker_fight_prelude') && flags.getSavedLong('xys_ringmaker_quest') == game.getDayNumber())
+                        The shop is currrently [style.colourBad(closed)]. You should return tomorrow. [style.colourCombat(Be prepared for a fight.)]
+                    #ELSEIF(game.isWorkTime())
+				        Step inside the ringmaker's shop. 
+                    #ELSE
+                        The shop is currrently [style.colourBad(closed)]. You should return back by [style.colourMinorGood([unit.time(9)]-[unit.time(17)])]. 
+                    #ENDIF
+ 			    ]]></responseTooltip>
+                <nextDialogue><![CDATA[
+                    #IF(flags.hasFlag('xys_ringmaker_fight_prelude') && !ringmaker.isPlayerKnowsName())
+                        #IF(flags.getSavedLong('xys_ringmaker_quest') == game.getDayNumber() || !game.isWorkTime())
+                            null
+                        #ELSE
+                            xys_dominion_ringmaker_ringmaker_fight
+                        #ENDIF
+                    #ELSEIF(game.isWorkTime())
+                        #IF(flags.hasFlag('xys_ringmaker_quest_complete') && !flags.hasFlag('xys_ringmaker_event_daily') && Math.random() > 0.3)
+                            xys_dominion_ringmaker_ringmaker_shop_event_daily
+                        #ELSE
+                            xys_dominion_ringmaker_ringmaker_shop
+                        #ENDIF
+                    #ELSE
+                        null
+                    #ENDIF
+                ]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+
+    <scene id="ringmaker_shop_event_daily">
+        <preParsingEffects><![CDATA[
+            #IF(flags.hasSavedLong('YsetteRingmaker'))
+                [##game.setParserTarget('ringmaker', YsetteRingmaker)]
+                [##flags.removeSavedLong('YsetteRingmaker')]
+            #ENDIF
+            #IF(!flags.hasSavedLong('YsetteRingmaker'))
+                [##flags.setSavedLong('ringmaker', 1)]
+            #ENDIF
+            [##flags.setFlag('xys_ringmaker_event_daily', true)] 
+            #IF(ringmaker.isAbleToBeEnslaved())
+                [##ringmaker.setAbleToBeEnslaved(false)]
+            #ENDIF
+        ]]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/ringmaker">RINGMAKER_SHOP_EVENT_DAILY</content>
+        <secondsPassed><![CDATA[30]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#!flags.hasFlag('xys_ringmaker_event_1')]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[Pretend that <i>that<i/> didn't just happened.]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[xys_dominion_ringmaker_ringmaker_shop]]></nextDialogue>
+                <effects><![CDATA[
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker', 'EVENT_FINISHED'))]
+				]]></effects>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#flags.hasFlag('xys_ringmaker_event_1')]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Dominant Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You'd like to fuck [ringmaker.name].
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <secondsPassed minutes="true"><![CDATA[2]]></secondsPassed>
+                <sexVariablesWithManager enabled="true">
+                    <id><![CDATA[xys_ringmaker_dom_default]]></id>
+                    <startingPosition><![CDATA[STANDING]]></startingPosition>
+                    <dominants>
+                        <character>
+                            <id>pc</id>
+                            <slot><![CDATA[STANDING_STANDING_DOMINANT]]></slot>
+                        </character>
+                    </dominants>
+                    <submissives>
+                        <character>
+                            <id>ringmaker</id>
+                            <slot><![CDATA[STANDING_STANDING_SUBMISSIVE]]></slot>
+                        </character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_ringmaker_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/ringmaker_sex">DOM_SEX_CASUAL_START</sexStartContent>
+                </sexVariablesWithManager>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#flags.hasFlag('xys_ringmaker_event_1')]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Submissive Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You'd like to get fucked by [ringmaker.name].
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <secondsPassed minutes="true"><![CDATA[2]]></secondsPassed>
+                <sexVariablesWithManager enabled="true">
+                    <id><![CDATA[xys_ringmaker_sub_default]]></id>
+                    <startingPosition><![CDATA[LYING_DOWN]]></startingPosition>
+                    <dominants>
+                        <character>
+                            <id>ringmaker</id>
+                            <slot><![CDATA[LYING_DOWN_COWGIRL]]></slot>
+                        </character>
+                    </dominants>
+                    <submissives>
+                        <character>
+                            <id>pc</id>
+                            <slot><![CDATA[LYING_DOWN_LYING_DOWN]]></slot>
+                        </character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_ringmaker_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/ringmaker_sex">SUB_SEX_CASUAL_START</sexStartContent>
+                </sexVariablesWithManager>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#flags.hasFlag('xys_ringmaker_event_1')]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Refuse]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(game.getCurrentWeather().equals(WEATHER_MAGIC_STORM))
+                        You're unable to escape from the horny [ringmaker.race], so you can't refuse. 
+                    #ELSE
+                        You refuse to have sex with the horny [ringmaker.race]. 
+                    #ENDIF
+ 			    ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[
+                    #IF(game.getCurrentWeather().equals(WEATHER_MAGIC_STORM))
+                        null
+                    #ELSE
+ 			            xys_dominion_ringmaker_ringmaker_shop
+                    #ENDIF
+                ]]></nextDialogue>
+                <effects><![CDATA[
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker', 'EVENT_1_NO_SEX'))]
+				]]></effects>
+            </response>
+        </responses>
+    </scene>
+
+    <scene id="ringmaker_shop">
+        <preParsingEffects><![CDATA[
+            #IF(flags.hasSavedLong('YsetteRingmaker'))
+                [##game.setParserTarget('ringmaker', YsetteRingmaker)]
+                [##flags.removeSavedLong('YsetteRingmaker')]
+            #ENDIF
+            #IF(!flags.hasSavedLong('YsetteRingmaker'))
+                [##flags.setSavedLong('ringmaker', 1)]
+            #ENDIF
+            #IF(ringmaker.getOccupation() != OCCUPATION_NPC_STORE_OWNER)
+                [##ringmaker.setOccupation(OCCUPATION_NPC_STORE_OWNER)]
+            #ENDIF
+            #IF(ringmaker.isAbleToBeEnslaved())
+                [##ringmaker.setAbleToBeEnslaved(false)]
+            #ENDIF
+            #IF(ringmaker.isPlayerKnowsName())
+                [##ringmaker.setAbleToBeImpregnated(true)]
+            #ENDIF
+        ]]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/ringmaker">RINGMAKER_SHOP</content>
+        <secondsPassed><![CDATA[30]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Question]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Ask some questions. 
+ 			    ]]></responseTooltip>
+                <nextDialogue><![CDATA[xys_dominion_ringmaker_ringmaker_question]]></nextDialogue>
+            </response>
+            <!-- CRYSTAL TRADING -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#flags.hasFlag('xys_ringmaker_quest_start') && !flags.hasFlag('xys_ringmaker_quest_complete')]
+                ]]></availabilityConditional>
+				<responseTabIndex><![CDATA[0]]></responseTabIndex>
+				<index><![CDATA[2]]></index>
+				<responseTitle><![CDATA[Hand in]]></responseTitle>
+				<responseTooltip><![CDATA[
+					#IF(flags.getSavedLong('xys_ringmaker_crystal_rare') != 4 && pc.hasWeaponType(WEAPON_innoxia_crystal_rare, true)) 
+						Give the rare demonstone to the ringmaker. 
+                    #ELSEIF(flags.getSavedLong('xys_ringmaker_crystal_epic') != 4 && pc.hasWeaponType(WEAPON_innoxia_crystal_epic, true)) 
+						Give the epic demonstone to the ringmaker. 
+                    #ELSEIF(flags.getSavedLong('xys_ringmaker_crystal_legendary') != 1 && pc.hasWeaponType(WEAPON_innoxia_crystal_legendary, true))
+						Give the legendary demonstone to the ringmaker. 
+                    #ELSE
+						You don't have a demonstone in your main hand to trade with the ringmaker. 
+					#ENDIF
+				]]></responseTooltip>
+				<colour><![CDATA[
+					#IF(pc.hasWeaponType(WEAPON_innoxia_crystal_rare, true) || pc.hasWeaponType(WEAPON_innoxia_crystal_epic, true) || pc.hasWeaponType(WEAPON_innoxia_crystal_legendary, true))
+						GENERIC_GOOD
+					#ELSE
+						TEXT
+					#ENDIF
+				]]></colour>
+				<nextDialogue stripContent="true"><![CDATA[
+					#IF(pc.hasWeaponType(WEAPON_innoxia_crystal_rare, true) || pc.hasWeaponType(WEAPON_innoxia_crystal_epic, true) || pc.hasWeaponType(WEAPON_innoxia_crystal_legendary, true))
+						xys_dominion_ringmaker_ringmaker_shop
+                    #ELSE
+                        null
+					#ENDIF
+				]]></nextDialogue>
+                <secondsPassed minutes="true"><![CDATA[10]]></secondsPassed>
+                <!-- Trading for 9 crystals. -->
+				<effects><![CDATA[
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker', 'RINGMAKER_RINGMAKING'))]
+                ]]></effects>
+			</response>
+            <!-- QUEST DONE -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#flags.hasFlag('xys_ringmaker_quest_complete') && !flags.hasFlag('xys_ringmaker_fight_prelude')]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Done]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    You're done with your task. So... what to do now?
+                    <br/>[style.colourYellowLight(<i>You cannot return until the next day if you choose this option!</i>)]
+ 			    ]]></responseTooltip>
+                <nextDialogue stripContent="true"><![CDATA[xys_dominion_ringmaker_ringmaker_shop_exterior]]></nextDialogue>
+                <effects><![CDATA[
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker', 'RINGMAKER_QUEST_COMPLETE'))]
+                    [##flags.setFlag('xys_ringmaker_fight_prelude', true)]
+                    [##flags.setSavedLong('xys_ringmaker_quest', game.getDayNumber())]
+				]]></effects>
+            </response>
+            <!-- CHALLENGE AGAIN -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#flags.hasFlag('xys_ringmaker_quest_complete') && ringmaker.isPlayerKnowsName()]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Challenge]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    You want to challenge her again. 
+ 			    ]]></responseTooltip>
+                <colour><![CDATA[GENERIC_COMBAT]]></colour>
+                <nextDialogue/>
+				<secondsPassed minutes="true"><![CDATA[1]]></secondsPassed>
+				<combatVariables enabled="true">
+					<nextDialoguePlayerVictory><![CDATA[xys_dominion_ringmaker_victory]]></nextDialoguePlayerVictory>
+					<nextDialoguePlayerDefeat><![CDATA[xys_dominion_ringmaker_defeat_again]]></nextDialoguePlayerDefeat>
+					<allies/>
+					<enemies>
+						<enemy leader="true"><![CDATA[ringmaker]]></enemy>
+					</enemies>
+					<openingDescriptions>
+						<combatant id="ringmaker"><![CDATA[[ringmaker.speech(Let's dance! ♡)] [ringmaker.name] teases.]]></combatant>
+					</openingDescriptions>
+					<escapeBlocked><![CDATA[true]]></escapeBlocked>
+				</combatVariables>
+                <effects><![CDATA[
+					[##
+                        ringmaker.setCombatBehaviour(COMBAT_BEHAVIOUR_BALANCED);
+                        if(!ringmaker.hasWeaponType(WEAPON_xys_ringmaker_GOODBYE, true)) {
+                            ringmaker.equipMainWeaponFromNowhere(itemGen.generateWeapon('xys_ringmaker_GOODBYE'));
+                            ringmaker.equipMove('xys_mag_dump_goodbye');
+                        };
+                        if(!ringmaker.hasWeaponType(WEAPON_xys_ringmaker_KISS, true)) {
+                            ringmaker.equipOffhandWeaponFromNowhere(itemGen.generateWeapon('xys_ringmaker_KISS'));
+                            ringmaker.equipMove('xys_mag_dump_kiss'); 
+                        };
+                    ]
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker', 'RINGMAKER_FIGHT_AGAIN'))]
+				]]></effects>
+            </response>
+            <!-- CASUAL SEX -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#flags.getSavedLong('xys_ringmaker_win_count')>0]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Dominant Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You'd like to fuck [ringmaker.name].
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <secondsPassed minutes="true"><![CDATA[2]]></secondsPassed>
+                <sexVariablesWithManager enabled="true">
+                    <id><![CDATA[xys_ringmaker_dom_default]]></id>
+                    <startingPosition><![CDATA[STANDING]]></startingPosition>
+                    <dominants>
+                        <character>
+                            <id>pc</id>
+                            <slot><![CDATA[STANDING_STANDING_DOMINANT]]></slot>
+                        </character>
+                    </dominants>
+                    <submissives>
+                        <character>
+                            <id>ringmaker</id>
+                            <slot><![CDATA[STANDING_STANDING_SUBMISSIVE]]></slot>
+                        </character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_ringmaker_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/ringmaker_sex">DOM_SEX_CASUAL_START</sexStartContent>
+                </sexVariablesWithManager>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#flags.getSavedLong('xys_ringmaker_win_count')>0]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[4]]></index>
+                <responseTitle><![CDATA[Submissive Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You'd like to get fucked by [ringmaker.name].
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <secondsPassed minutes="true"><![CDATA[2]]></secondsPassed>
+                <sexVariablesWithManager enabled="true">
+                    <id><![CDATA[xys_ringmaker_sub_default]]></id>
+                    <startingPosition><![CDATA[LYING_DOWN]]></startingPosition>
+                    <dominants>
+                        <character>
+                            <id>ringmaker</id>
+                            <slot><![CDATA[LYING_DOWN_COWGIRL]]></slot>
+                        </character>
+                    </dominants>
+                    <submissives>
+                        <character>
+                            <id>pc</id>
+                            <slot><![CDATA[LYING_DOWN_LYING_DOWN]]></slot>
+                        </character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_ringmaker_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/ringmaker_sex">SUB_SEX_CASUAL_START</sexStartContent>
+                </sexVariablesWithManager>
+            </response>
+            <!-- SHOPPING -->
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[5]]></index>
+                <responseTitle><![CDATA[Buy]]></responseTitle>
+                <responseTooltip><![CDATA[See what [ringmaker.name] has in store.]]></responseTooltip>
+                <nextDialogue/>
+                <effects><![CDATA[
+                    [##ringmaker.clearNonEquippedInventory(false)]
+                    [##
+                        var itemClass = ITEM_innoxia_pills_broodmother.getClass().getClassLoader().loadClass('com.lilithsthrone.game.inventory.item.ItemType');
+                        var itemMethod = itemClass.getMethod('getAllItems');
+                        function itemFilter(item) {
+                            var itemId = item.getId();
+                            if(itemId.contains('xys_') && !item.getItemTags().contains(ITEM_TAG_REMOVE_FROM_DEBUG_SPAWNER))
+                                if(itemId.contains('xys_rings_ring_special_')) {
+                                    ringmaker.addItem(itemGen.generateItem(itemId), 1, false, false);
+                                }
+                                else {
+                                    ringmaker.addItem(itemGen.generateItem(itemId), 5, false, false);
+                                };
+                            };
+                        itemMethod.invoke(null).forEach(itemFilter); 
+                    ]
+                    [##
+                        var clothingClass = CLOTHING_innoxia_torso_blouse.getClass().getClassLoader().loadClass('com.lilithsthrone.game.inventory.clothing.ClothingType');
+                        var clothingMethod = clothingClass.getMethod('getAllClothing');
+                        function clothingFilter(clothing) {
+                            var clothingId = clothing.getId();
+                            if(clothingId.contains('xys_') && !clothingId.equals('xys_rings_ring_portal') && !clothingId.contains('xys_magical_girl_')) {
+                                ringmaker.addClothing(itemGen.generateClothing(clothingId, false), 1, false, false);
+                            };
+                        };
+                        clothingMethod.invoke(null).forEach(clothingFilter); 
+                        ringmaker.addClothing(itemGen.generateClothing('xys_magical_girl_unknown_bracelet', COLOUR_FEMININE, COLOUR_CLOTHING_STEEL, null, false), false);
+                        ringmaker.addClothing(itemGen.generateClothing('xys_magical_girl_unknown_bracelet_fb', COLOUR_ANDROGYNOUS, COLOUR_CLOTHING_STEEL, null, false), false)
+                    ]
+                    [##
+                        var weaponClass = WEAPON_innoxia_crystal_rare.getClass().getClassLoader().loadClass('com.lilithsthrone.game.inventory.weapon.WeaponType');
+                        var weaponMethod = weaponClass.getMethod('getAllWeapons');
+                        function weaponFilter(weapon) {
+                            var weaponId = weapon.getId();
+                            if(weaponId.contains('xys_') && !weaponId.contains('xys_ringmaker') && !weapon.getItemTags().contains(ITEM_TAG_REMOVE_FROM_DEBUG_SPAWNER)) {
+                                ringmaker.addWeapon(itemGen.generateWeapon(weaponId), RND.nextInt(2)+1, false, false);
+                            };
+                        };
+                        weaponMethod.invoke(null).forEach(weaponFilter); 
+                    ]
+                    [##ringmaker.setItemTagsToBuy(Array(ITEM_TAG_SOLD_BY_NYAN, ITEM_TAG_SOLD_BY_KATE, ITEM_TAG_SOLD_BY_FINCH))]
+				]]></effects>
+                <tradingVariables enabled="true">
+                    <tradePartner><![CDATA[ringmaker]]></tradePartner>
+                </tradingVariables>
+            </response>
+            <!-- LEAVE -->
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[0]]></index>
+                <responseTitle><![CDATA[Leave]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    Time to leave...
+ 			    ]]></responseTooltip>
+                <nextDialogue><![CDATA[xys_dominion_ringmaker_ringmaker_shop_exterior]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="ringmaker_question">
+        <content folderPath="mods/xys/txt/ringmaker">RINGMAKER_QUESTION</content>
+        <secondsPassed><![CDATA[30]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Herself]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You're curious about who she is. 
+ 			    ]]></responseTooltip>
+                <nextDialogue stripContent="true"><![CDATA[xys_dominion_ringmaker_ringmaker_question]]></nextDialogue>
+                <effects><![CDATA[
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker', 'RINGMAKER_IDENTITY'))]
+				]]></effects>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Her shop]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You're curious about her shop, and the lack of customers. 
+ 			    ]]></responseTooltip>
+                <nextDialogue stripContent="true"><![CDATA[xys_dominion_ringmaker_ringmaker_question]]></nextDialogue>
+                <effects><![CDATA[
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker', 'RINGMAKER_QUEST_START'))]
+                    #IF(!flags.hasSavedLong('xys_ringmaker_crystal'))
+                        [##flags.setSavedLong('xys_ringmaker_crystal', 0)]
+                        [##flags.setSavedLong('xys_ringmaker_crystal_rare', 0)]
+                        [##flags.setSavedLong('xys_ringmaker_crystal_epic', 0)]
+                        [##flags.setSavedLong('xys_ringmaker_crystal_legendary', 0)]
+                    #ENDIF
+				]]></effects>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Her rings]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You're curious about how do the rings work, and how are they made. 
+ 			    ]]></responseTooltip>
+                <nextDialogue stripContent="true"><![CDATA[xys_dominion_ringmaker_ringmaker_question]]></nextDialogue>
+                <effects><![CDATA[
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker', 'RINGMAKER_RINGS'))]
+				]]></effects>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[4]]></index>
+                <responseTitle><![CDATA[The bracelet]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You're curious about the bracelet she gave you. 
+ 			    ]]></responseTooltip>
+                <nextDialogue stripContent="true"><![CDATA[xys_dominion_ringmaker_ringmaker_question]]></nextDialogue>
+                <effects><![CDATA[
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker', 'RINGMAKER_BRACELET'))]
+				]]></effects>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#flags.hasFlag('xys_ringmaker_quest_complete')]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[5]]></index>
+                <responseTitle><![CDATA[The fight]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You want to know why she decides to fight you. 
+ 			    ]]></responseTooltip>
+                <nextDialogue stripContent="true"><![CDATA[xys_dominion_ringmaker_ringmaker_question]]></nextDialogue>
+                <effects><![CDATA[
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker', 'RINGMAKER_FIGHT'))]
+				]]></effects>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[0]]></index>
+                <responseTitle><![CDATA[Stop questioning]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    You have nothing else to ask about. 
+ 			    ]]></responseTooltip>
+                <nextDialogue stripContent="true"><![CDATA[xys_dominion_ringmaker_ringmaker_shop]]></nextDialogue>
+                <effects><![CDATA[
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker', 'RINGMAKER_QUESTION_FINISHED'))]
+				]]></effects>
+            </response>
+        </responses>
+    </scene>
+
+    <!-- SECRET BOSS -->
+    <scene id="ringmaker_fight">
+        <preParsingEffects><![CDATA[
+            [#
+                ringmaker.unequipClothingIntoVoid(IS_TORSO_OVER, false, ringmaker);
+                ringmaker.setAgeAppearanceDifference(-5);
+                ringmaker.setDescription("[ringmaker.Name] is the demonic rabbit-morph ringmaker and shopkeeper of a nameless jewellery store in Shopping Arcade. She usually dresses up as an old crone to blend in with the crowd, though she deems you trustworthy enough to drop the facade. She's pretty vain, and is a massive slut.");
+                ringmaker.setPlayerKnowsName(true);
+                ringmaker.setRaceConcealed(false);
+                ringmaker.setCombatBehaviour(COMBAT_BEHAVIOUR_BALANCED);
+                ringmaker.equipMainWeaponFromNowhere(itemGen.generateWeapon('xys_ringmaker_GOODBYE'));
+                ringmaker.equipOffhandWeaponFromNowhere(itemGen.generateWeapon('xys_ringmaker_KISS'));
+                ringmaker.equipMove('xys_mag_dump_kiss'); ringmaker.equipMove('xys_mag_dump_goodbye');
+            ]
+		]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/ringmaker">RINGMAKER_FIGHT_PRELUDE</content>
+        <secondsPassed minutes="true"><![CDATA[5]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Fight]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    She doesn't seem to be taking no for an answer. Time for a fight! 
+ 			    ]]></responseTooltip>
+                <colour><![CDATA[GENERIC_COMBAT]]></colour>
+				<nextDialogue/>
+				<secondsPassed minutes="true"><![CDATA[1]]></secondsPassed>
+				<combatVariables enabled="true">
+					<nextDialoguePlayerVictory><![CDATA[xys_dominion_ringmaker_victory]]></nextDialoguePlayerVictory>
+					<nextDialoguePlayerDefeat><![CDATA[xys_dominion_ringmaker_defeat]]></nextDialoguePlayerDefeat>
+					<allies/>
+					<enemies>
+						<enemy leader="true"><![CDATA[ringmaker]]></enemy>
+					</enemies>
+					<openingDescriptions>
+						<combatant id="ringmaker"><![CDATA[[ringmaker.speech(Let's dance! ♡)] [ringmaker.name] teases.]]></combatant>
+					</openingDescriptions>
+					<escapeBlocked><![CDATA[true]]></escapeBlocked>
+				</combatVariables>
+            </response>
+        </responses>
+    </scene>
+
+    <scene id="fight_again">
+        <preParsingEffects><![CDATA[
+            [#
+                ringmaker.setCombatBehaviour(COMBAT_BEHAVIOUR_BALANCED);
+                if(!ringmaker.hasWeaponType(WEAPON_xys_ringmaker_GOODBYE, true)) ringmaker.equipMainWeaponFromNowhere(itemGen.generateWeapon('xys_ringmaker_GOODBYE'));
+                if(!ringmaker.hasWeaponType(WEAPON_xys_ringmaker_KISS, true)) ringmaker.equipOffhandWeaponFromNowhere(itemGen.generateWeapon('xys_ringmaker_KISS'));
+            ]
+		]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/ringmaker">RINGMAKER_FIGHT_AGAIN</content>
+        <secondsPassed minutes="true"><![CDATA[2]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Fight]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    Get ready for an intense battle! 
+ 			    ]]></responseTooltip>
+                <colour><![CDATA[GENERIC_COMBAT]]></colour>
+				<nextDialogue/>
+				<secondsPassed minutes="true"><![CDATA[1]]></secondsPassed>
+				<combatVariables enabled="true">
+					<nextDialoguePlayerVictory><![CDATA[xys_dominion_ringmaker_victory]]></nextDialoguePlayerVictory>
+					<nextDialoguePlayerDefeat><![CDATA[xys_dominion_ringmaker_defeat_again]]></nextDialoguePlayerDefeat>
+					<allies/>
+					<enemies>
+						<enemy leader="true"><![CDATA[ringmaker]]></enemy>
+					</enemies>
+					<openingDescriptions>
+						<combatant id="ringmaker"><![CDATA[[ringmaker.speech(Let's dance! ♡)] [ringmaker.name] teases.]]></combatant>
+					</openingDescriptions>
+					<escapeBlocked><![CDATA[true]]></escapeBlocked>
+				</combatVariables>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="defeat">
+		<title><![CDATA[Lost the fight]]></title>
+		<preParsingEffects><![CDATA[
+            #IF(ringmaker.hasStatusEffect(SE_xys_change))[##ringmaker.removeStatusEffect(SE_xys_change)]#ENDIF
+		]]></preParsingEffects>
+		<content folderPath="mods/xys/txt/ringmaker">DEFEAT</content>
+		<secondsPassed minutes="true"><![CDATA[30]]></secondsPassed>
+		<continuesDialogue>false</continuesDialogue>	
+		<travelDisabled>true</travelDisabled>	
+		<responseTabs/>
+		<responses>
+			<response>
+				<responseTabIndex><![CDATA[0]]></responseTabIndex>
+				<index><![CDATA[1]]></index>
+				<responseTitle><![CDATA[Continue]]></responseTitle>
+				<responseTooltip><![CDATA[You fought as best as you could. Return to the ringmaker's shop.]]></responseTooltip>
+				<nextDialogue><![CDATA[xys_dominion_ringmaker_ringmaker_question]]></nextDialogue>
+			</response>
+		</responses>
+    </scene>
+    
+    <scene id="defeat_again">
+		<title><![CDATA[Lost the fight]]></title>
+		<preParsingEffects><![CDATA[
+            #IF(ringmaker.hasStatusEffect(SE_xys_change))[##ringmaker.removeStatusEffect(SE_xys_change)]#ENDIF
+		]]></preParsingEffects>
+		<content folderPath="mods/xys/txt/ringmaker">DEFEAT_AGAIN</content>		
+		<secondsPassed minutes="true"><![CDATA[30]]></secondsPassed>
+		<continuesDialogue>false</continuesDialogue>	
+		<travelDisabled>true</travelDisabled>	
+		<responseTabs/>
+		<responses>
+			<response>
+				<responseTabIndex><![CDATA[0]]></responseTabIndex>
+				<index><![CDATA[1]]></index>
+				<responseTitle><![CDATA[Continue]]></responseTitle>
+				<responseTooltip><![CDATA[You fought as best as you could. Return to the ringmaker's shop.]]></responseTooltip>
+				<nextDialogue stripContent='true'><![CDATA[xys_dominion_ringmaker_ringmaker_shop]]></nextDialogue>
+                <effects><![CDATA[
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker', 'DEFEAT_AGAIN'))]
+                ]]></effects>
+			</response>
+		</responses>
+    </scene>
+
+    <!-- EVENTS -->
+    <scene id="ringmaker_alleyways">
+        <preParsingEffects><![CDATA[
+            #IF(game.getNonCompanionCharactersPresent().size() > 0)
+                [##game.setParserTarget('getFucked', game.getNonCompanionCharactersPresent().get(0))]
+            #ELSE
+                [##game.addNPC('dominion.DominionAlleywayAttacker', 'getFucked'); getFucked.setLocation(pc.getCell())]
+            #ENDIF
+            [##ringmaker.setLocation(pc.getCell())]
+            #IF(ringmaker.isAbleToBeEnslaved())
+                [##ringmaker.setAbleToBeEnslaved(false)]
+            #ENDIF
+            [##flags.setFlag('xys_ringmaker_daily_encounter', true)]
+        ]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/ringmaker">RINGMAKER_ALLEYWAYS</content>
+        <secondsPassed minutes="true"><![CDATA[3]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <!-- SEGGS -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#getFucked.isAttractedTo(pc) && !getFucked.isTaur() && getFucked.getLegConfiguration().isBipedalPositionedGenitals()]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    Join in on the fun. Use [getFucked.namePos] 
+                    #IF(getFucked.hasVagina())
+                        [getFucked.pussy+] 
+                    #ELSEIF(getFucked.hasPenisIgnoreDildo())
+                        [getFucked.cock+] 
+                    #ELSE
+                        groin 
+                    #ENDIF
+                    to good use while [ringmaker.name] takes [getFucked.her] rear.
+ 			    ]]></responseTooltip>
+                <nextDialogue/>
+                <sexVariablesWithManager enabled="true">
+                    <id><![CDATA[xys_ringmaker_threesome_sex]]></id>
+                    <startingPosition><![CDATA[STANDING]]></startingPosition>
+                    <dominants>
+                        <character>
+                            <id>pc</id>
+                            <slot><![CDATA[STANDING_STANDING_SUBMISSIVE]]></slot>
+                        </character>
+                        <character>
+                            <id>ringmaker</id>
+                            <slot><![CDATA[STANDING_STANDING_SUBMISSIVE_BEHIND]]></slot>
+                        </character>
+                    </dominants>
+                    <submissives>
+                        <character>
+                            <id>npc2</id>
+                            <slot><![CDATA[STANDING_STANDING_DOMINANT]]></slot>
+                        </character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_ringmaker_after_sex_threesome]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/ringmaker_sex">THREESOME_SEX</sexStartContent>
+                    <ongoingActionsAtStart>
+                        <action>
+                            <id><![CDATA[PenisAnus_PENIS_FUCKING_DOM_NORMAL]]></id>
+                            <performer><![CDATA[ringmaker]]></performer>
+                            <target><![CDATA[getFucked]]></target>
+                            <showDescription><![CDATA[true]]></showDescription>
+                            <showEffects><![CDATA[true]]></showEffects>
+                        </action>
+                    </ongoingActionsAtStart>
+                </sexVariablesWithManager>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#getFucked.isAttractedTo(pc)]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Spitroast]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    Join in on the fun. Use [getFucked.namePos] mouth to good use while [ringmaker.name] takes [getFucked.her] rear.
+ 			    ]]></responseTooltip>
+                <nextDialogue/>
+                <sexVariablesWithManager enabled="true">
+                    <id><![CDATA[xys_ringmaker_threesome_sex_spitroast]]></id>
+                    <startingPosition><![CDATA[ALL_FOURS]]></startingPosition>
+                    <dominants>
+                        <character>
+                            <id>pc</id>
+                            <slot><![CDATA[ALL_FOURS_IN_FRONT]]></slot>
+                        </character>
+                        <character>
+                            <id>ringmaker</id>
+                            <slot><![CDATA[ALL_FOURS_BEHIND]]></slot>
+                        </character>
+                    </dominants>
+                    <submissives>
+                        <character>
+                            <id>npc2</id>
+                            <slot><![CDATA[ALL_FOURS_ALL_FOURS]]></slot>
+                        </character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_ringmaker_after_sex_threesome]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/ringmaker_sex">THREESOME_SEX_SPITROAST</sexStartContent>
+                    <ongoingActionsAtStart>
+                        <action>
+							<condition><![CDATA[
+                                [#getFucked.hasVagina()]
+                            ]]></condition>
+                            <id><![CDATA[PenisVagina_PENIS_FUCKING_DOM_NORMAL]]></id>
+                            <performer><![CDATA[ringmaker]]></performer>
+                            <target><![CDATA[getFucked]]></target>
+                            <showDescription><![CDATA[false]]></showDescription>
+                            <showEffects><![CDATA[true]]></showEffects>
+                        </action>
+                        <action>
+							<condition><![CDATA[
+                                [#!getFucked.hasVagina()]
+                            ]]></condition>
+                            <id><![CDATA[PenisAnus_PENIS_FUCKING_DOM_NORMAL]]></id>
+                            <performer><![CDATA[ringmaker]]></performer>
+                            <target><![CDATA[getFucked]]></target>
+                            <showDescription><![CDATA[false]]></showDescription>
+                            <showEffects><![CDATA[true]]></showEffects>
+                        </action>
+                    </ongoingActionsAtStart>
+                </sexVariablesWithManager>
+            </response>
+            <!-- NONCON -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.isNonConEnabled() && !getFucked.isTaur() && getFucked.getLegConfiguration().isBipedalPositionedGenitals()]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Rape [getFucked.herHim]]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    Join in on the fun. Use [getFucked.namePos] 
+                    #IF(getFucked.hasVagina())
+                        [getFucked.pussy+] 
+                    #ELSE
+                        groin 
+                    #ENDIF
+                    to good use while [ringmaker.name] takes [getFucked.her] rear.
+ 			    ]]></responseTooltip>
+                <nextDialogue/>
+                <requiredFetishes>
+                    <fetish><![CDATA[FETISH_NON_CON_DOM]]></fetish>
+                </requiredFetishes>
+                <corruptionLevel><![CDATA[[#FETISH_NON_CON_DOM.getAssociatedCorruptionLevel()]]]></corruptionLevel>
+                <sexVariablesWithManager enabled="true">
+                    <id><![CDATA[xys_ringmaker_threesome_rape]]></id>
+                    <startingPosition><![CDATA[STANDING]]></startingPosition>
+                    <dominants>
+                        <character>
+                            <id>pc</id>
+                            <slot><![CDATA[STANDING_STANDING_DOMINANT]]></slot>
+                        </character>
+                        <character>
+                            <id>ringmaker</id>
+                            <slot><![CDATA[STANDING_STANDING_DOMINANT_TWO]]></slot>
+                        </character>
+                    </dominants>
+                    <submissives>
+                        <character>
+                            <id>npc2</id>
+                            <slot><![CDATA[STANDING_STANDING_SUBMISSIVE]]></slot>
+                        </character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_ringmaker_after_sex_threesome]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/ringmaker_sex">THREESOME_RAPE</sexStartContent>
+                    <ongoingActionsAtStart>
+                        <action>
+                            <id><![CDATA[PenisAnus_PENIS_FUCKING_DOM_NORMAL]]></id>
+                            <performer><![CDATA[ringmaker]]></performer>
+                            <target><![CDATA[getFucked]]></target>
+                            <showDescription><![CDATA[false]]></showDescription>
+                            <showEffects><![CDATA[true]]></showEffects>
+                        </action>
+                    </ongoingActionsAtStart>
+                </sexVariablesWithManager>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.isNonConEnabled()]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Spitroast (rape)]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    Join in on the fun. Use [getFucked.namePos] mouth to good use while [ringmaker.name] takes [getFucked.her] rear.
+ 			    ]]></responseTooltip>
+                <nextDialogue/>
+                <requiredFetishes>
+                    <fetish><![CDATA[FETISH_NON_CON_DOM]]></fetish>
+                </requiredFetishes>
+                <corruptionLevel><![CDATA[[#FETISH_NON_CON_DOM.getAssociatedCorruptionLevel()]]]></corruptionLevel>
+                <sexVariablesWithManager enabled="true">
+                    <id><![CDATA[xys_ringmaker_threesome_rape_spitroast]]></id>
+                    <startingPosition><![CDATA[ALL_FOURS]]></startingPosition>
+                    <dominants>
+                        <character>
+                            <id>pc</id>
+                            <slot><![CDATA[ALL_FOURS_IN_FRONT]]></slot>
+                        </character>
+                        <character>
+                            <id>ringmaker</id>
+                            <slot><![CDATA[ALL_FOURS_BEHIND]]></slot>
+                        </character>
+                    </dominants>
+                    <submissives>
+                        <character>
+                            <id>npc2</id>
+                            <slot><![CDATA[ALL_FOURS_ALL_FOURS]]></slot>
+                        </character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_ringmaker_after_sex_threesome]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/ringmaker_sex">THREESOME_RAPE_SPITROAST</sexStartContent>
+                    <ongoingActionsAtStart>
+                        <action>
+							<condition><![CDATA[
+                                [#getFucked.hasVagina()]
+                            ]]></condition>
+                            <id><![CDATA[PenisVagina_PENIS_FUCKING_DOM_NORMAL]]></id>
+                            <performer><![CDATA[ringmaker]]></performer>
+                            <target><![CDATA[getFucked]]></target>
+                            <showDescription><![CDATA[false]]></showDescription>
+                            <showEffects><![CDATA[true]]></showEffects>
+                        </action>
+                        <action>
+							<condition><![CDATA[
+                                [#!getFucked.hasVagina()]
+                            ]]></condition>
+                            <id><![CDATA[PenisAnus_PENIS_FUCKING_DOM_NORMAL]]></id>
+                            <performer><![CDATA[ringmaker]]></performer>
+                            <target><![CDATA[getFucked]]></target>
+                            <showDescription><![CDATA[false]]></showDescription>
+                            <showEffects><![CDATA[true]]></showEffects>
+                        </action>
+                    </ongoingActionsAtStart>
+                </sexVariablesWithManager>
+            </response>
+            <!-- No SEGGS -->
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Refuse]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    Politely refuse to join in, as you have somewhere else to go... 
+ 			    ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker_sex', 'NO_SEX_THREESOME'))]
+                    [##ringmaker.setLocation(ringmaker.getHomeCell())]
+				]]></effects>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(getFucked.isTaur() || !getFucked.getLegConfiguration().isBipedalPositionedGenitals())
+				        [getFucked.NamePos] body makes it hard for you to take [getFucked.her] rear, and it doesn't seem like [ringmaker.name] wants to move away.
+                    #ELSE
+                        [getFucked.Name] is not interested in having sex with you!
+                    #ENDIF
+ 			    ]]></responseTooltip>
+                <nextDialogue><![CDATA[null]]></nextDialogue>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Spitroast]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    [getFucked.Name] is not interested in having sex with you!
+ 			    ]]></responseTooltip>
+                <nextDialogue><![CDATA[null]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+
+    <scene id="update_event">
+        <preParsingEffects><![CDATA[
+		    [## 
+                if(flags.hasSavedLong('YsetteRingmaker')) {
+                    game.setParserTarget('ringmaker', YsetteRingmaker);
+                    flags.removeSavedLong('YsetteRingmaker');
+                    flags.setSavedLong('ringmaker', 1);
+                };
+                ringmaker.setOccupation(OCCUPATION_NPC_STORE_OWNER);
+            ]
+            [##ringmaker.setLocation(pc.getCell())]
+            [##ringmaker.setAbleToBeEnslaved(false)]
+        ]]></preParsingEffects>
+		<title><![CDATA[A Sudden Change]]></title>
+        <content folderPath="mods/xys/txt/ringmaker">update_event</content>
+        <secondsPassed minutes="true"><![CDATA[2]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+				    You're left wondering what just happened...
+ 			    ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    [##ringmaker.setLocation(ringmaker.getHomeCell())]
+                    [##flags.setFlag('xys_update_event', true)]
+				]]></effects>
+            </response>
+        </responses>
+    </scene>
+
+    <!-- SEGGS -->
+    <scene id="victory">
+		<title><![CDATA[Won the fight]]></title>
+        <preParsingEffects><![CDATA[
+            #IF(flags.getSavedLong('xys_ringmaker_win_count')<0)
+                [##flags.setSavedLong('xys_ringmaker_win_count', 1)]
+            #ELSE
+                [##flags.setSavedLong('xys_ringmaker_win_count', flags.getSavedLong('xys_ringmaker_win_count')+1)]
+            #ENDIF
+            #IF(ringmaker.hasStatusEffect(SE_xys_change))[##ringmaker.removeStatusEffect(SE_xys_change)]#ENDIF
+        ]]>
+        </preParsingEffects>
+        <content folderPath="mods/xys/txt/ringmaker">VICTORY</content>
+        <secondsPassed minutes="true"><![CDATA[30]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+			<!-- Dominant Sex; Player has penis: -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#pc.hasPenis() && pc.isAbleToAccessCoverableArea(CA_PENIS, true)]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Dominant Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Calm [ringmaker.name] down by fucking her [ringmaker.pussy+]. 
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <secondsPassed minutes="true"><![CDATA[2]]></secondsPassed>
+                <sexVariablesWithManager enabled="true">
+                    <id><![CDATA[xys_ringmaker_dom_vaginal_sex]]></id>
+                    <startingPosition><![CDATA[OVER_DESK]]></startingPosition>
+                    <dominants>
+                        <character>
+                            <id>pc</id>
+                            <slot><![CDATA[OVER_DESK_BETWEEN_LEGS]]></slot>
+                        </character>
+                    </dominants>
+                    <submissives>
+                        <character>
+                            <id>ringmaker</id>
+                            <slot><![CDATA[OVER_DESK_OVER_DESK_ON_BACK]]></slot>
+                        </character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_ringmaker_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/ringmaker_sex">DOM_SEX_PENIS_START</sexStartContent>
+                    <ongoingActionsAtStart>
+                        <action>
+                            <id><![CDATA[PenisVagina_TEASE_PENIS_OVER_VAGINA]]></id>
+                            <performer><![CDATA[pc]]></performer>
+                            <target><![CDATA[ringmaker]]></target>
+                            <showDescription><![CDATA[true]]></showDescription>
+                            <showEffects><![CDATA[true]]></showEffects>
+                        </action>
+                    </ongoingActionsAtStart>
+                </sexVariablesWithManager>
+            </response>
+			<!-- Dominant Sex; Player has vagina: -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#(!pc.hasPenis() || !pc.isAbleToAccessCoverableArea(CA_PENIS, true)) && pc.hasVagina() && pc.isAbleToAccessCoverableArea(CA_VAGINA, true)]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Dominant Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Calm [ringmaker.name] down by riding her [ringmaker.cock+].
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <secondsPassed minutes="true"><![CDATA[2]]></secondsPassed>
+                <sexVariablesWithManager enabled="true">
+                    <id><![CDATA[xys_ringmaker_dom_ride_cock]]></id>
+                    <startingPosition><![CDATA[STANDING]]></startingPosition>
+                    <dominants>
+                        <character>
+                            <id>pc</id>
+                            <slot><![CDATA[STANDING_STANDING_DOMINANT]]></slot>
+                        </character>
+                    </dominants>
+                    <submissives>
+                        <character>
+                            <id>ringmaker</id>
+                            <slot><![CDATA[STANDING_STANDING_SUBMISSIVE_BEHIND]]></slot>
+                        </character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_ringmaker_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/ringmaker_sex">DOM_SEX_VAGINA_START</sexStartContent>
+                    <ongoingActionsAtStart>
+                        <action>
+                            <id><![CDATA[PenisVagina_FORCE_PENIS_OVER_VAGINA]]></id>
+                            <performer><![CDATA[pc]]></performer>
+                            <target><![CDATA[ringmaker]]></target>
+                            <showDescription><![CDATA[true]]></showDescription>
+                            <showEffects><![CDATA[true]]></showEffects>
+                        </action>
+                    </ongoingActionsAtStart>
+                </sexVariablesWithManager>
+            </response>
+			<!-- Dominant Sex; Player doesn't have penis nor vagina: -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#(!pc.hasPenis() || !pc.isAbleToAccessCoverableArea(CA_PENIS, true)) && (!pc.hasVagina() || !pc.isAbleToAccessCoverableArea(CA_VAGINA, true))]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Dominant Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Calm [ringmaker.name] down by fucking her [ringmaker.cock+] with your 
+                    #IF(pc.hasLegs())
+                        thighs. 
+                    #ELSE
+                        hands.
+                    #ENDIF
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <secondsPassed minutes="true"><![CDATA[2]]></secondsPassed>
+                <sexVariablesWithManager enabled="true">
+                    <id><![CDATA[xys_ringmaker_dom_doll]]></id>
+                    <startingPosition><![CDATA[STANDING]]></startingPosition>
+                    <dominants>
+                        <character>
+                            <id>ringmaker</id>
+                            <slot><![CDATA[STANDING_STANDING_DOMINANT]]></slot>
+                        </character>
+                    </dominants>
+                    <submissives>
+                        <character>
+                            <id>pc</id>
+                            <slot><![CDATA[STANDING_STANDING_SUBMISSIVE]]></slot>
+                        </character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_ringmaker_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/ringmaker_sex">DOM_SEX_DOLL_START</sexStartContent>
+                    <ongoingActionsAtStart>
+                        <action>
+							<condition><![CDATA[
+                                [#pc.hasLegs()]
+                            ]]></condition>
+                            <id><![CDATA[PenisThighs_USING_COCK_BETWEEN_THIGHS_START]]></id>
+                            <performer><![CDATA[pc]]></performer>
+                            <target><![CDATA[ringmaker]]></target>
+                            <showDescription><![CDATA[true]]></showDescription>
+                            <showEffects><![CDATA[true]]></showEffects>
+                        </action>
+                        <action>
+							<condition><![CDATA[
+                                [#!pc.hasLegs()]
+                            ]]></condition>
+                            <id><![CDATA[FingerPenis_COCK_MASTURBATING_START]]></id>
+                            <performer><![CDATA[pc]]></performer>
+                            <target><![CDATA[ringmaker]]></target>
+                            <showDescription><![CDATA[true]]></showDescription>
+                            <showEffects><![CDATA[true]]></showEffects>
+                        </action>
+                    </ongoingActionsAtStart>
+                </sexVariablesWithManager>
+            </response>
+			<!-- Submissive Sex; Player has penis: -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#pc.hasPenis() && pc.isAbleToAccessCoverableArea(CA_PENIS, true)]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Submissive Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Calm [ringmaker.name] down by letting her ride your [pc.cock+]. 
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <secondsPassed minutes="true"><![CDATA[2]]></secondsPassed>
+                <sexVariablesWithManager enabled="true">
+                    <id><![CDATA[xys_ringmaker_sub_ride_cock]]></id>
+                    <startingPosition><![CDATA[OVER_DESK]]></startingPosition>
+                    <dominants>
+                        <character>
+                            <id>ringmaker</id>
+                            <slot><![CDATA[OVER_DESK_OVER_DESK_ON_BACK]]></slot>
+                        </character>
+                    </dominants>
+                    <submissives>
+                        <character>
+                            <id>pc</id>
+                            <slot><![CDATA[OVER_DESK_BETWEEN_LEGS]]></slot>
+                        </character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_ringmaker_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/ringmaker_sex">SUB_SEX_PENIS_START</sexStartContent>
+                    <ongoingActionsAtStart>
+                        <action>
+                            <id><![CDATA[PenisVagina_FORCE_PENIS_OVER_VAGINA]]></id>
+                            <performer><![CDATA[ringmaker]]></performer>
+                            <target><![CDATA[pc]]></target>
+                            <showDescription><![CDATA[true]]></showDescription>
+                            <showEffects><![CDATA[true]]></showEffects>
+                        </action>
+                    </ongoingActionsAtStart>
+                </sexVariablesWithManager>
+            </response>
+			<!-- Submissive Sex; Player has vagina: -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#(!pc.hasPenis() || !pc.isAbleToAccessCoverableArea(CA_PENIS, true)) && pc.hasVagina() && pc.isAbleToAccessCoverableArea(CA_VAGINA, true)]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Submissive Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Calm [ringmaker.name] down by letting her fuck your [pc.pussy+]. 
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <secondsPassed minutes="true"><![CDATA[2]]></secondsPassed>
+                <sexVariablesWithManager enabled="true">
+                    <id><![CDATA[xys_ringmaker_sub_vaginal_sex]]></id>
+                    <startingPosition><![CDATA[AGAINST_WALL]]></startingPosition>
+                    <dominants>
+                        <character>
+                            <id>ringmaker</id>
+                            <slot><![CDATA[AGAINST_WALL_FACE_TO_WALL]]></slot>
+                        </character>
+                    </dominants>
+                    <submissives>
+                        <character>
+                            <id>pc</id>
+                            <slot><![CDATA[AGAINST_WALL_STANDING_WALL]]></slot>
+                        </character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_ringmaker_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/ringmaker_sex">SUB_SEX_VAGINA_START</sexStartContent>
+                    <ongoingActionsAtStart>
+                        <action>
+                            <id><![CDATA[PenisVagina_PENIS_FUCKING_START]]></id>
+                            <performer><![CDATA[ringmaker]]></performer>
+                            <target><![CDATA[pc]]></target>
+                            <showDescription><![CDATA[true]]></showDescription>
+                            <showEffects><![CDATA[true]]></showEffects>
+                        </action>
+                    </ongoingActionsAtStart>
+                </sexVariablesWithManager>
+            </response>
+			<!-- Submissive Sex; Player doesn't have penis nor vagina: -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#(!pc.hasPenis() || !pc.isAbleToAccessCoverableArea(CA_PENIS, true)) && (!pc.hasVagina() || !pc.isAbleToAccessCoverableArea(CA_VAGINA, true))]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Submissive Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Calm [ringmaker.name] down by letting her fuck your 
+                    #IF(pc.hasLegs())
+                        [pc.legs]. 
+                    #ELSE
+                        [pc.mouth].
+                    #ENDIF
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <secondsPassed minutes="true"><![CDATA[2]]></secondsPassed>
+                <sexVariablesWithManager enabled="true">
+                    <id><![CDATA[xys_ringmaker_sub_doll]]></id>
+                    <startingPosition><![CDATA[STANDING]]></startingPosition>
+                    <dominants>
+                        <character>
+                            <id>ringmaker</id>
+                            <slot><![CDATA[STANDING_STANDING_DOMINANT]]></slot>
+                        </character>
+                    </dominants>
+                    <submissives>
+                        <character>
+                            <id>pc</id>
+                            <slot><![CDATA[STANDING_STANDING_SUBMISSIVE]]></slot>
+                        </character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_ringmaker_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/ringmaker_sex">SUB_SEX_DOLL_START</sexStartContent>
+                    <ongoingActionsAtStart>
+                        <action>
+							<condition><![CDATA[
+                                [#pc.isAbleToAccessCoverableArea(CA_MOUTH, true)]
+                            ]]></condition>
+                            <id><![CDATA[TongueMouth_KISS_START]]></id>
+                            <performer><![CDATA[ringmaker]]></performer>
+                            <target><![CDATA[pc]]></target>
+                            <showDescription><![CDATA[true]]></showDescription>
+                            <showEffects><![CDATA[true]]></showEffects>
+                        </action>
+                    </ongoingActionsAtStart>
+                </sexVariablesWithManager>
+            </response>
+            <!-- No sex -->
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[0]]></index>
+                <responseTitle><![CDATA[Leave]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You refuse to entertain her. Leave her be. 
+ 			    ]]></responseTooltip>
+                <nextDialogue><![CDATA[xys_dominion_ringmaker_ringmaker_shop_exterior]]></nextDialogue>
+                <effects><![CDATA[
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/ringmaker_sex', 'NO_SEX'))]
+				]]></effects>
+            </response>
+        </responses>
+    </scene>
+
+    <scene id="after_sex">
+        <tooltip><![CDATA[With [ringmaker.namePos] needs finally taken care of, you step back from her.]]></tooltip>
+		<content folderPath="mods/xys/txt/ringmaker_sex">AFTER_SEX</content>		
+		<secondsPassed><![CDATA[30]]></secondsPassed>
+		<continuesDialogue>false</continuesDialogue>	
+		<travelDisabled>true</travelDisabled>	
+		<responseTabs/>
+		<responses>
+			<response>
+				<responseTabIndex><![CDATA[0]]></responseTabIndex>
+				<index><![CDATA[1]]></index>
+				<responseTitle><![CDATA[Continue]]></responseTitle>
+				<responseTooltip><![CDATA[Decide what to do next.]]></responseTooltip>
+				<nextDialogue><![CDATA[default]]></nextDialogue>
+			</response>
+		</responses>
+    </scene>
+
+    <scene id="after_sex_threesome">
+        <tooltip><![CDATA[Now that you both have had your fun, you can step back and leave [getFucked.name] to recover.]]></tooltip>
+		<content folderPath="mods/xys/txt/ringmaker_sex">AFTER_SEX_THREESOME</content>		
+		<secondsPassed><![CDATA[30]]></secondsPassed>
+		<continuesDialogue>false</continuesDialogue>	
+		<travelDisabled>true</travelDisabled>	
+		<responseTabs/>
+		<responses>
+			<response>
+				<responseTabIndex><![CDATA[0]]></responseTabIndex>
+				<index><![CDATA[1]]></index>
+				<responseTitle><![CDATA[Continue]]></responseTitle>
+				<responseTooltip><![CDATA[Decide what to do next.]]></responseTooltip>
+				<nextDialogue><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    [##ringmaker.setLocation(ringmaker.getHomeCell())]
+				]]></effects>
+			</response>
+		</responses>
+    </scene>
+
+</dialogueNodes>

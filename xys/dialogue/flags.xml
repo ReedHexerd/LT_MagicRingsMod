@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dialogueFlags>
+	<!-- Ringmaker -->
+	<flag dailyReset="false">ringmaker_discovered</flag>
+	<flag dailyReset="true">ringmaker_daily_encounter</flag>
+	<flag dailyReset="false">ringmaker_bracelet_get</flag>
+	<flag dailyReset="false">ringmaker_bracelet_fb_get</flag>
+	
+	<flag dailyReset="false">ringmaker_shop_firstVisit</flag>
+	<flag dailyReset="false">playerHasTransformed</flag>
+
+
+	<flag dailyReset="false">ringmaker_quest_start</flag>
+	<flag dailyReset="false">ringmaker_quest_complete</flag>
+	<flag dailyReset="false">ringmaker_fight_prelude</flag>
+
+	<flag dailyReset="false">ringmaker_ring_portal</flag>
+
+	<flag dailyReset="true">ringmaker_event_daily</flag>
+	<flag dailyReset="true">ringmaker_event_1</flag>
+	<flag dailyReset="true">ringmaker_event_2</flag>
+	<flag dailyReset="true">ringmaker_event_3</flag>
+
+	<flag dailyReset="false">update_event</flag>
+
+	<!-- Idol -->
+	<flag dailyReset="false">idol_intro_alleyways</flag>
+	<flag dailyReset="false">idol_intro_dancefloor</flag>
+	<flag dailyReset="false">idol_identity_discovered</flag>
+
+	<flag dailyReset="false">idol_alleyways_refuse_pay</flag>
+	
+	<flag dailyReset="true">idol_back_alley_passby</flag>
+	<flag dailyReset="true">idol_back_alley_satisfied</flag>
+
+	<flag dailyReset="false">idol_dance_first_performance</flag>
+
+	<flag dailyReset="false">idol_home_first_visit</flag>
+	<flag dailyReset="true">idol_home_asked_background</flag>
+	<flag dailyReset="true">idol_home_asked_ring</flag>
+	<flag dailyReset="true">idol_home_asked_work</flag>
+	
+	<flag dailyReset="false">idol_isGirlfriend</flag>
+</dialogueFlags>

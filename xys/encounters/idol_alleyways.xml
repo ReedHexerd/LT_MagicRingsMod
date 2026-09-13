@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<encounterRoot>
+	
+	<additionalPlaceTypeTriggers>
+		<placeType>DOMINION_BACK_ALLEYS</placeType>
+	</additionalPlaceTypeTriggers>
+	
+	<possibleEncounters>
+		<encounter>
+            <name><![CDATA[Idol_Alleyways_Start]]></name>
+            <chanceToTrigger opportunisticEncounter="true"><![CDATA[
+				#IF(flags.hasSavedLong('idol') && !pc.hasCompanions() && pc.getCell() == idol.getHomeCell() && game.isHourBetween(4, 21))
+					20
+				#ELSE
+					0
+				#ENDIF
+            ]]></chanceToTrigger>
+			<dialogueReturned><![CDATA[
+				#IF(idol.getAffectionLevel(pc).isWillFightPlayer())
+					xys_dominion_idol_alley_alleyways_start
+				#ELSE
+					xys_dominion_idol_alley_alleyways_peaceful_start
+				#ENDIF
+			]]></dialogueReturned>
+		</encounter>
+	</possibleEncounters>
+	
+</encounterRoot>

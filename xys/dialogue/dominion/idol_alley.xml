@@ -1,0 +1,1318 @@
+<dialogueNodes>
+    <!-- ALLEYWAYS -->
+    <scene id="intro_alleyways">
+        <preParsingEffects><![CDATA[
+            #IF(flags.hasSavedLong('npcCrew'))
+                [##game.setParserTarget('beaten1', beaten1); game.setParserTarget('beaten2', beaten2); game.setParserTarget('beaten3', beaten3)]
+            #ELSE
+                [##game.addNPC('GenericSexualPartner', 'beaten1'); game.addNPC('GenericSexualPartner', 'beaten2'); game.addNPC('GenericSexualPartner', 'beaten3')]
+                [##flags.setSavedLong('npcCrew', 100)]
+            #ENDIF
+			[##beaten1.setLocation(WORLD_TYPE_EMPTY, PLACE_TYPE_GENERIC_HOLDING_CELL, true); beaten2.setLocation(WORLD_TYPE_EMPTY, PLACE_TYPE_GENERIC_HOLDING_CELL, true); beaten3.setLocation(WORLD_TYPE_EMPTY, PLACE_TYPE_GENERIC_HOLDING_CELL, true)]
+            
+            [##flags.setFlag('xys_idol_intro_alleyways', true)]
+            #IF(flags.hasSavedLong('idol'))
+                [##game.setModdedCharacterParserTarget(flags.getSavedLong('idol'), 'idol')]
+            #ELSE
+                [##flags.setSavedLong('idol', game.importModdedCharacter('res/mods/xys/characters/idol.xml', 'idol'))]
+            #ENDIF
+            [##idol.setAbleToBeEnslaved(false); idol.setAbleToBeImpregnated(true)]
+            [##idol.setLocation(pc); idol.setHomeLocation()]
+		]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/idol_alley">INTRO_ALLEYWAYS</content>
+        <secondsPassed minutes="true"><![CDATA[3]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Fight]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Prepare yourself and fight [idol.name]!
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+                ]]></effects>
+                <secondsPassed minutes="true"><![CDATA[1]]></secondsPassed>
+				<combatVariables enabled="true">
+					<nextDialoguePlayerVictory><![CDATA[xys_dominion_idol_alley_intro_alleyways_victory]]></nextDialoguePlayerVictory>
+					<nextDialoguePlayerDefeat><![CDATA[xys_dominion_idol_alley_intro_alleyways_defeat]]></nextDialoguePlayerDefeat>
+					<allies/>
+					<enemies>
+						<enemy leader="true"><![CDATA[idol]]></enemy>
+					</enemies>
+					<openingDescriptions>
+						<combatant id="idol"><![CDATA[[idol.speech(Let's get this shit done,)] [idol.name] drawls, impatiently twirling her wooden bat.]]></combatant>
+					</openingDescriptions>
+					<escapeBlocked><![CDATA[true]]></escapeBlocked>
+				</combatVariables>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+				<colour><![CDATA[GENERIC_SEX]]></colour>
+                <responseTitle><![CDATA[Surrender]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You don't really want trouble. Surrender to [idol.name].
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[xys_dominion_idol_alley_intro_alleyways_surrender]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+
+    <scene id="intro_alleyways_victory">
+        <content folderPath="mods/xys/txt/idol_alley">INTRO_ALLEYWAYS_VICTORY</content>
+        <secondsPassed minutes="true"><![CDATA[10]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You're left confused by the encounter, leaving you alone. With no other options, you carry on your journey...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="intro_alleyways_defeat">
+        <content folderPath="mods/xys/txt/idol_alley">INTRO_ALLEYWAYS_DEFEAT</content>
+        <secondsPassed minutes="true"><![CDATA[10]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You're left beaten up, but is thankfully left alone. With no other options, you carry on your journey...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="intro_alleyways_surrender">
+        <preParsingEffects><![CDATA[
+            [##idol.incrementPlayerSurrenderCount(1)]
+        ]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/idol_alley">INTRO_ALLEYWAYS_SURRENDER</content>
+        <secondsPassed minutes="true"><![CDATA[10]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You're left confused by the encounter, and is left alone. With no other options, you carry on your journey...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="alleyways_start">
+        <preParsingEffects><![CDATA[
+            [##var isStorm = game.getCurrentWeather().equals(WEATHER_MAGIC_STORM)]
+        ]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/idol_alley">ALLEYWAYS_START</content>
+        <secondsPassed minutes="true"><![CDATA[3]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <!-- FIGHT -->
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Fight]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Stand up for yourself and fight [idol.name]!
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+                ]]></effects>
+                <secondsPassed minutes="true"><![CDATA[1]]></secondsPassed>
+				<combatVariables enabled="true">
+					<nextDialoguePlayerVictory><![CDATA[xys_dominion_idol_alley_alleyways_victory]]></nextDialoguePlayerVictory>
+					<nextDialoguePlayerDefeat><![CDATA[
+                        #IF(isStorm)
+                            xys_dominion_idol_alley_alleyways_defeat_sex
+                        #ELSE
+                            xys_dominion_idol_alley_alleyways_defeat
+                        #ENDIF
+                    ]]></nextDialoguePlayerDefeat>
+					<allies companionsAreAllies="true"/>
+					<enemies>
+						<enemy leader="true"><![CDATA[idol]]></enemy>
+					</enemies>
+					<openingDescriptions>
+						<combatant id="idol"><![CDATA[
+                            #IF(idol.getPlayerSurrenderCount()>=3)
+                                Giving you a fed up look, [idol.name] grumbles as she impatiently twirls her wooden bat. [idol.speech(I really don't fucking get what you want, you damn bitch. MAKE UP YOUR FUCKING MIND!)]
+                            #ELSE
+                                [idol.speech(So... you came over here just to get your ass beaten, huh?)] [idol.name] drawls, impatiently twirling her wooden bat. [idol.speech(Fine by me.)]
+                            #ENDIF
+                        ]]></combatant>
+					</openingDescriptions>
+				</combatVariables>
+            </response>
+            <!-- OFFER MONEY / LEAVE -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#!isStorm && !flags.hasFlag('xys_idol_alleyways_refuse_pay')]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Offer money ([style.moneyFormat([#(pc.getMoney() < 250?pc.getMoney():250)], span)])]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Offer to pay [idol.name] [#(pc.getMoney() < 250?pc.getMoney():250)] flames to leave you alone.
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+                    [##flags.setFlag('xys_idol_alleyways_refuse_pay', true)]
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/idol_alley', 'ALLEYWAYS_REFUSE_PAY'))]
+				]]></effects>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[
+                    #IF(!flags.hasFlag('xys_idol_alleyways_refuse_pay'))
+                        Offer money ([style.moneyFormat((pc.getMoney() < 250?pc.getMoney():250), span)])
+                    #ELSE
+                        Leave
+                    #ENDIF
+                ]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(isStorm)
+                        Due to the ongoing arcane storm, [idol.name] is only interested in having sex with you at the moment!
+                    #ELSE
+                        Just leave [idol.name] alone. 
+                    #ENDIF
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[
+                    #IF(isStorm)
+                        null
+                    #ELSE
+                        default
+                    #ENDIF
+                ]]></nextDialogue>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+				]]></effects>
+            </response>
+            <!-- OFFER SELF -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#isStorm]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Offer body]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Offer your body to [idol.name] so that you can avoid a violent confrontation.
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <requiredFetishes>
+                    <fetish><![CDATA[FETISH_SUBMISSIVE]]></fetish>
+                </requiredFetishes>
+                <corruptionLevel><![CDATA[[#FETISH_SUBMISSIVE.getAssociatedCorruptionLevel()]]]></corruptionLevel>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+					[#idol.incrementPlayerSurrenderCount(1)]
+				]]></effects>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[true]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[idol]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[pc]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators>
+                        <character><![CDATA[com]]></character>
+                    </submissiveSpectators>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_alley_alleyways_defeat_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_alley"><![CDATA[ALLEYWAYS_OFFER_SEX]]></sexStartContent>
+                </sexVariables>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Offer body]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You can tell that [idol.name] isn't at all interested in having sex with you. 
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[null]]></nextDialogue>
+            </response>
+            <!-- SURRENDER -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#!isStorm]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[4]]></index>
+				<colour><![CDATA[GENERIC_SEX]]></colour>
+                <responseTitle><![CDATA[Surrender]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Completely surrender to [idol.name] and let her do whatever she wants with your body...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+                <requiredFetishes>
+                    <fetish><![CDATA[FETISH_SUBMISSIVE]]></fetish>
+                </requiredFetishes>
+                <corruptionLevel><![CDATA[[#FETISH_SUBMISSIVE.getAssociatedCorruptionLevel()]]]></corruptionLevel>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+					[#idol.incrementPlayerSurrenderCount(1)]
+                    #IF(game.isFootContentEnabled() && idol.getPlayerSurrenderCount() >= 3 && pc.isAbleToAccessCoverableArea(CA_MOUTH, true))
+    					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/idol_alley', 'ALLEYWAYS_SUBMIT_FEET'))]
+                    #ELSE
+    					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/idol_alley', 'ALLEYWAYS_SURRENDER'))]
+                    #ENDIF
+				]]></effects>
+            </response>
+        </responses>
+    </scene>
+
+    <scene id="alleyways_peaceful_start">
+        <preParsingEffects><![CDATA[
+            #IF(!idol.isPlayerKnowsName())
+                [##idol.setPlayerKnowsName(true)]
+            #ENDIF
+            [##var isStorm = game.getCurrentWeather().equals(WEATHER_MAGIC_STORM)]
+        ]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/idol_alley">ALLEYWAYS_PEACEFUL_START</content>
+        <secondsPassed minutes="true"><![CDATA[3]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <!-- TALK -->
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Talk]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(isStorm)
+                        Due to the ongoing arcane storm, [idol.name] is only interested in having sex with you at the moment!
+                    #ELSE
+                        Talk to [idol.name] for a while in order to get to know her a little better.
+                    #ENDIF
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[
+                    #IF(isStorm)
+                        null
+                    #ELSE
+                        xys_dominion_idol_alley_alleyways_peaceful_talk
+                    #ENDIF
+                ]]></nextDialogue>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+					[#game.appendToTextEndStringBuilder(idol.incrementAffection(pc, 10))]
+                ]]></effects>
+            </response>
+            <!-- OFFER MONEY -->
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Offer money ([style.moneyFormat([#(pc.getMoney() < 250?pc.getMoney():250)], span)])]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(isStorm)
+                        Due to the ongoing arcane storm, [idol.name] is only interested in having sex with you at the moment!
+                    #ELSEIF(flags.hasFlag('xys_idol_alleyways_refuse_pay'))
+                        [idol.Name] does not want your money, but she appreciates your goodwill. 
+                    #ELSE
+                        Offer to pay [idol.name] [#(pc.getMoney() < 250?pc.getMoney():250)] flames to buy food and clothing.
+                    #ENDIF
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[
+                    #IF(isStorm || flags.hasFlag('xys_idol_alleyways_refuse_pay'))
+                        null
+                    #ELSE
+                        xys_dominion_idol_alley_alleyways_peaceful_start
+                    #ENDIF
+                ]]></nextDialogue>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+                    [##flags.setFlag('xys_idol_alleyways_refuse_pay', true)]
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/idol_alley', 'ALLEYWAYS_PEACEFUL_REFUSE_PAY'))]
+					[#game.appendToTextEndStringBuilder(idol.incrementAffection(pc, 10))]
+				]]></effects>
+            </response>
+            <!-- SEGGS (DOM) -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#isStorm || idol.getAffection(pc) >= 50]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Sex (dom)]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(isStorm)
+                        You can tell that the ongoing arcane storm is making her antsy. 
+                    #ENDIF
+                    Take the dominant role and have sex with [idol.name].
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <requiredFetishes>
+                    <fetish><![CDATA[FETISH_DOMINANT]]></fetish>
+                </requiredFetishes>
+                <corruptionLevel><![CDATA[[#FETISH_DOMINANT.getAssociatedCorruptionLevel()]]]></corruptionLevel>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[true]]></consensual>
+                    <subHasEqualControl><![CDATA[true]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[pc]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[idol]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_alley_alleyways_peaceful_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_sex"><![CDATA[ALLEYWAYS_PEACEFUL_SEX_AS_DOM]]></sexStartContent>
+                </sexVariables>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+				]]></effects>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Sex (dom)]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You can tell that [idol.name] isn't at all interested in having sex with you. 
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[null]]></nextDialogue>
+            </response>
+            <!-- SEGGS (SUB) -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#isStorm || idol.getAffection(pc) >= 50]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[4]]></index>
+                <responseTitle><![CDATA[Sex (sub)]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(isStorm)
+                        You can tell that the ongoing arcane storm is making her antsy. 
+                    #ENDIF
+                    Offer your body to [idol.name].
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <requiredFetishes>
+                    <fetish><![CDATA[FETISH_SUBMISSIVE]]></fetish>
+                </requiredFetishes>
+                <corruptionLevel><![CDATA[[#FETISH_SUBMISSIVE.getAssociatedCorruptionLevel()]]]></corruptionLevel>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[true]]></consensual>
+                    <subHasEqualControl><![CDATA[true]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[idol]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[pc]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_alley_alleyways_peaceful_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_sex"><![CDATA[ALLEYWAYS_PEACEFUL_SEX_AS_SUB]]></sexStartContent>
+                </sexVariables>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+				]]></effects>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[4]]></index>
+                <responseTitle><![CDATA[Sex (sub)]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You can tell that [idol.name] isn't at all interested in having sex with you. 
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[null]]></nextDialogue>
+            </response>
+            <!-- FIGHT -->
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[10]]></index>
+                <colour><![CDATA[GENERIC_COMBAT]]></colour>
+                <responseTitle><![CDATA[Fight]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Betray [idol.namePos] trust and attack her!
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[xys_dominion_idol_hell_hath_no_fury]]></nextDialogue>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+                    [##idol.addFlag(NPC_FLAG_genericNPCBetrayedByPlayer)]
+                ]]></effects>
+            </response>
+        </responses>
+    </scene>
+
+    <scene id="alleyways_peaceful_talk">
+        <content folderPath="mods/xys/txt/idol_alley">ALLEYWAYS_PEACEFUL_TALK</content>
+        <secondsPassed minutes="true"><![CDATA[0]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[
+                    #IF(idol.getAffection(pc) >= 30 && game.getMinutesUntilTimeInMinutes(1260) > 30)
+                        Refuse
+                    #ELSE
+                        Continue
+                    #ENDIF
+                ]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(idol.getAffection(pc) >= 30 && game.getMinutesUntilTimeInMinutes(1260) > 30)
+                        Refuse her offer. 
+                    #ELSE
+                        Let [idol.name] go. 
+                    #ENDIF
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    #IF(idol.getAffection(pc) >= 30 && game.getMinutesUntilTimeInMinutes(1260) > 30)
+					    [#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/idol_alley', 'ALLEYWAYS_PEACEFUL_LEAVE'))]
+                    #ENDIF
+				]]></effects>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#idol.getAffection(pc) >= 30 && game.getMinutesUntilTimeInMinutes(1260) > 30]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Follow her]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Follow [idol.name] to her home. 
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[xys_dominion_idol_alley_home]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="alleyways_peaceful_after_sex">
+        <tooltip><![CDATA[Step away from [idol.name] and prepare to continue on your way.]]></tooltip>
+        <content folderPath="mods/xys/txt/idol_sex">ALLEYWAYS_PEACEFUL_AFTER_SEX</content>
+        <secondsPassed minutes="true"><![CDATA[10]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Carry on your way...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="home">
+        <preParsingEffects><![CDATA[
+            [##idol.setProtectedFromArcaneStorm(true)]
+        ]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/idol_alley">IDOL_HOME</content>
+        <secondsPassed minutes="true"><![CDATA[5]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <!-- OUT OF TIME -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.getMinutesUntilTimeInMinutes(1260) <= 15]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Time to go]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    [idol.Name] has started glancing at the clock on the wall, giving you a clear indication that it's time to make your exit.
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("mods/xys/txt/idol_alley", "IDOL_HOME_OUT_OF_TIME"))]
+                    [##idol.setProtectedFromArcaneStorm(false)]
+                ]]></effects>
+            </response>
+            <!-- PRACTICE -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#!(game.getMinutesUntilTimeInMinutes(1260) <= 30) && flags.hasFlag('xys_idol_identity_discovered')]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Practice]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Practice dancing with [idol.name]. 
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[xys_dominion_idol_alley_home]]></nextDialogue>
+                <secondsPassed minutes="true"><![CDATA[30]]></secondsPassed>
+                <effects><![CDATA[
+                    #IF(flags.getSavedLong('idol_performance_count') < 0)
+                        [##flags.setSavedLong('idol_performance_count', 0)]
+                    #ELSE
+		                [##flags.setSavedLong('idol_performance_count', flags.getSavedLong('idol_performance_count') + 1)]
+                    #ENDIF
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("mods/xys/txt/idol_alley", "IDOL_HOME_PRACTICE"))]
+					[#game.appendToTextEndStringBuilder(idol.incrementAffection(pc, 10))]
+                ]]></effects>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.getMinutesUntilTimeInMinutes(1260) > 15]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Practice]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(game.getMinutesUntilTimeInMinutes(1260) <= 30)
+                        There's not enough time for [idol.name] to dance with you. 
+                    #ELSE
+                        You don't know what the wall-length mirror is for. 
+                    #ENDIF
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[null]]></nextDialogue>
+            </response>
+            <!-- TALK -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.getMinutesUntilTimeInMinutes(1260) > 15]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Talk]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Talk to [idol.name] for a while in order to get to know her a little better.
+                ]]></responseTooltip>
+                <nextDialogue forceContinue='true'><![CDATA[xys_dominion_idol_alley_home_talk]]></nextDialogue>
+            </response>
+            <!-- SEGGS (DOM) -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.getMinutesUntilTimeInMinutes(1260) > 15 && idol.getAffection(pc) >= 50]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Sex (dom)]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Take the dominant role and have sex with [idol.name].
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <requiredFetishes>
+                    <fetish><![CDATA[FETISH_DOMINANT]]></fetish>
+                </requiredFetishes>
+                <corruptionLevel><![CDATA[[#FETISH_DOMINANT.getAssociatedCorruptionLevel()]]]></corruptionLevel>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[true]]></consensual>
+                    <subHasEqualControl><![CDATA[true]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[pc]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[idol]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_alley_home_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_alley"><![CDATA[IDOL_HOME_SEX]]></sexStartContent>
+                </sexVariables>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+				]]></effects>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.getMinutesUntilTimeInMinutes(1260) > 15]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Sex (dom)]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You can tell that [idol.name] isn't at all interested in having sex with you. 
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[null]]></nextDialogue>
+            </response>
+            <!-- SEGGS (SUB) -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.getMinutesUntilTimeInMinutes(1260) > 15 && idol.getAffection(pc) >= 50]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[4]]></index>
+                <responseTitle><![CDATA[Sex (sub)]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Offer your body to [idol.name].
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <requiredFetishes>
+                    <fetish><![CDATA[FETISH_SUBMISSIVE]]></fetish>
+                </requiredFetishes>
+                <corruptionLevel><![CDATA[[#FETISH_SUBMISSIVE.getAssociatedCorruptionLevel()]]]></corruptionLevel>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[true]]></consensual>
+                    <subHasEqualControl><![CDATA[true]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[idol]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[pc]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_alley_home_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_alley"><![CDATA[IDOL_HOME_SEX]]></sexStartContent>
+                </sexVariables>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+				]]></effects>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.getMinutesUntilTimeInMinutes(1260) > 15]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[4]]></index>
+                <responseTitle><![CDATA[Sex (sub)]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You can tell that [idol.name] isn't at all interested in having sex with you. 
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[null]]></nextDialogue>
+            </response>
+            <!-- FIGHT -->
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[10]]></index>
+                <colour><![CDATA[GENERIC_COMBAT]]></colour>
+                <responseTitle><![CDATA[Fight]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Betray [idol.namePos] trust and attack her!
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[xys_dominion_idol_hell_hath_no_fury]]></nextDialogue>
+                <effects><![CDATA[
+                    [##idol.addFlag(NPC_FLAG_genericNPCBetrayedByPlayer)]
+                ]]></effects>
+            </response>
+            <!-- LEAVE -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.getMinutesUntilTimeInMinutes(1260) > 15]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[0]]></index>
+                <responseTitle><![CDATA[Leave]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Tell [idol.name] that you'll catch up with her some other time.
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("mods/xys/txt/idol_alley", "IDOL_HOME_LEAVE"))]
+                    [##idol.setProtectedFromArcaneStorm(false)]
+                ]]></effects>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="home_talk">
+        <content/>
+        <secondsPassed minutes="true"><![CDATA[0]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <!-- OUT OF TIME -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.getMinutesUntilTimeInMinutes(1260) <= 15]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Time to go]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    [idol.Name] has started glancing at the clock on the wall, giving you a clear indication that it's time to make your exit.
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("mods/xys/txt/idol_alley", "IDOL_HOME_OUT_OF_TIME"))]
+                ]]></effects>
+            </response>
+            <!-- BACKGROUND -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.getMinutesUntilTimeInMinutes(1260) > 15]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Backgroud]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(!flags.hasFlag('xys_idol_home_asked_background'))
+                        Ask [idol.name] about her background.
+                    #ELSE
+                        You've asked about this topic today, and she doesn't feel like repeating it to you. 
+                    #ENDIF
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[
+                    #IF(!flags.hasFlag('xys_idol_home_asked_background'))
+                        xys_dominion_idol_alley_home_talk
+                    #ELSE
+                        null
+                    #ENDIF
+                ]]></nextDialogue>
+                <secondsPassed minutes="true"><![CDATA[5]]></secondsPassed>
+                <effects><![CDATA[
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("mods/xys/txt/idol_alley", "IDOL_HOME_TALK_BACKGROUND"))]
+					[#game.appendToTextEndStringBuilder(idol.incrementAffection(pc, 5))]
+                    [##flags.setFlag('xys_idol_home_asked_background', true)]
+                ]]></effects>
+            </response>
+            <!-- WORK -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.getMinutesUntilTimeInMinutes(1260) > 15]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Work]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(!flags.hasFlag('xys_idol_home_asked_work'))
+                        Ask [idol.name] about what she does for a living.
+                    #ELSE
+                        You've asked about this topic today, and she doesn't feel like repeating it to you. 
+                    #ENDIF
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[
+                    #IF(!flags.hasFlag('xys_idol_home_asked_work'))
+                        xys_dominion_idol_alley_home_talk
+                    #ELSE
+                        null
+                    #ENDIF
+                ]]></nextDialogue>
+                <secondsPassed minutes="true"><![CDATA[5]]></secondsPassed>
+                <effects><![CDATA[
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("mods/xys/txt/idol_alley", "IDOL_HOME_TALK_WORK"))]
+					[#game.appendToTextEndStringBuilder(idol.incrementAffection(pc, 5))]
+                    [##flags.setFlag('xys_idol_home_asked_work', true)]
+                ]]></effects>
+            </response>
+            <!-- RINGS -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.getMinutesUntilTimeInMinutes(1260) > 15]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Her ring]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(!flags.hasFlag('xys_idol_home_asked_ring'))
+                        Ask [idol.name] about her [#(flags.hasFlag('xys_playerHasTransformed')?'familiar-looking ':'')]ring.
+                    #ELSE
+                        You've asked about this topic today, and she doesn't feel like repeating it to you. 
+                    #ENDIF
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[
+                    #IF(!flags.hasFlag('xys_idol_home_asked_ring'))
+                        xys_dominion_idol_alley_home_talk
+                    #ELSE
+                        null
+                    #ENDIF
+                ]]></nextDialogue>
+                <secondsPassed minutes="true"><![CDATA[5]]></secondsPassed>
+                <effects><![CDATA[
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("mods/xys/txt/idol_alley", "IDOL_HOME_TALK_RING"))]
+					[#game.appendToTextEndStringBuilder(idol.incrementAffection(pc, 5))]
+                    [##flags.setFlag('xys_idol_home_asked_ring', true)]
+                ]]></effects>
+            </response>
+            <!-- DONE -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.getMinutesUntilTimeInMinutes(1260) > 15]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[0]]></index>
+                <responseTitle><![CDATA[Back]]></responseTitle>
+                <responseTooltip/>
+                <nextDialogue forceContinue='true' stripContent='true'><![CDATA[xys_dominion_idol_alley_home]]></nextDialogue>
+                <secondsPassed minutes="true"><![CDATA[0]]></secondsPassed>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="home_after_sex">
+        <tooltip><![CDATA[Step away and let [idol.name] recover.]]></tooltip>
+        <content folderPath="mods/xys/txt/idol_alley">IDOL_HOME_AFTER_SEX</content>
+        <secondsPassed minutes="true"><![CDATA[0]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[Continue what you're doing before.]]></responseTooltip>
+                <nextDialogue><![CDATA[xys_dominion_idol_alley_home]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+    
+    <!-- VICTORY -->
+    <scene id="alleyways_victory">
+        <preParsingEffects><![CDATA[
+            [##
+			    var wantsSex = game.getCurrentWeather().equals(WEATHER_MAGIC_STORM);
+                var nonCon = game.isNonConEnabled();
+            ]
+		]]></preParsingEffects>
+        <tooltip><![CDATA[You have defeated [idol.name]!]]></tooltip>
+        <content folderPath="mods/xys/txt/idol_alley">ALLEYWAYS_VICTORY</content>
+        <secondsPassed minutes="true"><![CDATA[10]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Carry on your way...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+            </response>
+            <!-- SEGGS -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#wantsSex]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Well, she <i>is</i> asking for it!
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[true]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[pc]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[idol]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_alley_alleyways_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_sex"><![CDATA[ALLEYWAYS_VICTORY_SEX]]></sexStartContent>
+                </sexVariables>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#wantsSex]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Gentle Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Well, she <i>is</i> asking for it!
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[true]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[pc]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[idol]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_alley_alleyways_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_sex"><![CDATA[ALLEYWAYS_VICTORY_SEX_GENTLE]]></sexStartContent>
+                    <tags>
+						<tag>START_PACE_PLAYER_DOM_GENTLE</tag>
+					</tags>
+                </sexVariables>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#wantsSex]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[4]]></index>
+                <responseTitle><![CDATA[Rough Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Well, she <i>is</i> asking for it!
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[true]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[pc]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[idol]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_alley_alleyways_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_sex"><![CDATA[ALLEYWAYS_VICTORY_SEX_ROUGH]]></sexStartContent>
+                    <tags>
+						<tag>START_PACE_PLAYER_DOM_ROUGH</tag>
+					</tags>
+                </sexVariables>
+            </response>
+            <!-- NONCON -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#nonCon]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Rape her]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    She needs to be punished for attacking you like that...
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <requiredFetishes>
+                    <fetish><![CDATA[FETISH_NON_CON_DOM]]></fetish>
+                </requiredFetishes>
+                <corruptionLevel><![CDATA[[#FETISH_NON_CON_DOM.getAssociatedCorruptionLevel()]]]></corruptionLevel>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[false]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[pc]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[idol]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_alley_alleyways_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_sex"><![CDATA[ALLEYWAYS_VICTORY_RAPE]]></sexStartContent>
+                </sexVariables>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#nonCon]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Rape her (gentle)]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    She needs to be punished for attacking you like that...
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <requiredFetishes>
+                    <fetish><![CDATA[FETISH_NON_CON_DOM]]></fetish>
+                </requiredFetishes>
+                <corruptionLevel><![CDATA[[#FETISH_NON_CON_DOM.getAssociatedCorruptionLevel()]]]></corruptionLevel>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[false]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[pc]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[idol]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_alley_alleyways_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_sex"><![CDATA[ALLEYWAYS_VICTORY_RAPE_GENTLE]]></sexStartContent>
+                    <tags>
+						<tag>START_PACE_PLAYER_DOM_GENTLE</tag>
+					</tags>
+                </sexVariables>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#nonCon]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[4]]></index>
+                <responseTitle><![CDATA[Rape her (rough)]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    She needs to be punished for attacking you like that...
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <requiredFetishes>
+                    <fetish><![CDATA[FETISH_NON_CON_DOM]]></fetish>
+                </requiredFetishes>
+                <corruptionLevel><![CDATA[[#FETISH_NON_CON_DOM.getAssociatedCorruptionLevel()]]]></corruptionLevel>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[false]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[pc]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[idol]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_alley_alleyways_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_sex"><![CDATA[ALLEYWAYS_VICTORY_RAPE_ROUGH]]></sexStartContent>
+                    <tags>
+						<tag>START_PACE_PLAYER_DOM_ROUGH</tag>
+					</tags>
+                </sexVariables>
+            </response>
+            <!-- NO SEGGS -->
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    [idol.Name] has no interest in having sex with you!
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[null]]></nextDialogue>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Gentle Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    [idol.Name] has no interest in having sex with you!
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[null]]></nextDialogue>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[4]]></index>
+                <responseTitle><![CDATA[Rough Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    [idol.Name] has no interest in having sex with you!
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[null]]></nextDialogue>
+            </response>
+            <!-- SUBMIT -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#game.getCurrentWeather().equals(WEATHER_MAGIC_STORM)]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[5]]></index>
+                <responseTitle><![CDATA[Submit]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You're not really sure what to do now... Perhaps it would be best to let [idol.name] choose what to do next?
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[true]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[idol]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[pc]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_alley_alleyways_after_sex_defeat]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_sex"><![CDATA[ALLEYWAYS_VICTORY_SUBMIT]]></sexStartContent>
+                </sexVariables>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[5]]></index>
+                <responseTitle><![CDATA[Submit]]></responseTitle>
+				<colour><![CDATA[GENERIC_SEX]]></colour>
+                <responseTooltip><![CDATA[
+                    You're not really sure what to do now... Perhaps it would be best to let [idol.name] choose what to do next?
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("mods/xys/txt/idol_sex", "ALLEYWAYS_VICTORY_SUBMIT"))]
+                ]]></effects>
+            </response>
+            <!-- TALK -->
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[6]]></index>
+                <responseTitle><![CDATA[Talk]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(isStorm)
+                        Due to the ongoing arcane storm, [idol.name] is only interested in having sex with you at the moment!
+                    #ELSE
+                        Talk to [idol.name] and ask her why she attacked you.
+                    #ENDIF
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[
+                    #IF(isStorm)
+                        null
+                    #ELSE
+                        default
+                    #ENDIF
+                ]]></nextDialogue>
+                <effects><![CDATA[
+                    [#idol.setPlayerKnowsName(true)]
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("mods/xys/txt/idol_alley", "ALLEYWAYS_VICTORY_TALK"))]
+					[#game.appendToTextEndStringBuilder(idol.incrementAffection(pc, 10))]
+                ]]></effects>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="alleyways_victory_after_sex">
+        <tooltip><![CDATA[Now that you've had your fun, you can step back and leave [idol.name] to recover.]]></tooltip>
+        <content folderPath="mods/xys/txt/idol_sex">ALLEYWAYS_VICTORY_AFTER_SEX</content>
+        <secondsPassed minutes="true"><![CDATA[10]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Carry on your way...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+    
+    <!-- DEFEAT -->
+    <scene id="alleyways_defeat">
+        <content folderPath="mods/xys/txt/idol_alley">ALLEYWAYS_DEFEAT</content>
+        <secondsPassed minutes="true"><![CDATA[10]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Carry on your way...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="alleyways_defeat_sex">
+        <content folderPath="mods/xys/txt/idol_sex">ALLEYWAYS_DEFEAT_SEX</content>
+        <secondsPassed minutes="true"><![CDATA[10]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <!-- SEGGS -->
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Tell [idol.name] that you would like to have sex with her.
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[false]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[idol]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[pc]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_alley_alleyways_defeat_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_sex"><![CDATA[ALLEYWAYS_DEFEAT_SEX_START]]></sexStartContent>
+                </sexVariables>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Gentle Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Tell [idol.name] that you are more than happy to have sex with her!
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[true]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[idol]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[pc]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_alley_alleyways_defeat_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_sex"><![CDATA[ALLEYWAYS_DEFEAT_SEX_START]]></sexStartContent>
+                    <tags>
+						<tag>START_PACE_PLAYER_SUB_EAGER</tag>
+					</tags>
+                </sexVariables>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Refuse]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Refuse to have sex with [idol.name] and continue on your way.
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("mods/xys/txt/idol_sex", "ALLEYWAYS_DEFEAT_REFUSE_SEX"))]
+                ]]></effects>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="alleyways_defeat_after_sex">
+        <tooltip><![CDATA[You're completely worn out from [idol.namePos] dominant treatment, and need a while to recover.]]></tooltip>
+        <content folderPath="mods/xys/txt/idol_sex">ALLEYWAYS_DEFEAT_AFTER_SEX</content>
+        <secondsPassed minutes="true"><![CDATA[15]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Carry on your way...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+    
+</dialogueNodes>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<encounterRoot>
+	
+	<additionalPlaceTypeTriggers>
+		<placeType>DOMINION_BACK_ALLEYS</placeType>
+	</additionalPlaceTypeTriggers>
+	
+	<possibleEncounters>
+		<encounter>
+            <name><![CDATA[Idol_Intro_Alleyways]]></name>
+            <chanceToTrigger opportunisticEncounter="false"><![CDATA[
+				#IF(!flags.hasFlag('xys_idol_intro_alleyways') && game.getCurrentWeather() != WEATHER_MAGIC_STORM && game.isHourBetween(4, 21))
+					101
+				#ELSE
+					0
+				#ENDIF
+            ]]></chanceToTrigger>
+			<dialogueReturned><![CDATA[xys_dominion_idol_alley_intro_alleyways]]></dialogueReturned>
+		</encounter>
+	</possibleEncounters>
+	
+</encounterRoot>

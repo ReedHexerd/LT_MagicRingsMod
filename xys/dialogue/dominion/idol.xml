@@ -1,0 +1,832 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dialogueNodes>
+
+    <!-- WATERING HOLE REPLACE TILES --> 
+    <scene id="danceFloor_alt">
+        <preParsingEffects><![CDATA[
+            [##var textClass = COLOUR_COVERING_RED.getClass(); 
+				var classLoader = textClass.getClassLoader(); 
+				var nightClass = classLoader.loadClass('com.lilithsthrone.game.dialogue.places.dominion.nightlife.NightlifeDistrict'); 
+            ]
+            [##
+				var getClubbersPresent = nightClass.getMethod('getClubbersPresent').invoke(null); 
+                if(getClubbersPresent.contains(idol)) getClubbersPresent.remove(idol); 
+            ]
+            [##
+                function likesKiss(partner, isDominantPartner) {
+                    return partner.getAffection(pc) >= AFFECTION_POSITIVE_ONE_FRIENDLY.getMedianValue()
+                            || partner.getAlcoholLevelValue()>0;
+                };
+                
+                function likesGroping(partner, isDominantPartner) {
+                    return partner.getAffection(pc) >= AFFECTION_POSITIVE_TWO_LIKE.getMedianValue()
+                            || partner.getAlcoholLevelValue()>ALCOHOL_LEVEL_TWO_MERRY.getMinimumValue();
+                };
+                
+                function likesSex(partner, isDominantPartner) {
+                    return partner.getAffection(pc) >= AFFECTION_POSITIVE_THREE_CARING.getMedianValue()
+                            || partner.getAlcoholLevelValue()>ALCOHOL_LEVEL_THREE_DRUNK.getMinimumValue();
+                };
+            ]
+            [##
+                function isClubOpen(minutesPassedForNextScene) {
+                    return !((game.getMinutesPassed()+minutesPassedForNextScene) % (24 * 60) >= (60 * 5) && (game.getMinutesPassed()+minutesPassedForNextScene) % (24 * 60) < (60 * 19));
+                };
+                function isPartnerLeaving() {
+                    return getClubbersPresent.size() != 0 && getClubbersPresent.get(0).getAffection(pc) < AFFECTION_NEGATIVE_THREE_STRONG_DISLIKE.getMedianValue();
+                };
+                function isPartnerPassingOut(isDominantPartner) {
+                    return getClubbersPresent.size() != 0 && !isDominantPartner && getClubbersPresent.get(0).getAlcoholLevelValue() >= ALCOHOL_LEVEL_FIVE_WASTED.getMaximumValue()-0.05;
+                };
+                function isEndConditionMet(minutesPassedForNextScene) {
+                    return isPartnerLeaving() || isPartnerPassingOut(false) || (!isClubOpen(minutesPassedForNextScene) && flags.hasFlag(FLAG_passedJules));
+                };
+            ]
+            [##
+                function getClubberStatus(secondsPassedForNextScene, isDominantPartner) {
+                    var str = '';
+                    if(getClubbersPresent.size() != 0) {
+                        var clubber = getClubbersPresent.get(0);
+                        
+                        var al = clubber.getAffectionLevel(pc);
+
+                        str += "<p style='text-align:center;'><i>";
+                        switch(al) {
+                            case AFFECTION_NEGATIVE_FIVE_LOATHE:
+                            case AFFECTION_NEGATIVE_FOUR_HATE:
+                            case AFFECTION_NEGATIVE_THREE_STRONG_DISLIKE:
+                            case AFFECTION_NEGATIVE_TWO_DISLIKE:
+                                str += "[npc2.Name] looks <i style='color:"+al.getColour().toWebHexString()+";'>angry and frustrated</i>, and will leave you if you continue to treat [npc2.herHim] poorly.";
+                                break;
+                            case AFFECTION_NEGATIVE_ONE_ANNOYED:
+                                str += "[npc2.Name] looks <i style='color:"+al.getColour().toWebHexString()+";'>mildly annoyed</i>, and is starting to have a bad time.";
+                                break;
+                            case AFFECTION_ZERO_NEUTRAL:
+                            case AFFECTION_POSITIVE_ONE_FRIENDLY:
+                                str += "[npc2.Name] looks <i style='color:"+al.getColour().toWebHexString()+";'>entertained</i>, and has no reason to leave you.";
+                                break;
+                            case AFFECTION_POSITIVE_TWO_LIKE:
+                            case AFFECTION_POSITIVE_THREE_CARING:
+                                str += "[npc2.Name] looks like [npc2.sheIs] <i style='color:"+al.getColour().toWebHexString()+";'>having a great time</i>.";
+                                break;
+                            case AFFECTION_POSITIVE_FOUR_LOVE:
+                            case AFFECTION_POSITIVE_FIVE_WORSHIP:
+                                str += "[npc2.NameIsFull] <i style='color:"+al.getColour().toWebHexString()+";'>desperate to have sex with you</i>.";
+                                break;
+                        };
+
+                        if(clubber.getAlcoholLevelValue()>0) {
+                            str += "</br>";
+                            switch(clubber.getAlcoholLevel()) {
+                                case ALCOHOL_LEVEL_ZERO_SOBER:
+                                    break;
+                                case ALCOHOL_LEVEL_ONE_TIPSY:
+                                    str += "[npc2.Name] is currently <i style='color:"+COLOUR_ALCOHOL.toWebHexString()+";'>tipsy</i>.";
+                                    break;
+                                case ALCOHOL_LEVEL_TWO_MERRY:
+                                    str += "[npc2.Name] is currently <i style='color:"+COLOUR_ALCOHOL.toWebHexString()+";'>merry</i>.";
+                                    break;
+                                case ALCOHOL_LEVEL_THREE_DRUNK:
+                                    str += "[npc2.Name] is currently <i style='color:"+COLOUR_ALCOHOL.toWebHexString()+";'>drunk</i>.";
+                                    break;
+                                case ALCOHOL_LEVEL_FOUR_HAMMERED:
+                                    str += "[npc2.Name] is currently <i style='color:"+COLOUR_ALCOHOL.toWebHexString()+";'>hammered</i>. Giving [npc2.herHim] any more alcohol would be a bad idea.";
+                                    break;
+                                case ALCOHOL_LEVEL_FIVE_WASTED:
+                                    str += "[npc2.Name] is currently <i style='color:"+COLOUR_ALCOHOL.toWebHexString()+";'>wasted</i>."+(isPartnerSub()?" [npc2.She] looks like [npc2.sheIs] going to pass out.":"");
+                                    break;
+                            };
+                        };
+
+                        str += "</br>";
+                        if(likesSex(clubber, isDominantPartner)) {
+                            str += "You can tell that [npc2.she] wants to have sex with you...";
+                            
+                        } else if(likesGroping(clubber, isDominantPartner)) {
+                            if(isDominantPartner) {
+                                str += "You can tell that [npc2.sheIs] about to try and get some physical contact with you...";
+                            } else {
+                                str += "You can tell that [npc2.she] wants some physical contact...";
+                            }
+                            
+                        } else if(likesKiss(clubber, isDominantPartner)) {
+                            if(isDominantPartner) {
+                                str += "You can tell that [npc2.sheIs] going to try and kiss you at any moment...";
+                            } else {
+                                str += "You can tell that [npc2.she] wouldn't mind a kiss...";
+                            }
+                            
+                        } else {
+                            if(isDominantPartner) {
+                                str += "You can tell that [npc2.sheIs] not yet ready to make a move on you...";
+                            } else {
+                                str += "It would be best to talk to [npc2.herHim] a little before making a move...";
+                            }
+                        }
+                        
+                        str += "</i></p>";
+                    };
+
+                    var minutesPassedForNextScene = secondsPassedForNextScene/60;
+                    if(isEndConditionMet(clubber, minutesPassedForNextScene)) {
+                        str += "<p style='text-align:center;'>";
+                        if(isPartnerLeaving(clubber, false)) {
+                            str += getClubbersPresent + "[style.boldTerrible([npc2.Name] leaves you!)]</br>"
+                                    + "[npc2.Name] is fed up, and with a dismissive wave of [npc2.her] [npc2.hand], [npc2.she] turns around and leaves you!";
+                        
+                        } else if(isPartnerPassingOut(false)) {
+                            str += getClubbersPresent + "[style.boldTerrible([npc2.Name] collapses!)]</br>"
+                                    + "Having had far too much to drink, [npc2.name] slumps down to the ground!";
+                            
+                        } else if(!isClubOpen(minutesPassedForNextScene)) {
+                            if(pc.getLocationPlace().getPlaceType().equals(PLACE_TYPE_WATERING_HOLE_VIP_AREA)) {
+                                str += getClubbersPresent + "[style.boldTerrible(Closing time)]</br>"
+                                        + "All of the lights in the club suddenly flash off and on a few times, and as the background music stops playing, Kruger growls,"
+                                            + " [kruger.speech(Looks like it's time to close for the night. Go on, [pc.name]. We can do this another time.)]";
+                                
+                            } else {
+                                str += getClubbersPresent + "[style.boldTerrible(Closing time)]</br>"
+                                        + "All of the lights in the club suddenly flash off and on a few times, and as the background music stops playing, you hear Jules shout out, [jules.speech(It's closing time! Everyone out!)]";
+                            }
+                        }
+                        str += "</p>";
+                    }
+                    
+                    return str;
+                };
+            ]
+            [##
+                var clubbersList = null;
+                if(getClubbersPresent.size() != 0) {
+                    clubbersList = getClubbersPresent.get(0);
+                }
+            ]
+            #IF(pc.getCell() == idol.getCell() && !flags.hasSavedLong('temp'))
+                [#game.appendToTextEndStringBuilder(game.parseFromFile("mods/xys/txt/idol", "IDOL_BACKGROUND"))]
+            #ELSE
+                [##flags.removeSavedLong('temp')]
+            #ENDIF
+            [#game.appendToTextEndStringBuilder(getClubberStatus(60, false))]
+		]]></preParsingEffects>
+        <content folderPath='txt/places/dominion/nightlife/theWateringHole'>WATERING_HOLE_DANCE_FLOOR</content>
+        <secondsPassed minutes="true"><![CDATA[1]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>false</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <!-- HAS PARTNER -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#getClubbersPresent.size() != 0]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Dance]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Dance with [npc2.name] for a little while.
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[default]]></nextDialogue>
+                <secondsPassed minutes="true"><![CDATA[5]]></secondsPassed>
+                <effects><![CDATA[
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("txt/places/dominion/nightlife/theWateringHole", "WATERING_HOLE_DANCE_FLOOR_DANCE", clubbersList))]
+                    [#game.appendToTextEndStringBuilder(getClubbersPresent.get(0).incrementAffection(pc, 15))]
+                    [#game.appendToTextEndStringBuilder(getClubberStatus(5*60, false))]
+                ]]></effects>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#getClubbersPresent.size() != 0]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Kiss]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Step forwards and kiss [npc2.name]. [#(likesKiss(getClubbersPresent.get(0), false)?"":"</br>[style.italicsBad([npc2.She] might not react well to this!)]")]
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[default]]></nextDialogue>
+                <secondsPassed minutes="true"><![CDATA[5]]></secondsPassed>
+                <effects><![CDATA[
+                    #IF(likesKiss(getClubbersPresent.get(0), false))
+                        [#game.appendToTextStartStringBuilder(game.parseFromFile("txt/places/dominion/nightlife/theWateringHole", "WATERING_HOLE_DANCE_FLOOR_KISS", clubbersList) + game.parseFromFile("txt/places/dominion/nightlife/theWateringHole", "WATERING_HOLE_KISS_CONTENT", clubbersList))]
+                        [#game.appendToTextStartStringBuilder(getClubbersPresent.get(0).incrementAffection(pc, 15))]
+                    #ELSE
+                        [#game.appendToTextStartStringBuilder(game.parseFromFile("txt/places/dominion/nightlife/theWateringHole", "WATERING_HOLE_DANCE_FLOOR_KISS_REJECTED", clubbersList))]
+                        [#game.appendToTextStartStringBuilder(getClubbersPresent.get(0).incrementAffection(pc, -15))]
+                    #ENDIF
+                ]]></effects>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#getClubbersPresent.size() != 0]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Feel up]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Grind up against [npc2.name] and start groping [npc2.herHim]. [#(likesGroping(getClubbersPresent.get(0), false)?"":"</br>[style.italicsBad([npc2.She] might not react well to this!)]")]
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    #IF(likesGroping(getClubbersPresent.get(0), false))
+                        [#game.appendToTextStartStringBuilder(game.parseFromFile("txt/places/dominion/nightlife/theWateringHole", "WATERING_HOLE_DANCE_FLOOR_GROPE", clubbersList) + game.parseFromFile("txt/places/dominion/nightlife/theWateringHole", "WATERING_HOLE_GROPE_CONTENT", clubbersList))]
+                        [#game.appendToTextStartStringBuilder(getClubbersPresent.get(0).incrementAffection(pc, 25))]
+                    #ELSE
+                        [#game.appendToTextStartStringBuilder(game.parseFromFile("txt/places/dominion/nightlife/theWateringHole", "WATERING_HOLE_DANCE_FLOOR_GROPE_REJECTED", clubbersList))]
+                        [#game.appendToTextStartStringBuilder(getClubbersPresent.get(0).incrementAffection(pc, -25))]
+                    #ENDIF
+                ]]></effects>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#getClubbersPresent.size() != 0]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[9]]></index>
+                <responseTitle><![CDATA[Say goodbye]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Tell [npc2.name] that you've got to head off for a little while, but that you hope to see [npc2.herHim] again. </br>[style.italicsGood(Saves this character, who can then be encountered in the club again.)]
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("txt/places/dominion/nightlife/theWateringHole", "WATERING_HOLE_DANCE_FLOOR_SAVE_CLUBBER", clubbersList))]
+                    [#
+                        for (var i = 0; i < getClubbersPresent.size(); i++) {
+                            getClubbersPresent.get(i).setLocation(WORLD_TYPE_EMPTY, PLACE_TYPE_GENERIC_CLUB_HOLDING_CELL);
+                        };
+                    ]
+                ]]></effects>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#getClubbersPresent.size() != 0]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[10]]></index>
+                <responseTitle><![CDATA[Lose company]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Make up an excuse to get rid of [npc2.name]. </br>[style.italicsBad(Removes this character from the game.)]
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("txt/places/dominion/nightlife/theWateringHole", "WATERING_HOLE_DANCE_FLOOR_LOSE_COMPANY", clubbersList))]
+                    [#
+                        for (var i = 0; i < getClubbersPresent.size(); i++) {
+                            game.banishNPC(game.getNPCById(getClubbersPresent.get(i).getId()));
+                        };
+                    ]
+                ]]></effects>
+            </response>
+            <!-- IDOL ACTIVITY -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#pc.getCell() == idol.getCell()]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Perform]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(pc.isCowardly())
+                        You are too cowardly to join [idol.name] on stage! 
+                    #ELSEIF(getClubbersPresent.size() != 0)
+                        You are currently busy entertaining [npc2.name]!
+                    #ELSEIF(!pc.hasStatusEffect(SE_xys_change))
+                        You are not in your magical girl outfit!
+                    #ELSE
+                        Dance with [idol.name] on stage. 
+                    #ENDIF
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[
+                    #IF(pc.isCowardly() || getClubbersPresent.size() != 0 || !pc.hasStatusEffect(SE_xys_change))
+                        null
+                    #ELSE
+                        default
+                    #ENDIF
+                ]]></nextDialogue>
+                <secondsPassed minutes="true"><![CDATA[60]]></secondsPassed>
+                <effects><![CDATA[
+                    #IF(flags.getSavedLong('idol_performance_count') < 0)
+                        [##flags.setSavedLong('idol_performance_count', 0)]
+                    #ELSE
+		                [##flags.setSavedLong('idol_performance_count', flags.getSavedLong('idol_performance_count') + 1)]
+                    #ENDIF
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("mods/xys/txt/idol", "IDOL_PERFORMANCE"))]
+                ]]></effects>
+            </response>
+            <!-- No PARTNER -->
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Dance]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Dance for a little while.
+                ]]></responseTooltip>
+                <nextDialogue stripContent='true'><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    [#game.appendToTextStartStringBuilder(game.parseFromFile("txt/places/dominion/nightlife/theWateringHole", "WATERING_HOLE_DANCE_FLOOR_DANCE_SOLO"))]
+                ]]></effects>
+            </response>
+        </responses>
+    </scene>
+
+    <scene id="main_area_alt">
+        <preParsingEffects><![CDATA[
+            [##
+                var textClass = COLOUR_COVERING_RED.getClass(); 
+				var classLoader = textClass.getClassLoader(); 
+				var nightClass = classLoader.loadClass('com.lilithsthrone.game.dialogue.places.dominion.nightlife.NightlifeDistrict'); 
+
+                var dialogueClass = dialogueManager.getClass(); 
+                var dialogueAdder = dialogueClass.getDeclaredMethod('addHardCodedDialogueId', 'text'.class, DN_innoxia_encounters_fields_elis_woods_berries_eaten.class.superclass); 
+                dialogueAdder.setAccessible(true);
+
+                var getIdToDialogueMap = dialogueClass.getDeclaredMethod('getIdToDialogueMap').invoke(null);
+                if(!getIdToDialogueMap.containsKey('WATERING_HOLE_MAIN')) {
+                    dialogueAdder.invoke(null, 'WATERING_HOLE_MAIN', nightClass.getDeclaredField('WATERING_HOLE_MAIN').get(null));
+                };
+            ]
+            [##
+                function getClubberStatus(secondsPassedForNextScene, isDominantPartner) {
+                    var str = '';
+                    if(getClubbersPresent.size() != 0) {
+                        var clubber = getClubbersPresent.get(0);
+                        
+                        var al = clubber.getAffectionLevel(pc);
+
+                        str += "<p style='text-align:center;'><i>";
+                        switch(al) {
+                            case AFFECTION_NEGATIVE_FIVE_LOATHE:
+                            case AFFECTION_NEGATIVE_FOUR_HATE:
+                            case AFFECTION_NEGATIVE_THREE_STRONG_DISLIKE:
+                            case AFFECTION_NEGATIVE_TWO_DISLIKE:
+                                str += "[npc2.Name] looks <i style='color:"+al.getColour().toWebHexString()+";'>angry and frustrated</i>, and will leave you if you continue to treat [npc2.herHim] poorly.";
+                                break;
+                            case AFFECTION_NEGATIVE_ONE_ANNOYED:
+                                str += "[npc2.Name] looks <i style='color:"+al.getColour().toWebHexString()+";'>mildly annoyed</i>, and is starting to have a bad time.";
+                                break;
+                            case AFFECTION_ZERO_NEUTRAL:
+                            case AFFECTION_POSITIVE_ONE_FRIENDLY:
+                                str += "[npc2.Name] looks <i style='color:"+al.getColour().toWebHexString()+";'>entertained</i>, and has no reason to leave you.";
+                                break;
+                            case AFFECTION_POSITIVE_TWO_LIKE:
+                            case AFFECTION_POSITIVE_THREE_CARING:
+                                str += "[npc2.Name] looks like [npc2.sheIs] <i style='color:"+al.getColour().toWebHexString()+";'>having a great time</i>.";
+                                break;
+                            case AFFECTION_POSITIVE_FOUR_LOVE:
+                            case AFFECTION_POSITIVE_FIVE_WORSHIP:
+                                str += "[npc2.NameIsFull] <i style='color:"+al.getColour().toWebHexString()+";'>desperate to have sex with you</i>.";
+                                break;
+                        };
+
+                        if(clubber.getAlcoholLevelValue()>0) {
+                            str += "</br>";
+                            switch(clubber.getAlcoholLevel()) {
+                                case ALCOHOL_LEVEL_ZERO_SOBER:
+                                    break;
+                                case ALCOHOL_LEVEL_ONE_TIPSY:
+                                    str += "[npc2.Name] is currently <i style='color:"+COLOUR_ALCOHOL.toWebHexString()+";'>tipsy</i>.";
+                                    break;
+                                case ALCOHOL_LEVEL_TWO_MERRY:
+                                    str += "[npc2.Name] is currently <i style='color:"+COLOUR_ALCOHOL.toWebHexString()+";'>merry</i>.";
+                                    break;
+                                case ALCOHOL_LEVEL_THREE_DRUNK:
+                                    str += "[npc2.Name] is currently <i style='color:"+COLOUR_ALCOHOL.toWebHexString()+";'>drunk</i>.";
+                                    break;
+                                case ALCOHOL_LEVEL_FOUR_HAMMERED:
+                                    str += "[npc2.Name] is currently <i style='color:"+COLOUR_ALCOHOL.toWebHexString()+";'>hammered</i>. Giving [npc2.herHim] any more alcohol would be a bad idea.";
+                                    break;
+                                case ALCOHOL_LEVEL_FIVE_WASTED:
+                                    str += "[npc2.Name] is currently <i style='color:"+COLOUR_ALCOHOL.toWebHexString()+";'>wasted</i>."+(isPartnerSub()?" [npc2.She] looks like [npc2.sheIs] going to pass out.":"");
+                                    break;
+                            };
+                        };
+
+                        str += "</br>";
+                        if(likesSex(clubber, isDominantPartner)) {
+                            str += "You can tell that [npc2.she] wants to have sex with you...";
+                            
+                        } else if(likesGroping(clubber, isDominantPartner)) {
+                            if(isDominantPartner) {
+                                str += "You can tell that [npc2.sheIs] about to try and get some physical contact with you...";
+                            } else {
+                                str += "You can tell that [npc2.she] wants some physical contact...";
+                            }
+                            
+                        } else if(likesKiss(clubber, isDominantPartner)) {
+                            if(isDominantPartner) {
+                                str += "You can tell that [npc2.sheIs] going to try and kiss you at any moment...";
+                            } else {
+                                str += "You can tell that [npc2.she] wouldn't mind a kiss...";
+                            }
+                            
+                        } else {
+                            if(isDominantPartner) {
+                                str += "You can tell that [npc2.sheIs] not yet ready to make a move on you...";
+                            } else {
+                                str += "It would be best to talk to [npc2.herHim] a little before making a move...";
+                            }
+                        }
+                        
+                        str += "</i></p>";
+                    };
+
+                    var minutesPassedForNextScene = secondsPassedForNextScene/60;
+                    if(isEndConditionMet(clubber, minutesPassedForNextScene)) {
+                        str += "<p style='text-align:center;'>";
+                        if(isPartnerLeaving(clubber, false)) {
+                            str += getClubbersPresent + "[style.boldTerrible([npc2.Name] leaves you!)]</br>"
+                                    + "[npc2.Name] is fed up, and with a dismissive wave of [npc2.her] [npc2.hand], [npc2.she] turns around and leaves you!";
+                        
+                        } else if(isPartnerPassingOut(false)) {
+                            str += getClubbersPresent + "[style.boldTerrible([npc2.Name] collapses!)]</br>"
+                                    + "Having had far too much to drink, [npc2.name] slumps down to the ground!";
+                            
+                        } else if(!isClubOpen(minutesPassedForNextScene)) {
+                            if(pc.getLocationPlace().getPlaceType().equals(PLACE_TYPE_WATERING_HOLE_VIP_AREA)) {
+                                str += getClubbersPresent + "[style.boldTerrible(Closing time)]</br>"
+                                        + "All of the lights in the club suddenly flash off and on a few times, and as the background music stops playing, Kruger growls,"
+                                            + " [kruger.speech(Looks like it's time to close for the night. Go on, [pc.name]. We can do this another time.)]";
+                                
+                            } else {
+                                str += getClubbersPresent + "[style.boldTerrible(Closing time)]</br>"
+                                        + "All of the lights in the club suddenly flash off and on a few times, and as the background music stops playing, you hear Jules shout out, [jules.speech(It's closing time! Everyone out!)]";
+                            }
+                        }
+                        str += "</p>";
+                    }
+                    
+                    return str;
+                };
+            ]
+            [##game.endTurn(0)]
+            [#game.appendToTextEndStringBuilder(getClubberStatus(60, false))]
+		]]></preParsingEffects>
+        <content folderPath='txt/places/dominion/nightlife/theWateringHole'>WATERING_HOLE_MAIN</content>
+        <secondsPassed minutes="true"><![CDATA[1]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>false</travelDisabled>
+        <responseTabs/>
+        <responses copyFromDialogueId='WATERING_HOLE_MAIN'/>
+    </scene>
+
+    <!-- IDOL -->
+    <scene id="intro_danceFloor">
+        <preParsingEffects><![CDATA[
+            #IF(flags.hasSavedLong('npcCrew'))
+                [##game.setParserTarget('beaten1', beaten1); game.setParserTarget('beaten2', beaten2); game.setParserTarget('beaten3', beaten3)]
+            #ELSE
+                [##game.addNPC('GenericSexualPartner', 'beaten1'); game.addNPC('GenericSexualPartner', 'beaten2'); game.addNPC('GenericSexualPartner', 'beaten3')]
+                [##flags.setSavedLong('npcCrew', 100)]
+            #ENDIF
+			[##beaten1.setLocation(WORLD_TYPE_EMPTY, PLACE_TYPE_GENERIC_HOLDING_CELL, true); beaten2.setLocation(WORLD_TYPE_EMPTY, PLACE_TYPE_GENERIC_HOLDING_CELL, true); beaten3.setLocation(WORLD_TYPE_EMPTY, PLACE_TYPE_GENERIC_HOLDING_CELL, true)]
+            
+            [##flags.setFlag('xys_idol_intro_dancefloor', true)]
+            #IF(flags.hasSavedLong('idol'))
+                [##game.setModdedCharacterParserTarget(flags.getSavedLong('idol'), 'idol')]
+            #ELSE
+                [##flags.setSavedLong('idol', game.importModdedCharacter('res/mods/xys/characters/idol.xml', 'idol'))]
+            #ENDIF
+            [##idol.setAbleToBeEnslaved(false); idol.setAbleToBeImpregnated(true)]
+			[##
+                idol.setLocation(pc);
+                idol.getLocationPlace().setPlaceType(PLACE_TYPE_xys_dominion_nightlife_danceFloor_alt);
+                idol.getCellFromLocation(-1, 0).getPlace().setPlaceType(PLACE_TYPE_xys_dominion_nightlife_main_area_alt);
+                idol.getCellFromLocation(1, 0).getPlace().setPlaceType(PLACE_TYPE_xys_dominion_nightlife_main_area_alt);
+                idol.getCellFromLocation(0, -1).getPlace().setPlaceType(PLACE_TYPE_xys_dominion_nightlife_main_area_alt);
+                idol.getCellFromLocation(0, 1).getPlace().setPlaceType(PLACE_TYPE_xys_dominion_nightlife_main_area_alt);
+                idol.setPlayerKnowsName(true);
+            ]
+		]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/idol">INTRO_DANCEFLOOR</content>
+        <secondsPassed minutes="true"><![CDATA[5]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    That was quite the show. You wonder if you can get to know more about her...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[xys_dominion_idol_danceFloor_alt]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+
+    <scene id="idol_back_alley">
+        <preParsingEffects><![CDATA[
+            [##var com = pc.getMainCompanion()]
+		]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/idol">IDOL_BACK_ALLEY</content>
+        <secondsPassed minutes="true"><![CDATA[10]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[0]]></index>
+                <responseTitle><![CDATA[Leave]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Leave her by herself. 
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+					[#game.appendToTextStartStringBuilder(game.parseFromFile('mods/xys/txt/idol', 'IDOL_BACK_ALLEY_NO_HELP'))]
+                    [##flags.setFlag('xys_idol_back_alley_passby', true)]
+				]]></effects>
+            </response>
+            <!-- SEGGS -->
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Help [idol.name] with her situation by having sex with her. 
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[true]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[pc]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[idol]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_idol_back_alley_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_sex"><![CDATA[ALLEYWAYS_VICTORY_SEX]]></sexStartContent>
+                </sexVariables>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[2]]></index>
+                <responseTitle><![CDATA[Gentle Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Help [idol.name] with her situation by having gentle sex with her. 
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[false]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[pc]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[idol]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_idol_back_alley_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_sex"><![CDATA[ALLEYWAYS_VICTORY_SEX_GENTLE]]></sexStartContent>
+                    <tags>
+						<tag>START_PACE_PLAYER_DOM_GENTLE</tag>
+					</tags>
+                </sexVariables>
+            </response>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[3]]></index>
+                <responseTitle><![CDATA[Rough Sex]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Help [idol.name] with her situation by having rough sex with her. 
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[false]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[pc]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[idol]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_idol_back_alley_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol_sex"><![CDATA[ALLEYWAYS_VICTORY_SEX_ROUGH]]></sexStartContent>
+                    <tags>
+						<tag>START_PACE_PLAYER_DOM_ROUGH</tag>
+					</tags>
+                </sexVariables>
+            </response>
+            <!-- OFFER THREESOME -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#pc.hasCompanions() && !com.isAttractedTo(idol) && com.isAbleToRefuseSexAsCompanion()]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[6]]></index>
+                <responseTitle><![CDATA[Offer threesome]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You can't force [com.herHim] in having sex with [idol.name]...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[null]]></nextDialogue>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#pc.hasCompanions()]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[6]]></index>
+                <responseTitle><![CDATA[Offer threesome]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Offer [idol.name] the opportunity to have sex with both you and [com.name] to help her condition.
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+				]]></effects>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[true]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[idol]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[pc]]></character>
+                        <character><![CDATA[com]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators/>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_idol_back_alley_after_sex]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol"><![CDATA[IDOL_BACK_ALLEY_OFFER_THREESOME]]></sexStartContent>
+                    <tags>
+						<tag>PREFER_DOGGY</tag>
+					</tags>
+                </sexVariables>
+            </response>
+            <!-- OFFER COMPANION -->
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#pc.hasCompanions() && game.isVoluntaryNTREnabled() && !com.isAttractedTo(idol) && com.isAbleToRefuseSexAsCompanion()]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[7]]></index>
+                <responseTitle><![CDATA[Offer [com.name]]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    You can tell that [idol.name] isn't at all interested in having sex with [com.name], and you can't force [com.herHim] to do so...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[null]]></nextDialogue>
+            </response>
+            <response>
+                <availabilityConditional><![CDATA[
+                    [#pc.hasCompanions() && game.isVoluntaryNTREnabled()]
+                ]]></availabilityConditional>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[7]]></index>
+                <responseTitle><![CDATA[Offer [com.name]]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Tell [idol.name] that she can use [com.namePos] body to help her condition. 
+                ]]></responseTooltip>
+                <nextDialogue/>
+                <effects><![CDATA[
+                    [##idol.applyPlayerPregnancyReactions()]
+                    #IF(!com.isAttractedTo(idol) && game.isNonConEnabled()) 
+                        [#game.appendToTextEndStringBuilder(com.incrementAffection(pc, -50))]
+                    #ENDIF
+				]]></effects>
+                <sexVariables enabled="true">
+                    <consensual><![CDATA[true]]></consensual>
+                    <subHasEqualControl><![CDATA[false]]></subHasEqualControl>
+                    <dominants>
+                        <character><![CDATA[idol]]></character>
+                    </dominants>
+                    <submissives>
+                        <character><![CDATA[com]]></character>
+                    </submissives>
+                    <dominantSpectators/>
+                    <submissiveSpectators>
+                        <character><![CDATA[pc]]></character>
+                    </submissiveSpectators>
+                    <postSexDialogue><![CDATA[xys_dominion_idol_idol_back_alley_after_sex_companion]]></postSexDialogue>
+                    <sexStartContent folderPath="mods/xys/txt/idol"><![CDATA[IDOL_BACK_ALLEY_OFFER_COMPANION]]></sexStartContent>
+                </sexVariables>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="idol_back_alley_passby">
+        <content folderPath="mods/xys/txt/idol">IDOL_BACK_ALLEY_PASSBY</content>
+        <secondsPassed minutes="true"><![CDATA[3]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses copyFromDialogueId='xys_dominion_idol_idol_back_alley'/>
+    </scene>
+    
+    <scene id="idol_back_alley_after_sex">
+        <preParsingEffects><![CDATA[
+            [##flags.setFlag('xys_idol_back_alley_satisfied', true)]
+		]]></preParsingEffects>
+        <tooltip><![CDATA[Now that you've had your fun, you can step back and leave [idol.name] to recover.]]></tooltip>
+        <content folderPath="mods/xys/txt/idol">IDOL_BACK_ALLEY_AFTER_SEX</content>
+        <secondsPassed minutes="true"><![CDATA[10]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Carry on your way...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    [##idol.setLocation(WORLD_TYPE_NIGHTLIFE_CLUB, PLACE_TYPE_xys_dominion_nightlife_danceFloor_alt)]
+                ]]></effects>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="idol_back_alley_after_sex_companion">
+        <preParsingEffects><![CDATA[
+            [##flags.setFlag('xys_idol_back_alley_satisfied', true)]
+            [##var com = pc.getMainCompanion()]
+		]]></preParsingEffects>
+        <tooltip><![CDATA[Now that the situation's settled, [idol.name] can step back and leave [com.name] to recover.]]></tooltip>
+        <content folderPath="mods/xys/txt/idol">IDOL_BACK_ALLEY_AFTER_SEX_COMPANION</content>
+        <secondsPassed minutes="true"><![CDATA[10]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Carry on your way...
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+                <effects><![CDATA[
+                    [##idol.setLocation(WORLD_TYPE_NIGHTLIFE_CLUB, PLACE_TYPE_xys_dominion_nightlife_danceFloor_alt)]
+                ]]></effects>
+            </response>
+        </responses>
+    </scene>
+    
+    <!-- BETRAYAL -->
+    <scene id="hell_hath_no_fury">
+        <preParsingEffects><![CDATA[
+            #IF(flags.getSavedLong('idol_fury_count') < 0)
+                [##flags.setSavedLong('idol_fury_count', 0)]
+            #ELSE
+                [##flags.setSavedLong('idol_fury_count', flags.getSavedLong('idol_fury_count') + 1)]
+            #ENDIF
+        ]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/idol">HELL_HATH_NO_FURY</content>
+        <secondsPassed minutes="true"><![CDATA[1]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    #IF(flags.getSavedLong('idol_fury_count') == 7)
+                        ...is it over?
+                    #ELSE
+                        OH FUCK.
+                    #ENDIF
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[
+                    #IF(flags.getSavedLong('idol_fury_count') == 7)
+                        xys_dominion_idol_hell_hath_no_fury_end
+                    #ELSE
+                        xys_dominion_idol_hell_hath_no_fury
+                    #ENDIF
+                ]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+    
+    <scene id="hell_hath_no_fury_end">
+        <preParsingEffects><![CDATA[
+            [##game.banishNPC(idol)]
+        ]]></preParsingEffects>
+        <content folderPath="mods/xys/txt/idol">HELL_HATH_NO_FURY_END</content>
+        <secondsPassed minutes="true"><![CDATA[10]]></secondsPassed>
+        <continuesDialogue>false</continuesDialogue>
+        <travelDisabled>true</travelDisabled>
+        <responseTabs/>
+        <responses>
+            <response>
+                <responseTabIndex><![CDATA[0]]></responseTabIndex>
+                <index><![CDATA[1]]></index>
+                <responseTitle><![CDATA[Continue]]></responseTitle>
+                <responseTooltip><![CDATA[
+                    Painfully leave the alley. 
+                ]]></responseTooltip>
+                <nextDialogue><![CDATA[default]]></nextDialogue>
+            </response>
+        </responses>
+    </scene>
+</dialogueNodes>

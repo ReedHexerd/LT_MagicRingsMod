@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<encounterRoot>
+	
+	<additionalPlaceTypeTriggers>
+		<placeType>DOMINION_BACK_ALLEYS</placeType>
+		<placeType>DOMINION_DARK_ALLEYS</placeType>
+		<placeType>DOMINION_ALLEYS_CANAL_CROSSING</placeType>
+		<placeType>DOMINION_CANAL</placeType>
+	</additionalPlaceTypeTriggers>
+	
+	<possibleEncounters>
+		<encounter>
+            <name><![CDATA[Ringmaker_Alleyways]]></name>
+            <chanceToTrigger opportunisticEncounter="false"><![CDATA[
+            #IF(flags.hasSavedLong('ringmaker') && !flags.hasFlag('xys_ringmaker_daily_encounter') && ringmaker.isPlayerKnowsName() && !pc.hasCompanions())
+				#IF(flags.hasSavedLong('idol') && pc.getCell() == idol.getHomeCell())
+					0
+				#ELSE
+	                15
+				#ENDIF
+            #ELSE
+	        	0
+            #ENDIF
+            ]]></chanceToTrigger>
+			<dialogueReturned><![CDATA[xys_dominion_ringmaker_ringmaker_alleyways]]></dialogueReturned>
+		</encounter>
+	</possibleEncounters>
+	
+</encounterRoot>

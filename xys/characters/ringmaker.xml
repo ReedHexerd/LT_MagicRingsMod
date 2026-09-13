@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<exportedCharacter>
+  <character>
+    <!--If you want to edit any of these values, just be warned that it might break the game...-->
+    <core>
+      <name nameAndrogynous="Ysette" nameFeminine="Ysette" nameMasculine="Ysette"/>
+      <surname value="Lunettemartu"/>
+      <genericName value="ringmaker"/>
+      <description value="This eccentric ringmaker is someone you met in the back alleys of Dominion. There seems to be something more about her..."/>
+      <playerKnowsName value="false"/>
+      <playerOnFirstNameTerms value="false"/>
+      <raceConcealed value="true"/>
+      <level value="50"/>
+      <ageAppearanceDifference value="0"/>
+      <ageAppearanceAbsolute value="23"/>
+      <yearOfBirth value="1999"/>
+      <monthOfBirth value="APRIL"/>
+      <dayOfBirth value="20"/>
+      <version value="0.4.9.5"/>
+      <history value="NPC_SHOP_MANAGER"/>
+      <elemental value=""/>
+      <elementalSummoned value="false"/>
+      <combatBehaviour value="BALANCED"/>
+      <lastTimeHadSex value="-1"/>
+      <lastTimeOrgasmed value="-1"/>
+      <desiredJobs/>
+      <petNames/>
+      <personality>
+        <trait>SELFISH</trait>
+        <trait>CONFIDENT</trait>
+        <trait>LEWD</trait>
+      </personality>
+      <sexualOrientation value="AMBIPHILIC"/>
+      <obedience value="0.0"/>
+      <genderIdentity value="F_P_V_B_FUTANARI"/>
+      <foughtPlayerCount value="0"/>
+      <lostCombatCount value="0"/>
+      <wonCombatCount value="0"/>
+      <experience value="69"/>
+      <perkPoints value="0"/>
+      <perkCategoryPoints/>
+      <health value="350.0"/>
+      <mana value="300.0"/>
+      <areasKnownByCharacters/>
+    </core>
+    <locationInformation>
+      <worldLocation value="SHOPPING_ARCADE"/>
+      <homeWorldLocation value="WORLD_TYPE_EMPTY"/>
+      <location x="9" y="3"/>
+      <homeLocation x="0" y="0"/>
+      <globalLocation x="20" y="17"/>
+    </locationInformation>
+    <body>
+      <bodyCore bodyMaterial="FLESH" bodySize="50" femininity="85" feral="false" genitalArrangement="NORMAL" height="160" muscle="30" piercedStomach="false" pubicHair="THREE_TRIMMED" subspecies="HALF_DEMON" subspeciesOverride="HALF_DEMON" takesAfterMother="false" version="0.4.9.5">
+        <bodyCovering c1="SKIN_ROSY" c2="SKIN_ROSY" modifier="SMOOTH" pattern="NONE" type="HUMAN"/>
+        <bodyCovering c1="SKIN_ROSY" c2="ORIFICE_INTERIOR" modifier="SMOOTH" pattern="NONE" type="PENIS"/>
+        <bodyCovering c1="SKIN_ROSY" c2="ORIFICE_INTERIOR" modifier="SMOOTH" pattern="ORIFICE_ANUS" type="ANUS"/>
+        <bodyCovering c1="SKIN_LIGHT" c2="ORIFICE_INTERIOR" modifier="SMOOTH" pattern="ORIFICE_MOUTH" type="MOUTH"/>
+        <bodyCovering c1="SKIN_ROSY" c2="ORIFICE_INTERIOR" modifier="SMOOTH" pattern="ORIFICE_NIPPLE" type="NIPPLES"/>
+        <bodyCovering c1="SKIN_LIGHT" c2="ORIFICE_INTERIOR" modifier="SMOOTH" pattern="ORIFICE_NIPPLE_CROTCH" type="NIPPLES_CROTCH"/>
+        <bodyCovering c1="SKIN_ROSY" c2="ORIFICE_INTERIOR" modifier="SMOOTH" pattern="ORIFICE_VAGINA" type="VAGINA"/>
+        <bodyCovering c1="SKIN_ROSY" c2="ORIFICE_INTERIOR" modifier="SMOOTH" pattern="ORIFICE_SPINNERET" type="SPINNERET"/>
+        <bodyCovering c1="COVERING_BLONDE" c2="COVERING_BROWN" modifier="SMOOTH" pattern="NONE" type="ANTENNA"/>
+        <bodyCovering c1="COVERING_DARK_GREY" c2="COVERING_DARK_GREY" modifier="SMOOTH" pattern="NONE" type="HORN"/>
+        <bodyCovering c1="COVERING_BLONDE" c2="COVERING_BROWN" modifier="SMOOTH" pattern="NONE" type="ANTLER"/>
+        <bodyCovering c1="ORIFICE_INTERIOR" c2="ORIFICE_INTERIOR" modifier="SMOOTH" pattern="NONE" type="TONGUE"/>
+        <bodyCovering c1="COVERING_BLONDE" c2="COVERING_PINK" modifier="SILKEN" pattern="HIGHLIGHTS" type="HAIR_DEMON"/>
+        <bodyCovering c1="COVERING_BLONDE" c2="COVERING_BLONDE" modifier="SILKEN" pattern="NONE" type="BODY_HAIR_DEMON"/>
+        <bodyCovering c1="EYE_PINK" c2="EYE_PINK" modifier="EYE" pattern="EYE_IRISES" type="EYE_DEMON_COMMON"/>
+        <bodyCovering c1="EYE_BLACK" c2="EYE_BLACK" modifier="EYE" pattern="EYE_PUPILS" type="EYE_PUPILS"/>
+        <bodyCovering c1="EYE_WHITE" c2="EYE_WHITE" modifier="EYE" pattern="EYE_SCLERA" type="EYE_SCLERA"/>
+        <bodyCovering c1="COVERING_BLUE_LIGHT" c2="COVERING_BLUE_LIGHT" g1="true" g2="true" modifier="FLUID" pattern="FLUID" type="CUM"/>
+        <bodyCovering c1="COVERING_CLEAR" c2="COVERING_CLEAR" modifier="FLUID" pattern="FLUID" type="GIRL_CUM"/>
+        <bodyCovering c1="COVERING_WHITE" c2="COVERING_WHITE" modifier="FLUID" pattern="FLUID" type="MILK"/>
+      </bodyCore>
+      <antennae antennaePerRow="2" length="22" rows="1" type="NONE"/>
+      <arm rows="1" type="RABBIT_MORPH" underarmHair="ZERO_NONE"/>
+      <ass assSize="4" hipSize="4" type="RABBIT_MORPH"/>
+      <anus assHair="ZERO_NONE" bleached="false" capacity="1.5" depth="4" elasticity="7" plasticity="0" stretchedCapacity="1.5" virgin="false" wetness="4">
+        <anusModifiers MUSCLE_CONTROL="true"/>
+      </anus>
+      <breasts milkRegeneration="1000" milkStorage="0" nippleCountPerBreast="1" rows="1" shape="PERKY" size="15" storedMilk="0.0" type="DEMON_COMMON"/>
+      <nipples areolaeShape="NORMAL" areolaeSize="3" capacity="0.5" depth="2" elasticity="7" nippleShape="NORMAL" nippleSize="3" pierced="false" plasticity="0" stretchedCapacity="1.5" virgin="true">
+        <nippleModifiers/>
+      </nipples>
+      <milk flavour="MILK" type="MILK_DEMON">
+        <milkModifiers/>
+      </milk>
+      <breastsCrotch milkRegeneration="500" milkStorage="0" nippleCountPerBreast="1" rows="1" shape="POINTY" size="7" storedMilk="0.0" type="NONE"/>
+      <nipplesCrotch areolaeShape="NORMAL" areolaeSize="2" capacity="0.5" depth="3" elasticity="3" nippleShape="NORMAL" nippleSize="2" pierced="false" plasticity="3" stretchedCapacity="0.5" virgin="true">
+        <nippleModifiers/>
+      </nipplesCrotch>
+      <milkCrotch flavour="MILK" type="MILK_DEMON">
+        <milkModifiers/>
+      </milkCrotch>
+      <ear pierced="true" type="RABBIT_MORPH"/>
+      <eye eyePairs="1" irisShape="ROUND" pupilShape="VERTICAL" type="DEMON_COMMON"/>
+      <face facialHair="ZERO_NONE" piercedNose="false" type="HUMAN"/>
+      <mouth capacity="5.0" depth="2" elasticity="4" lipSize="2" piercedLip="false" plasticity="3" stretchedCapacity="5.0" virgin="false" wetness="3">
+        <mouthModifiers/>
+      </mouth>
+      <tongue piercedTongue="false" tongueLength="5">
+        <tongueModifiers/>
+      </tongue>
+      <hair hairStyle="LOW_PONYTAIL" length="30" neckFluff="false" type="DEMON_COMMON"/>
+      <horn hornsPerRow="2" length="22" rows="1" type="NONE"/>
+      <leg configuration="BIPEDAL" footStructure="PLANTIGRADE" tailLength="5.0" type="RABBIT_MORPH"/>
+      <penis capacity="0.0" depth="2" elasticity="0" girth="4" pierced="false" plasticity="3" size="70" stretchedCapacity="0.0" type="RABBIT_MORPH" urethraVirgin="true" virgin="false">
+        <penisModifiers FLARED="true" SHEATHED="true" VEINY="true"/>
+        <urethraModifiers/>
+      </penis>
+      <testicles cumExpulsion="60" cumRegeneration="100000" cumStorage="1000" internal="true" numberOfTesticles="2" storedCum="1000.0" testicleSize="5"/>
+      <cum flavour="HONEY" type="CUM_RABBIT_MORPH">
+        <cumModifiers ADDICTIVE="true" SLIMY="true" STICKY="true" VISCOUS="true"/>
+      </cum>
+      <spinneret capacity="1.5" depth="2" elasticity="4" plasticity="3" stretchedCapacity="1.5" virgin="true" wetness="1">
+        <spinneretModifiers/>
+      </spinneret>
+      <torso type="RABBIT_MORPH"/>
+      <tail count="1" girth="5" length="1.0" type="DEMON_COMMON"/>
+      <tentacle count="1" girth="3" length="0.0" type="NONE"/>
+      <vagina capacity="3.0" clitGirth="3" clitSize="0" depth="4" eggLayer="false" elasticity="7" hymen="false" labiaSize="3" pierced="false" plasticity="1" squirter="true" stretchedCapacity="3.0" type="RABBIT_MORPH" urethraCapacity="0.0" urethraDepth="2" urethraElasticity="0" urethraPlasticity="3" urethraStretchedCapacity="0.0" urethraVirgin="true" virgin="false" wetness="4">
+        <clitModifiers/>
+        <vaginaModifiers MUSCLE_CONTROL="true"/>
+        <urethraModifiers/>
+      </vagina>
+      <girlcum flavour="GIRL_CUM" type="GIRL_CUM_DEMON">
+        <girlcumModifiers SLIMY="true"/>
+      </girlcum>
+      <wing size="3" type="DEMON_COMMON"/>
+    </body>
+    <characterInventory>
+      <maxInventorySpace value="150"/>
+      <money value="0"/>
+      <essenceCount value="350"/>
+      <dirtySlots/>
+      <clothingEquipped>
+        <clothing enchantmentKnown="true" id="innoxia_foot_goth_boots_fem" isDirty="false" name="gothic boots" sealed="false" slotEquippedTo="FOOT">
+          <colours>
+            <colour i="0">CLOTHING_BLACK_JET</colour>
+            <colour i="1">CLOTHING_ROSE_GOLD</colour>
+            <colour i="2">CLOTHING_PINK</colour>
+          </colours>
+        </clothing>
+        <clothing enchantmentKnown="true" id="innoxia_neck_velvet_choker" isDirty="false" name="velvet choker" sealed="false" slotEquippedTo="NECK">
+          <colours>
+            <colour i="0">CLOTHING_BLACK</colour>
+            <colour i="1">CLOTHING_PINK_HOT</colour>
+          </colours>
+        </clothing>
+        <clothing enchantmentKnown="true" id="innoxia_cattle_piercing_ear_tag" isDirty="false" name="cattle tag" sealed="true" slotEquippedTo="PIERCING_EAR">
+          <colours>
+              <colour i="0">CLOTHING_YELLOW</colour>
+              <colour i="1">CLOTHING_RED</colour>
+          </colours>
+        </clothing>
+        <clothing enchantmentKnown="true" id="sage_latex_croptop" isDirty="false" name="latex crop top" sealed="false" slotEquippedTo="TORSO_UNDER">
+          <colours>
+            <colour i="0">CLOTHING_BLACK</colour>
+            <colour i="1">CLOTHING_PINK_HOT</colour>
+          </colours>
+        </clothing>
+        <clothing enchantmentKnown="true" id="sage_latex_bra" isDirty="false" name="latex zip bra" sealed="false" slotEquippedTo="CHEST">
+          <colours>
+            <colour i="0">CLOTHING_BLACK</colour>
+            <colour i="1">CLOTHING_PINK_HOT</colour>
+          </colours>
+        </clothing>
+        <clothing enchantmentKnown="true" id="sage_latex_panties" isDirty="false" name="latex panties" sealed="false" slotEquippedTo="GROIN">
+          <colours>
+            <colour i="0">CLOTHING_BLACK</colour>
+            <colour i="1">CLOTHING_PINK_HOT</colour>
+          </colours>
+        </clothing>
+        <clothing enchantmentKnown="true" id="innoxia_torsoOver_hooded_cloak" isDirty="false" name="hooded cloak" sealed="false" slotEquippedTo="TORSO_OVER">
+          <colours>
+            <colour i="0">CLOTHING_BLACK</colour>
+            <colour i="1">CLOTHING_ROSE_GOLD</colour>
+          </colours>
+        </clothing>
+        <clothing enchantmentKnown="true" id="xys_magical_girl_unknown_bracelet" isDirty="false" name="unknown bracelet" sealed="false" slotEquippedTo="WRIST">
+          <colours>
+            <colour i="0">CLOTHING_BLACK</colour>
+            <colour i="1">CLOTHING_ROSE_GOLD</colour>
+          </colours>
+        </clothing>
+        <clothing enchantmentKnown="true" id="xys_rings_ring_portal" isDirty="false" name="&quot;Portal&quot; ring" sealed="false" slotEquippedTo="FINGER">
+          <colours>
+            <colour i="0">DAMAGE_TYPE_LUST</colour>
+            <colour i="1">CLOTHING_SILVER</colour>
+          </colours>
+        </clothing>
+      </clothingEquipped>
+    </characterInventory>
+    <tattoos>
+      <tattooEntry slot="GROIN">
+        <tattoo glowing="false" id="innoxia_heartWomb_heart_womb" name="heart womb" primaryColour="CLOTHING_PINK" secondaryColour="CLOTHING_BLACK_JET" tertiaryColour="CLOTHING_PINK">
+          <tattooWriting colour="BASE_GREY" glow="false">
+            <styles/>
+          </tattooWriting>
+          <tattooCounter colour="BASE_GREY" countType="TALLY" glow="false" type="PREGNANCY"/>
+          <effects>
+            <effect limit="0" mod1="CLOTHING_ATTRIBUTE" mod2="FERTILITY" potency="MAJOR_BOOST" timer="2470" type="TATTOO"/>
+            <effect limit="0" mod1="CLOTHING_ATTRIBUTE" mod2="FERTILITY" potency="MAJOR_BOOST" timer="2470" type="TATTOO"/>
+            <effect limit="0" mod1="CLOTHING_ATTRIBUTE" mod2="FERTILITY" potency="MAJOR_BOOST" timer="2470" type="TATTOO"/>
+            <effect limit="0" mod1="CLOTHING_ATTRIBUTE" mod2="FERTILITY" potency="MINOR_BOOST" timer="2470" type="TATTOO"/>
+            <effect limit="0" mod1="CLOTHING_ATTRIBUTE" mod2="FERTILITY" potency="MAJOR_BOOST" timer="2470" type="TATTOO"/>
+            <effect limit="0" mod1="CLOTHING_ATTRIBUTE" mod2="FERTILITY" potency="MAJOR_BOOST" timer="2470" type="TATTOO"/>
+            <effect limit="0" mod1="CLOTHING_ATTRIBUTE" mod2="FERTILITY" potency="MAJOR_BOOST" timer="2470" type="TATTOO"/>
+            <effect limit="0" mod1="CLOTHING_ATTRIBUTE" mod2="FERTILITY" potency="MINOR_BOOST" timer="2470" type="TATTOO"/>
+          </effects>
+        </tattoo>
+      </tattooEntry>
+    </tattoos>
+    <attributes>
+      <attribute type="HEALTH_MAXIMUM" value="1.0"/>
+      <attribute type="MANA_MAXIMUM" value="1.0"/>
+      <attribute type="LUST" value="50.0"/>
+      <attribute type="MAJOR_CORRUPTION" value="35.00"/>
+    </attributes>
+    <potionAttributes/>
+    <traits>
+      <perk type="FETISH_SEEDER"/>
+      <perk type="FETISH_BROODMOTHER"/>
+      <perk type="ORGASMIC_LEVEL_DRAIN"/>
+      <perk type="NYMPHOMANIAC"/>
+      <perk type="CONVINCING_REQUESTS"/>
+      <perk type="OBJECT_OF_DESIRE"/>
+    </traits>
+    <specialPerks>
+      <perk type="SPECIAL_MEGA_SLUT"/>
+    </specialPerks>
+    <perks>
+      <perk row="1" type="ARCANE_BASE"/>
+      <perk row="1" type="PHYSICAL_BASE"/>
+      <perk row="1" type="LEWD_KNOWLEDGE"/>
+      <perk row="2" type="VIRILITY_BOOST"/>
+      <perk row="2" type="SEDUCTION_BOOST"/>
+      <perk row="2" type="ENCHANTMENT_STABILITY"/>
+      <perk row="2" type="ENCHANTMENT_STABILITY_ALT"/>
+      <perk row="2" type="FERTILITY_BOOST"/>
+      <perk row="3" type="VIRILITY_MAJOR_BOOST"/>
+      <perk row="3" type="SEDUCTION_DEFENCE_BOOST"/>
+      <perk row="3" type="ORGASMIC_LEVEL_DRAIN"/>
+      <perk row="3" type="SEDUCTION_BOOST"/>
+      <perk row="3" type="ENCHANTMENT_STABILITY"/>
+      <perk row="3" type="ENCHANTMENT_STABILITY_ALT"/>
+      <perk row="3" type="FERTILITY_MAJOR_BOOST"/>
+      <perk row="4" type="FETISH_SEEDER"/>
+      <perk row="4" type="FETISH_BROODMOTHER"/>
+      <perk row="4" type="SEDUCTION_DEFENCE_BOOST"/>
+      <perk row="4" type="CLOTHING_ENCHANTER"/>
+      <perk row="4" type="SEDUCTION_BOOST"/>
+      <perk row="4" type="WEAPON_ENCHANTER"/>
+      <perk row="5" type="CRITICAL_BOOST_LUST"/>
+      <perk row="5" type="VIRILITY_MAJOR_BOOST"/>
+      <perk row="5" type="VIRILITY_BOOST"/>
+      <perk row="5" type="FERTILITY_BOOST"/>
+      <perk row="5" type="FERTILITY_MAJOR_BOOST"/>
+      <perk row="6" type="SEDUCTION_BOOST_MAJOR"/>
+      <perk row="7" type="SEDUCTION_DEFENCE_BOOST"/>
+      <perk row="7" type="SEDUCTION_BOOST_ALT"/>
+      <perk row="7" type="SEDUCTION_BOOST"/>
+      <perk row="8" type="OBJECT_OF_DESIRE"/>
+      <perk row="8" type="SEDUCTION_DEFENCE_BOOST"/>
+      <perk row="8" type="SEDUCTION_BOOST_MAJOR"/>
+      <perk row="8" type="CONVINCING_REQUESTS"/>
+      <perk row="8" type="SEDUCTION_BOOST"/>
+      <perk row="9" type="SEDUCTION_DEFENCE_BOOST"/>
+      <perk row="9" type="SEDUCTION_BOOST_ALT"/>
+      <perk row="9" type="SEDUCTION_BOOST"/>
+      <perk row="10" type="NYMPHOMANIAC"/>
+      <perk row="10" type="PURE_MIND"/>
+      <perk row="10" type="LUSTPYRE"/>
+      <perk row="11" type="SEDUCTION_BOOST_MAJOR"/>
+      <perk row="12" type="ELEMENTAL_BOOST_ALT"/>
+    </perks>
+    <knownSpells>
+      <spell type="ARCANE_AROUSAL"/>
+      <spell type="TELEPORT"/>
+      <spell type="TELEPATHIC_COMMUNICATION"/>
+    </knownSpells>
+    <spellUpgrades>
+        <upgrade type="ARCANE_AROUSAL_1"/>
+        <upgrade type="ARCANE_AROUSAL_2"/>
+        <upgrade type="ARCANE_AROUSAL_3"/>
+        <upgrade type="TELEPORT_1"/>
+        <upgrade type="TELEPORT_2"/>
+        <upgrade type="TELEPORT_3"/>
+        <upgrade type="TELEPATHIC_COMMUNICATION_1"/>
+        <upgrade type="TELEPATHIC_COMMUNICATION_2"/>
+        <upgrade type="TELEPATHIC_COMMUNICATION_3"/>
+    </spellUpgrades>
+    <spellUpgradePoints>
+      <upgradeEntry points="0" school="EARTH"/>
+      <upgradeEntry points="0" school="WATER"/>
+      <upgradeEntry points="0" school="AIR"/>
+      <upgradeEntry points="0" school="FIRE"/>
+      <upgradeEntry points="0" school="ARCANE"/>
+    </spellUpgradePoints>
+    <fetishes>
+      <f o="true">FETISH_IMPREGNATION</f>
+      <f o="true">FETISH_PREGNANCY</f>
+      <f o="true">FETISH_BREEDER</f>
+      <f o="true">FETISH_SIZE_QUEEN</f>
+      <f o="true">FETISH_MASTURBATION</f>
+      <f desire="3" xp="0">FETISH_DOMINANT</f>
+      <f desire="3" xp="0">FETISH_SUBMISSIVE</f>
+      <f desire="3" xp="0">FETISH_EXHIBITIONIST</f>
+      <f desire="3" xp="0">FETISH_MASOCHIST</f>
+      <f desire="0" xp="0">FETISH_TRANSFORMATION_GIVING</f>
+      <f desire="0" xp="0">FETISH_TRANSFORMATION_RECEIVING</f>
+    </fetishes>
+    <fetishExperience/>
+    <statusEffects>
+      <statusEffect lta="118520" sp="360" sr="-1" type="AROUSAL_PERK_0"/>
+      <statusEffect lta="118520" sp="360" sr="-1" type="WEATHER_CLEAR"/>
+      <statusEffect lta="118520" sp="360" sr="-1" type="ORIENTATION_AMBIPHILIC"/>
+      <statusEffect lta="118520" sp="360" sr="-1" type="DESIRES"/>
+      <statusEffect lta="118520" sp="360" sr="-1" type="LUST_PERK_2"/>
+      <statusEffect lta="118520" sp="360" sr="-1" type="SUBSPECIES_BONUS"/>
+      <statusEffect lta="118520" sp="360" sr="-1" type="PHYSIQUE_PERK_1"/>
+      <statusEffect lta="118520" sp="360" sr="-1" type="INTELLIGENCE_PERK_3"/>
+      <statusEffect lta="118520" sp="360" sr="-1" type="CORRUPTION_PERK_4"/>
+    </statusEffects>
+    <knownMoves>
+      <move type="SPELL_TELEPATHIC_COMMUNICATION"/>
+      <move type="SPELL_TELEPORT"/>
+    </knownMoves>
+    <equippedMoves>
+      <move type="BASIC_STRIKE"/>
+      <move type="BASIC_TEASE"/>
+      <move type="SPELL_ARCANE_AROUSAL"/>
+      <move type="SPELL_ARCANE_CLOUD"/>
+    </equippedMoves>
+    <characterRelationships/>
+    <pregnancy littersGenerated="0" timeProgressedToFinalPregnancyStage="1"/>
+    <family>
+      <motherId value=""/>
+      <motherName value="???"/>
+      <motherFemininity value="FEMININE"/>
+      <motherSubspecies value="HUMAN"/>
+      <fatherId value=""/>
+      <fatherName value="???"/>
+      <fatherFemininity value="MASCULINE"/>
+      <fatherSubspecies value="HUMAN"/>
+      <yearOfConception value="1969"/>
+      <monthOfConception value="APRIL"/>
+      <dayOfConception value="20"/>
+    </family>
+    <slavery>
+      <slavesOwned/>
+      <owner value=""/>
+    </slavery>
+    <companions>
+      <companionsFollowing/>
+      <partyLeader value=""/>
+      <maxCompanions value="1"/>
+    </companions>
+    <sexStats>
+      <fluidsStoredMap>
+        <entry orifice="ANUS"/>
+        <entry orifice="SPINNERET"/>
+        <entry orifice="MOUTH"/>
+        <entry orifice="VAGINA"/>
+        <entry orifice="NIPPLE_CROTCH"/>
+        <entry orifice="NIPPLE"/>
+        <entry orifice="URETHRA_VAGINA"/>
+        <entry orifice="URETHRA_PENIS"/>
+      </fluidsStoredMap>
+      <daysOrgasmCount value="0"/>
+      <daysOrgasmCountRecord value="0"/>
+      <totalOrgasmCount value="0"/>
+      <sexPartners/>
+      <virginityLosses/>
+      <virginityLossesBackup/>
+    </sexStats>
+    <addictionsCore alcoholLevel="0.0">
+      <addictions/>
+      <psychoactiveFluids/>
+    </addictionsCore>
+    <npcSpecific>
+	    <lastTimeEncountered value="-1"/>
+      <buyModifier value="0.75"/>
+      <sellModifier value="1.5"/>
+      <playerSurrenderCount value="0"/>
+      <addedToContacts value="false"/>
+      <NPCValues/>
+    </npcSpecific>
+  </character>
+</exportedCharacter>

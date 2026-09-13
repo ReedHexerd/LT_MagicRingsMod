@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<encounterRoot>
+	
+	<additionalPlaceTypeTriggers>
+		<placeType>DOMINION_BACK_ALLEYS</placeType>
+	</additionalPlaceTypeTriggers>
+	
+	<possibleEncounters>
+		<encounter>
+            <name><![CDATA[Idol_Back_Alley]]></name>
+            <chanceToTrigger opportunisticEncounter="false"><![CDATA[
+				#IF(flags.hasFlag('xys_idol_intro_dancefloor') && pc.getCell() == idol.getCell() && game.isHourBetween(0, 1))
+					101
+				#ELSE
+					0
+				#ENDIF
+            ]]></chanceToTrigger>
+			<dialogueReturned><![CDATA[
+				#IF(flags.hasFlag('xys_idol_back_alley_passby'))
+					xys_dominion_idol_idol_back_alley_passby
+				#ELSE
+					xys_dominion_idol_idol_back_alley
+				#ENDIF
+			]]></dialogueReturned>
+		</encounter>
+	</possibleEncounters>
+	
+</encounterRoot>
